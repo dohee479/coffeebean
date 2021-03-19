@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /** 동호 test test22
  * Handles requests for the application home page.
  */
+
+/* 종현 test 123
+ * 
+ */
 @Controller
 public class MainController {
 	
