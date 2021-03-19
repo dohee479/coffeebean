@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /** 동호 test test22
  * Handles requests for the application home page.
- */
+ */	
+/* 종현
+ * */
 @Controller
 public class MainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.asdf
 	 */
