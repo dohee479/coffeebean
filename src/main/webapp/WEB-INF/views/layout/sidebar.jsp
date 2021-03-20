@@ -8,28 +8,28 @@
                 <ul>
                     <li>쇼핑 정보
                         <ul>
-                            <li onclick=location.href='../mypage/order.html'>- 주문목록/배송조회</li>
-                            <li onclick=location.href='../refund/refund.html'>- 취소/환불내역</li>
-                            <li onclick=location.href='../zzim/zzim.html'>- 찜리스트</li>
+                            <li onclick=location.href="${pageContext.request.contextPath}/mypage/orderlist">- 주문목록/배송조회</li>
+                            <li onclick=location.href="${pageContext.request.contextPath}/mypage/refund">- 취소/환불내역</li>
+                            <li onclick=location.href="${pageContext.request.contextPath}/mypage/zzim">- 찜리스트</li>
                         </ul>
                     </li>
             
                     <li>고객 센터
                         <ul>
-                            <li onclick=location.href='my-qna.thml'>- 1:1 문의</li>
+                            <li onclick=location.href="${pageContext.request.contextPath}/mypage/my-qna">- 1:1 문의</li>
                         </ul>
                     </li>
                     
                     <li>회원정보
                         <ul>
-                            <li onclick=location.href='../mypage/change-info.html'>- 회원정보 변경</li>
+                            <li onclick=location.href="${pageContext.request.contextPath}/mypage/chang-info">- 회원정보 변경</li>
                             <li onclick=location.href='#'>- 회원탈퇴</li>
                         </ul>
                     </li>
             
                     <li>나의 상품후기
                         <ul>
-                            <li onclick=location.href='../mypage/my-review.html'>- 나의 상품후기</li>
+                            <li onclick=location.href="${pageContext.request.contextPath}/mypage/my-review">- 나의 상품후기</li>
                         </ul>
                     </li>
                 </ul>
