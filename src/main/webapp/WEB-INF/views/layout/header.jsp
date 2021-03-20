@@ -9,6 +9,8 @@
 	<link rel="stylesheet" href="<%=application.getContextPath() %>/resources/css/reset/reset.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout/header.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout/sidebar.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/uesr/sign_in_up.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/uesr/id_pwd_find.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/orderlist/orderlist.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/zzim/zzim.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/refund/refund.css">

@@ -75,8 +75,6 @@
         const signUpButton = document.getElementById('signUp_mv');
         const signInButton = document.getElementById('signIn_mv');
         const container = document.getElementById('s_container');
-
-
         function id_check() {
             var id=document.getElementById('id');
             var available=document.getElementById('s_available');
@@ -91,17 +89,12 @@
             }
             
         }
-
-       
-
         signUpButton.addEventListener('click', () => {
             container.classList.add("right-panel-active");  //container에 클래스 추가
         });
         signInButton.addEventListener('click', () => {
             container.classList.remove("right-panel-active");
         });
-
-        
     </script>
 </body>
 </html>
