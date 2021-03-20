@@ -39,5 +39,14 @@ public class MypageController {
 	@RequestMapping("my-review")
 	public String my_review() {		
 		return "mypage/my_review";
+
+	@GetMapping("/orderlist")
+	public String OrderList() {
+		return "mypage/orderlist";
+	}
+
+	@GetMapping("/refund")
+	public String RefundList() {
+		return "mypage/refund";
 	}
 }
