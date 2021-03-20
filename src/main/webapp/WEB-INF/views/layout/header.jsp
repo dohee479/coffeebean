@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="<%=application.getContextPath() %>/resources/bootstrap-4.6.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<%=application.getContextPath() %>/resources/css/reset/reset.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout/header.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user/sign_in_up.css">
 	<script src="<%=application.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
 	<script src="<%=application.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.bundle.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>

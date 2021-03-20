@@ -23,9 +23,5 @@ public class MainController {
 	/**
 	 * Simply selects the home view to render by returning its name.asdf
 	 */
-	@RequestMapping("/")
-	public String home() {
-		return "home";
-	}
 	
 }
