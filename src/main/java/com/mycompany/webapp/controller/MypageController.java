@@ -20,7 +20,7 @@ public class MypageController {
 	public String OrderList() {
 		return "mypage/orderlist";
 	}
-	
+
 	@GetMapping("/refund")
 	public String RefundList() {
 		return "mypage/refund";
