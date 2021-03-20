@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+
+/*사이드바*/
+.center{
+    display: flex;
+    position: relative;
+    top:9em;
+}
+.sidebar{
+    font-family: Arial, Helvetica, sans-serif;
+    width:22%;
+}
+.sidebar h2{
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: #f1f3f5 2px solid;
+    padding: 0.5em 0;            
+    margin-left: 60%;
+}
+
+.sidebar .side_content{
+    margin-left: 60%;
+    padding-top: 1em;
+
+}
+.sidebar .side_content > ul >li{
+    font-size: 1em;
+    font-weight: bold;
+    list-style: none;
+    margin-bottom: 4em;
+}
+.sidebar .side_content > ul >li > ul > li{
+    font-size:0.8em;
+    font-weight: normal;
+    width: 100%;
+    cursor:pointer;
+    list-style: none;
+    padding:0.5em 0;
+    padding-left: 10%;
+}
+.sidebar .side_content > ul >li > ul > li:hover{
+    color: #e8590c;
+    background-color:#f1f3f5;
+}
+/*본문*/
+.content{
+    position: relative;
+    float:right;
+    width: 70%;
+}
