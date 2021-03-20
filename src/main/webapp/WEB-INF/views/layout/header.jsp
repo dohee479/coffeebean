@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout/sidebar.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/orderlist/orderlist.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/zzim/zzim.css">
+	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/basket/basket.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/refund/refund.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/product/detail/detail.css">
 	<script src="<%=application.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>

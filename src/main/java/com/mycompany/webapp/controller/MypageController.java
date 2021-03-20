@@ -26,6 +26,10 @@ public class MypageController {
 		return "mypage/zzim";
 	}
 	
+	@GetMapping("basket")
+	public String basket() {
+		return "mypage/basket";
+	}
 	
 
 
