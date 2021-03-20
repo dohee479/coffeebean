@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout/header.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/orderlist/orderlist.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/zzim/zzim.css">
+	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/refund/refund.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/product/detail/detail.css">
 	<script src="<%=application.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
 	<script src="<%=application.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.bundle.min.js"></script>
