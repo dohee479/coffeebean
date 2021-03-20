@@ -56,6 +56,4 @@
       <span><img src="${pageContext.request.contextPath}/resources/images/header/search.png"></span>
     </div>
   </div>
-  <script src="${pageContext.request.contextPath}/resources/js/layout/header.js"></script>  
-</body>
-</html>
+  <script src="${pageContext.request.contextPath}/resources/js/layout/header.js"></script>
