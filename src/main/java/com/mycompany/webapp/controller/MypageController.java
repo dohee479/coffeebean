@@ -15,4 +15,9 @@ public class MypageController {
 	public String ZzimList() {
 		return "mypage/zzim";
 	}
+	
+	@GetMapping("/orderlist")
+	public String OrderList() {
+		return "mypage/orderlist";
+	}
 }
