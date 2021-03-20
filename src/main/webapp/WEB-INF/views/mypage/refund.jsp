@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
-
+<%@ include file="/WEB-INF/views/layout/sidebar.jsp" %>
     <div >
         <div class="refund_list">
             <span>취소/환불내역</span>
