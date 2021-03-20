@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<%@ include file="/WEB-INF/views/layout/sidebar.jsp" %>
+
     <div>
         <div class="pick_list">
             <span>찜리스트</span>

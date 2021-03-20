@@ -49,7 +49,7 @@
     </div>
     <div class="user-menu">
       <div class="user-item"><a href="#">로그아웃</a></div>
-      <div class="user-item"><a href="../mypage/order.html">마이페이지</a></div>
+      <div class="user-item"><a href="<%=application.getContextPath()%>/mypage/orderlist">마이페이지</a></div>
       <div class="user-item"><a href="#"><img src="${pageContext.request.contextPath}/resources/images/header/shopping-cart.png" style="height:24px"></a></div>
       <div class="user-item"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/loupe.png"></div>
     </div>

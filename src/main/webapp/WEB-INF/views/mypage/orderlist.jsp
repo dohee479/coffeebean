@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<%@ include file="/WEB-INF/views/layout/sidebar.jsp" %>
     <div>
            	<div class="order_list">
                 <span>주문목록/배송조회</span>
