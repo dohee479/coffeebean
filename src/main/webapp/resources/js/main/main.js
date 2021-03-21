@@ -88,7 +88,7 @@ const highlight = (path) => {
 
 const reset_map = () => {
   var img_map=document.getElementById('img_map');
-  img_map.src="#";
+  img_map.src="/kong/resources/images/main/map_img.png";
 }
       
 const SetTitle = (title) => {
