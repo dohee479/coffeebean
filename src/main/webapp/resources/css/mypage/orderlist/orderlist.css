@@ -27,13 +27,13 @@
 
         /* 비율 끝 */
 
-        .order_table{
+        .order_list table{
             border-collapse: collapse;
             margin-top: 2em;
             text-align: center;  
         }
 
-        .order_table tr{
+        .order_list tr{
             border-bottom: 1px solid #dcdcdc;
         }
 
