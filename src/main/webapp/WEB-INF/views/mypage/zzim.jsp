@@ -75,7 +75,7 @@
               
               <div class="button-group">
                 <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-                <button class="gocart">확인</button>
+                <button class="gocart" onclick="location.href='<%=application.getContextPath() %>/mypage/basket'">확인</button>
               </div>
   
             </div>
