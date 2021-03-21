@@ -1,0 +1,244 @@
+ .order_list{
+            margin-top: 4em;
+            margin-left: 10em;
+            margin-right: 5em;
+        }
+
+        .order_list > span{
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .table .order_no{
+            width: 150px;
+        }
+
+        .table .item_wrap{
+            width: 500px;
+        }
+
+        .table .price{
+            width: 150px;
+        }
+
+        .table .state{
+            width: 150px;
+        }
+
+        /* 비율 끝 */
+
+        .order_list table{
+            border-collapse: collapse;
+            margin-top: 2em;
+            text-align: center;  
+        }
+
+        .order_list tr{
+            border-bottom: 1px solid #dcdcdc;
+        }
+
+        .table .attribute th{
+            background-color: #FAFAFA;
+            padding: 1em 0;
+            font-weight: 600;
+        }
+
+        .items td{
+            border-right: 1px solid #FAFAFA;
+        }
+
+        .item_wrap{
+            
+            padding: 10px;
+        }
+
+        .item_wrap .item_title{
+            line-height: 7em;
+            float:left;
+            margin-left: 3em;
+        }
+
+        .item_wrap .item_title span{
+            vertical-align: middle;
+            text-align: left;
+        }
+
+        .item_wrap img{
+            float: left;
+            width: 7em;
+        }
+
+        .items .price{
+            vertical-align: middle;
+        }
+
+        .items .state{
+            border-right: 1px solid white;
+            padding: 10px;
+            vertical-align: middle;
+            font-weight: 600;
+            
+        }
+
+        .items .order_no{
+            vertical-align: middle;
+        }
+
+        .state .cancel, .state .refund{
+            font-size: 12px;
+        }
+
+        .state .cancel:hover, .state .refund:hover{
+            color : red;
+            cursor: default;
+        }
+
+        .state button{
+            font-size: 12px;
+            border: 0px;
+            padding: 5px 10px 5px 10px;
+            margin: 5px;
+        }
+
+        .modal-body{
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-group{
+            margin-bottom: 2em;
+        }
+        
+       
+
+        .modal-body .custom-select{
+            margin-bottom: 2em;
+        }
+
+        #cancel .modal-title, #refund .modal-title, #tracking .modal-title{
+            font-size: 17px;
+            font-weight: 700;
+        }
+        
+        .modal-body .cancel_img, .modal-body .refund_img{
+            text-align: center;
+        }
+        
+        .cancel_img img, .refund_img img, .confirmation_img img{
+            width: 80px;
+            margin: 20px;
+        }
+        
+        .modal-body .message1{
+            text-align: center;
+            margin: 5px;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-body .message2{
+            text-align: center;
+            margin: 5px;
+            margin-bottom: 20px;
+        }
+  
+        .button-group .cancel{
+            border: 1px solid #DCDCDC;
+            background-color: white;
+            padding: 7px 20px 7px 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        #confirmation .button-group{
+        	margin: 20px;
+        }
+        
+        .button-group .gocart, .button-group .complete, .button-group .confirmation, .button-group .complete {
+            border: 1px solid #EB5050;
+            background-color: #EB5050;
+            padding: 7px 20px 7px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+        }
+
+        #cancel_reason, #refund_reason{
+            width: 300px;
+            margin: 20px 0;
+        }
+
+        .modal-body .track-box{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track-box .track-title, .track-box .address-title{
+            border: 1px solid #DCDCDC;
+            padding : 5px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight:700;
+            color: #808080;
+            margin: 10px;
+        }
+
+        .track-box .trackno{
+            font-size: 25px;
+            font-weight: 700;
+            margin: 10px;        
+        }
+
+        .trackno a{
+            text-decoration:none;
+            color: black;
+        }
+
+        .trackno a:hover{
+            text-decoration:none;
+            color: #01579B;
+        }
+
+        .track-box .track-company{
+            font-size: 17px;
+            margin: 2px;
+        }
+
+        .track_img img{
+            width: 450px;
+            margin: 30px 0;
+        }
+
+        .delivery_info{
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        .delivery_info div{
+            display: flex;
+            flex-direction: row;
+           
+            
+        }
+
+        .delivery_info dt{
+            background-color: #FAFAFA;
+            padding: 10px;
+            width: 120px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .delivery_info dd{
+            width: 150px;
+            margin: auto ;
+            padding: px;
+            text-align: left;
+        }
+
+        .delivery_info{
+            margin: 20px;
+        }

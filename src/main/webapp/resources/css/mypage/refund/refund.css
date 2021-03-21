@@ -1,0 +1,120 @@
+        .refund_list{
+            margin-top: 4em;
+            margin-left: 5em;
+            margin-right: 5em;
+        }
+
+        .refund_list > span{
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .items .order_no{
+            width: 150px;
+        }
+        
+
+        .table .item_wrap{
+            width: 500px;
+        }
+
+        .table .price{
+            width: 150px;
+        }
+
+        .table .state{
+            width: 150px;
+        }
+
+        /* 비율 끝 */
+
+        .refund_list table{
+            border-collapse: collapse;
+            margin-top: 2em;
+            text-align: center;
+        }
+
+        .refund_list tr{
+            border-bottom: 1px solid #dcdcdc;
+        }
+
+        .table .attribute th{
+            background-color: #FAFAFA;
+            padding: 1em 0;
+            font-weight: 600;
+        }
+
+        .items .order_no{
+            vertical-align: middle;
+        }
+
+        .items td{
+            border-right: 1px solid #FAFAFA;
+        }
+
+        .item_wrap{
+            
+            padding: 10px;
+        }
+
+        .item_wrap .item_title{
+            line-height: 7em;
+            float:left;
+            margin-left: 3em;
+        }
+
+        .item_wrap .item_title span{
+            vertical-align: middle;
+            text-align: left;
+        }
+
+        .item_wrap img{
+            float: left;
+            width: 7em;
+        }
+
+        .items .price{
+            vertical-align: middle;
+        }
+
+        .items .state{
+            vertical-align: middle;
+        }
+
+        .items .act{
+            border-right: 1px solid white;
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        .items .act button{
+            font-size: 12px;
+            font-weight: 600;
+            padding: 7px 20px 7px 20px;
+            margin: 5px;
+            border: 0px;
+            border-radius: 2px;
+        }
+
+        .items .act .cart{
+            color: white;
+            background-color: #EF5350;
+        }
+
+        .bottom_button{
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+
+        .bottom_button button{
+            font-size: 14px;
+            font-weight: 400;
+            padding: 10px 20px 10px 20px;
+            margin: 1px;
+            border: 0px;
+            border-radius: 2px;
+        }
+        
+
+
+       

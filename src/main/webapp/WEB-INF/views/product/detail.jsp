@@ -33,7 +33,7 @@
                     <dd>200g, 500g, 1kg</dd>
                 </dl>
             </div> 
-            <form>
+            <form method="post">
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
@@ -76,12 +76,11 @@
                       <strong>원</strong>
                   </div>
               </div> 
-
               <div class="btn_choice_box">
                   <button type="button" class="btn btn-light button" data-toggle="modal" data-target="#compare">비교하기</button>
                   <input type="button" name="cart" value="장바구니" class="btn btn-light button" formaction="#" data-toggle="modal" data-target="#cart" href=""/>
                   <input type="button" name="zzim" value="찜하기" class="btn btn-light button" formaction="#" data-toggle="modal" data-target="#zzim"/>
-                  <input type="submit" name="purchase" value="구매하기" class="btn btn-info button" formaction="../order/fill_out_order.html" data-toggle="modal" data-target="# #"/>
+                  <input type="submit" name="purchase" value="구매하기" class="btn btn-info button" formaction="<%=application.getContextPath() %>/order/fill_out_order" data-toggle="modal" data-target="# #"/>
                   <!-- formaction 으로 하나의 form 안에 여러 submit을 작성하기 위함 action을 따로 작성하지 않아도 됨 -->
               </div>
           </form>
@@ -166,7 +165,7 @@
                 
                 <div class="button-group">
                   <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-                  <button class="gocart">확인</button>
+                  <button class="gocart" onclick="location.href='<%=application.getContextPath() %>/mypage/basket'">확인</button>
                 </div>
     
               </div>

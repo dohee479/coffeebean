@@ -11,13 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MypageController {
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 
+	@GetMapping("/orderlist")
+	public String OrderList() {
+		return "mypage/orderlist";
+	}
+	
+	@GetMapping("/refund")
+	public String RefundList() {
+		return "mypage/refund";
+	}
+
 	@GetMapping("/zzim")
 	public String ZzimList() {
 		return "mypage/zzim";
 	}
 	
+
 	@GetMapping("/change-info")
 	public String ChangeInfo() {
 		return "mypage/change-info";
+	}
+  
+	@GetMapping("basket")
+	public String basket() {
+		return "mypage/basket";
 	}
 }

@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<%@ include file="/WEB-INF/views/layout/sidebar.jsp" %>
+
     <div>
         <div class="pick_list">
             <span>찜리스트</span>
@@ -73,7 +75,7 @@
               
               <div class="button-group">
                 <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-                <button class="gocart">확인</button>
+                <button class="gocart" onclick="location.href='<%=application.getContextPath() %>/mypage/basket'">확인</button>
               </div>
   
             </div>
