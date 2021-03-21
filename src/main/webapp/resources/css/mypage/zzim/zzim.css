@@ -108,12 +108,12 @@
             border: 1px solid black;
         }
 
-        .modal-body{
+        #cart .modal-body, #erase .modal-body {
             display: flex;
             flex-direction: column;
         }
         
-        .btn-group{
+        #cart .btn-group, #erase .btn-group{
             margin-bottom: 2em;
         }
         
