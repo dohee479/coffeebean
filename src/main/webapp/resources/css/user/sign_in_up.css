@@ -56,6 +56,7 @@
     padding: 0.7em;
     margin: 1em;
     margin-left:4em;
+    font-size:0.8em
 }
 .s_sign_in_container a{
     display: inline;
@@ -70,7 +71,7 @@
     color: #FFFFFF;
     font-size: 0.8em;
     font-weight: bold;
-    padding: 0.8em 0;
+    padding: 1.1em 0;
     letter-spacing: 1px;
 }
 .s_sign_up_container > button{
@@ -84,28 +85,30 @@
     letter-spacing: 1px;
     position: relative;
     left:35%;
+    margin-top:2em;
 }
 
 .s_content .s_container .s_sign_up_container{
     opacity: 0;
     z-index: 0;
 }
-.s_sign_up_container > table,th,td{
-    font-size: 0.7em;
+.s_sign_up_container > table{
     border-collapse: collapse;
     left:0;
+    width:100%;
 }
 .s_table_1 th{
+	font-size: 0.7em;
     background-color: #f1f3f5;
     border-bottom: #dee2e6 1px solid;
-    width: 11em;
+    width: 23%;
     text-align: left;
-    padding: 2.3em;
     font-weight: bold;
     vertical-align:middle;
+    padding: 2.3em 2.3em;
 }
 .s_table_1 td{
-    
+	font-size: 0.7em;
     background-color: white;
     border-bottom: #dee2e6 1px solid;
     width: 52em;

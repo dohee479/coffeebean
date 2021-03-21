@@ -41,11 +41,11 @@
     color: tomato;
 }
 
-.bsk_table_1,.bsk_table_2,th,td{
-    font-size: 0.8em;
+.bsk_table_1{
+    font-size: 1em;
     left:0;
     padding:1.3em;
-  
+  	width:100%;
 }
 
 .bsk_table_1  th{
@@ -53,6 +53,9 @@
     background-color: #f1f3f5;
     border-bottom: #dee2e6 1px solid;
     text-align:center;
+    font-size: 0.8em;
+    left:0;
+    padding:1.3em;
 
 }
 
@@ -67,6 +70,9 @@
     border-right:  #dee2e6 1px solid;
     text-align:center;
     vertical-align: middle;
+    font-size: 0.8em;
+    left:0;
+    padding:1.3em;
 
     
 }

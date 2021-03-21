@@ -10,7 +10,7 @@
                             <th style="border-top: solid 1px #343a40;">이름</th><td style="border-top: solid 1px #343a40;"><input type="text"></td>
                         </tr>
                         <tr>
-                            <th>이메일</th><td><input style="width:20em;" type="email"><select name="email" id="email">
+                            <th>이메일</th><td><input style="width:19.5em;" type="email"><select name="email" id="email">
                                 <option value="volvo">직접입력</option>
                                 <option value="saab">naver.com</option>
                                 <option value="opel">daum.net</option>
@@ -35,7 +35,7 @@
            </div> 
         </div>
 
-        <div class="modal fade" id="findidmodal" tabindex="-1" aria-labelledby="findidmodalLabel" aria-hidden="true">
+        <div class="modal fade unomodal" id="findidmodal" tabindex="-1" aria-labelledby="findidmodalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
@@ -62,7 +62,7 @@
             </div>
           </div>
 
-          <div class="modal fade" id="findpwdmodal" tabindex="-1" aria-labelledby="findpwdmodalLabel" aria-hidden="true">
+          <div class="modal fade unomodal" id="findpwdmodal" tabindex="-1" aria-labelledby="findpwdmodalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
