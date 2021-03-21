@@ -1,6 +1,7 @@
 #change-div{
-            margin-top: 100px;
-            margin-right: 200px;
+    margin-top: 4em;
+    margin-left: 10em;
+    margin-right: 5em;;
 }
 .wrapper1, .wrapper2 {
             display: grid;
