@@ -81,13 +81,6 @@ const scroll = function() {
 
 scroll();
 
-$.ajax({
-  url: "../navbar/nav.html",
-})
-.done((data) => {
-  $(".nav").html(data);
-})
-
 const highlight = (path) => {
   var img_map=document.getElementById('img_map');
   img_map.src=path;
@@ -95,7 +88,7 @@ const highlight = (path) => {
 
 const reset_map = () => {
   var img_map=document.getElementById('img_map');
-  img_map.src='../common/images/main/map_img.png';
+  img_map.src="../../resources/images/main/map_img.png";
 }
       
 const SetTitle = (title) => {

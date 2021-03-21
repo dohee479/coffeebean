@@ -53,7 +53,7 @@
     <div class="close">X</div>
     <div>
       <input type="text" placeholder="검색어를 입력하세요">
-      <span><img class="loupe" src="../common/images/navbar/search.png"></span>
+      <span><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/search.png"></span>
     </div>
   </div> 
   <script src="${pageContext.request.contextPath}/resources/js/layout/header.js"></script>

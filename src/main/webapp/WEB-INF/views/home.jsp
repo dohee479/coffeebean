@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/layout/mainHeader.jsp" %>
   <main>
     <div class="content">
-      <div src="${pageContext.request.contextPath}/resources/images/main/main1.jpg" class="backimg pageimg" id="img1">
+      <div class="backimg pageimg" id="img1">
         <h1 class="textup">가장 좋은 원두를</h1>
         <h1 class="textup">고르고 판매합니다.</h1>
         <div class="textup">세계 3대 커피로 알려진</div>
@@ -19,11 +19,11 @@
             <p id="nara_description">
             </p>
           </div>
-          <img id="img_map" class="img_map" src="../common/images/main/map_img.png" usemap="#image-map" >
+          <img id="img_map" class="img_map" src="${pageContext.request.contextPath}/resources/images/main/map_img.png" usemap="#image-map" >
           <map name="image-map">
               <area href="../itemlist/countryitem.html" coords="171,289,199,289,199,311,229,312,226,336,197,336,196,323,173,322" shape="poly"
               onmouseover="
-                  highlight('../common/images/main/Guate.png'); 
+                  highlight('${pageContext.request.contextPath}/resources/images/main/Guate.png'); 
                   SetTitle('과테말라');
                   SetDescription('과테말라 커피 특징. ');"
   
@@ -34,7 +34,7 @@
   
               <area href="../itemlist/countryitem.html" coords="289,381,298,379,301,368,313,367,314,355,334,357,338,376,361,380,363,391,389,394,388,411,375,417,374,451,365,451,364,442,354,441,351,426,341,431,337,416,328,420,325,405,290,406" shape="poly"
               onmouseover="
-                  highlight('../common/images/main/Brasil.png'); 
+                  highlight('${pageContext.request.contextPath}/resources/images/main/Brasil.png'); 
                   SetTitle('브라질');
                   SetDescription('브라질 커피 특징. ');"
   
@@ -45,7 +45,7 @@
   
               <area href="../itemlist/countryitem.html" coords="579,369,603,370,603,381,615,381,615,392,602,391,602,404,565,403,564,387,578,383" shape="poly"
               onmouseover="
-                  highlight('../common/images/main/kenya.png'); 
+                  highlight('${pageContext.request.contextPath}/resources/images/main/kenya.png'); 
                   SetTitle('케냐');
                   SetDescription('독특한 쌉쌀한 맛, 신맛, 강한 향미가 특징<br> 개성있고 상큼한 커피. ');"
   
@@ -56,7 +56,7 @@
   
               <area href="../itemlist/countryitem.html" coords="579,366,602,367,603,356,628,355,628,344,616,344,615,334,602,331,602,320,581,320" shape="poly"
               onmouseover="
-                  highlight('../common/images/main/Ethi.png'); 
+                  highlight('${pageContext.request.contextPath}/resources/images/main/Ethi.png'); 
                   SetTitle('에티오피아');
                   SetDescription('에티오피아 커피 특징. ');"
   
@@ -67,7 +67,7 @@
   
               <area href="../itemlist/countryitem.html" coords="251,341,287,342,286,391,252,393,253,369,265,368,265,354,251,354" shape="poly"
               onmouseover="
-                  highlight('../common/images/main/Colom.png'); 
+                  highlight('${pageContext.request.contextPath}/resources/images/main/Colom.png'); 
                   SetTitle('콜롬비아');
                   SetDescription('은은한 허브향과 단맛의 조화. ');"
               onmouseout="
@@ -103,6 +103,7 @@
       <li class="item"><a href="#img4" class="scroll"></a></li>
     </ul>
   </main>
+  <script src="${pageContext.request.contextPath}/resources/js/main/main.js"></script>
 </body>
 </html>
 
