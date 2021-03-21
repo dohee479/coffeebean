@@ -30,8 +30,4 @@ public class MypageController {
 	public String basket() {
 		return "mypage/basket";
 	}
-	
-
-
-
 }
