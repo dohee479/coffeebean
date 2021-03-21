@@ -15,4 +15,9 @@ public class MypageController {
 	public String ZzimList() {
 		return "mypage/zzim";
 	}
+	
+	@GetMapping("/change-info")
+	public String ChangeInfo() {
+		return "mypage/change-info";
+	}
 }
