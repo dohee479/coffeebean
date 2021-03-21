@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<%@ include file="/WEB-INF/views/layout/sidebar.jsp" %>
 
 	<div id="change-div">
             <div id="change-info">
@@ -57,6 +58,5 @@
                 </div>
             </div>
     </div>
-</body>
+</div>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
-</html>
