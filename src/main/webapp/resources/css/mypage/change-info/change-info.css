@@ -1,0 +1,98 @@
+#change-div{
+            margin-top: 100px;
+            margin-right: 200px;
+}
+.wrapper1, .wrapper2 {
+            display: grid;
+            grid-auto-rows: minmax(50px, auto);
+            grid-auto-columns: minmax(50px,200px);
+}
+.input-id, .input-pw{
+            grid-column: 1;
+            grid-row: 1;
+            padding:10px;
+            border-top: 2px solid gray;
+            border-bottom: 1px solid #ced4da;
+}
+.change-id, .current-pw {
+            grid-column: 2/4;
+            grid-row: 1;
+            padding:10px;
+            border-top: 2px solid gray;
+            border-bottom: 1px solid #ced4da;
+}
+.input-name, .input-newpw {
+            grid-column: 1;
+            grid-row: 2;
+            padding:10px;
+            border-bottom: 1px solid #ced4da;
+}
+.change-name, .new-pw {
+            grid-column: 2/4;
+            grid-row: 2;
+            padding:10px;
+            border-bottom: 1px solid #ced4da;
+}
+.input-pno, .input-pwcheck{
+            grid-column: 1;
+            grid-row: 3;
+            padding:10px;
+            border-bottom: 1px solid #ced4da;
+}
+.change-pno, .pw-check{
+            grid-column: 2/4;
+            grid-row: 3;
+            padding:10px;
+            border-bottom: 1px solid #ced4da;
+}
+.input-location {
+            grid-column: 1;
+            grid-row: 4;
+            padding:10px;
+            border-bottom: 1px solid #ced4da;
+}
+.change-location {
+            grid-column: 2/4;
+            grid-row: 4;
+            padding:10px;
+            border-bottom: 1px solid #ced4da;
+}
+.input-elements{
+            grid-column: 1;
+            grid-row: 1/5;
+            background-color: #f8f9fa;
+}
+.input-elements2{
+            grid-column: 1;
+            grid-row: 1/4;
+            background-color: #f8f9fa;
+}
+.button-input{
+            width:600px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+}
+.button-input .change-info-buttons{
+            color: white;
+            background-color: #EF5350;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 7px 20px 7px 20px;
+            margin: 5px;
+            border: 0px;
+}
+.location-info input{
+            width:100%;
+}
+.change-location #change-location-button{
+            font-size: 12px;
+            font-weight: 600;
+            padding: 7px 20px 7px 20px;
+            margin: 5px;
+            border: 0px;
+}
+#change-div h3{
+            font-weight: bold;
+            margin-bottom: 20px;
+}

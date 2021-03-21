@@ -26,12 +26,14 @@ public class MypageController {
 		return "mypage/zzim";
 	}
 	
+
+	@GetMapping("/change-info")
+	public String ChangeInfo() {
+		return "mypage/change-info";
+	}
+  
 	@GetMapping("basket")
 	public String basket() {
 		return "mypage/basket";
 	}
-	
-
-
-
 }
