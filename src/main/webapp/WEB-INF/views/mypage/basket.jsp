@@ -7,14 +7,14 @@
             <div>
                 <table class="bsk_table_1">
                     <tr style="border-top: solid 1px #343a40;">
-                        <th colspan="2" width="700em"><input type="checkbox" style="position: relative; left:-43.5%;;" name="orderchk" id="orderchk" onclick='selectAll(this)'>상품/옵션 정보</th>
-                        <th width="138em"> 수량</th>
-                        <th width="138em">상품금액</th>
-                        <th width="138em">합계금액</th>
-                        <th width="138em">배송비</th>
+                        <th colspan="2"><input type="checkbox" style="position: relative; left:-43.5%;;" name="orderchk" id="orderchk" onclick='selectAll(this)'>상품/옵션 정보</th>
+                        <th> 수량</th>
+                        <th>상품금액</th>
+                        <th>합계금액</th>
+                        <th>배송비</th>
                     </tr>
                     <tr >
-                        <td rowspan="2" width="30em"><input type="checkbox" name="orderchk" id="orderchk"></td>                  
+                        <td rowspan="2" style="width:2em;"><input type="checkbox" name="orderchk" id="orderchk"></td>                  
                         <td id="bsk_td_main"><img width="100px" src="<%=application.getContextPath()%>/resources/images/order/coffe1.PNG"/><div class="d-inline-block"><div>스프링 블렌드</div><div>용량 선택</div></div></td>
                         <td rowspan="2">1개</td>
                         <td rowspan="2">8300원</td>
@@ -52,18 +52,6 @@
 
 
         <script src="../navbar/nav.js"></script>
-
-    <script>
-        const selectAll= (selectall) => {
-            let chkbox=$('input[name="orderchk"]');
-            if(selectall.checked){
-                chkbox.prop("checked",true);
-            }
-            else{
-                chkbox.prop("checked",false);
-            }
-
-        };
-    </script>
+        <script src="${pageContext.request.contextPath}/resources/js/user/sign_in_up.js"></script>
 </body>
 </html>

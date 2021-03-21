@@ -51,22 +51,20 @@
 }
 
 .f_o_table_1,.f_o_table_2{
-    font-size: 0.8em;
+    font-size: 1em;
     left:0;
     padding:1.3em;
   
 }
-.f_o_content th,td{
-    font-size: 0.8em;
-    left:0;
-    padding:1.3em;
-}
+
 .f_o_table_1  th{
     font-weight: bold;
     background-color: #f1f3f5;
     border-bottom: #dee2e6 1px solid;
     text-align:center;
-
+    font-size: 0.8em;
+    left:0;
+    padding:1.3em;
 }
 
 #td_main{
@@ -82,7 +80,9 @@
     border-right:  #dee2e6 1px solid;
     text-align:center;
     vertical-align: middle;
-
+    font-size: 0.8em;
+    left:0;
+    padding:1.3em;
     
 }
 .f_o_sumbox{
@@ -101,14 +101,18 @@
     text-align:left;
     width: 15em;
     vertical-align: middle;
-
+    font-size: 0.8em;
+    left:0;
+    padding:1.3em;
 
 }
 .f_o_table_2 td{
     background-color: white;
     border-bottom: #dee2e6 1px solid;
     width: 110em;
-
+    font-size: 0.8em;
+    left:0;
+    padding:1.3em;
 }
 .f_o_table_2 td  input{
     padding:0.7em;
