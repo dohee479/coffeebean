@@ -14,6 +14,9 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout/sidebar.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/fill_out_order.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/order_complete.css">
+	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/delete-account/delete-account.css">
+	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/my-qna/my-qna.css">
+	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/my-review/my-review.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/change-info/change-info.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/orderlist/orderlist.css">
 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/zzim/zzim.css">
