@@ -1,0 +1,79 @@
+.contents {
+  margin-top: 150px;
+}
+.sub_content {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#map {
+  width: 100%;
+  display: none;
+}
+
+
+.flavor_title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+}
+
+.flavor {
+  margin: 1.5rem 0;
+}
+
+.country-list, .recommend-list form ul {
+  display: flex;
+}
+
+.country-list li, .recommend-list form li {
+  flex: 1;
+  margin: 1rem 0 0 0;
+  font-size: 1rem;
+  list-style: none;
+}
+
+.recommend-list form {
+  border-top: 1px solid;
+  margin: 16px 0;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.recommend-list {
+  margin-top: 4rem;
+}
+
+label {
+  cursor: pointer;
+}
+
+.search-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* justify-content: space-between; */
+}
+
+.card {
+  margin: 2rem 1.5rem 0 0;
+}
+
+.card-body {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-title, .card-text {
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  color: #adb5bd;
+  font-size: 0.5rem;;
+}
+
+

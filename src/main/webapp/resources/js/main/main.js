@@ -88,7 +88,7 @@ const highlight = (path) => {
 
 const reset_map = () => {
   var img_map=document.getElementById('img_map');
-  img_map.src="../../resources/images/main/map_img.png";
+  img_map.src="#";
 }
       
 const SetTitle = (title) => {

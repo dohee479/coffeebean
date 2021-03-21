@@ -7,7 +7,6 @@ html, body {
 header {
   width: 100%;
   position: fixed;
-  /* background-color: #f1f3f5; */
   display: flex;
   color: white;
   z-index: 1000;
@@ -23,7 +22,6 @@ header ul {
 
 header li {
   flex: 1;
-  position: relative;
 }
 
 header a {
@@ -32,10 +30,6 @@ header a {
 
 .header-background {
   background-color: black;
-}
-
-li div {
-  display: none;
 }
 
 .logo {
