@@ -9,20 +9,19 @@
 .find-body > .find-content{
     width:40%;
 }
-.find-table_1,th,td{
+.find-table_1{
     font-size: 0.8em;
     border-collapse: collapse;
     left:0;
     padding:1em;
     width: 100%;
-  
 }
-
 .find-table_1  th{
     background-color: #f1f3f5;
     border-bottom: #dee2e6 1px solid;
     text-align:center;
     width: 35%;
+    padding:1.5em 0;
 
 }
 
@@ -83,18 +82,18 @@
     margin-left:2em;
     
 }
-.modal-body > div > .find-span{
+.unomodal .modal-body > div > .find-span{
    
     color: gray;
     margin-top:2em;
     font-size: 0.5em;
     margin-bottom: 100px;
 }
-.modal-footer{
+.unomodal .modal-footer{
     display: felx;
     justify-content: center;
 }
-.modal-footer > .findmodal-button{
+.unomodal .modal-footer > .findmodal-button{
     border: 1px solid rgb(102,102,102);
     background-color: rgb(102,102,102);
     color:white;

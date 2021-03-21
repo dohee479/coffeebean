@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <th>이메일</td>
-                        <td><input type="email" style="width:17.5em"><select class="s_select_font" name="email" id="email">
+                        <td><input type="email" style="width:26em"><select class="s_select_font" name="email" id="email">
                             <option value="volvo">직접입력</option>
                             <option value="saab">naver.com</option>
                             <option value="opel">daum.net</option>
@@ -57,7 +57,7 @@
                     <tr>
                         <th>주소</th>
                         <td>
-                            <input type="text" style="width:17.5em"> <button class="s_select_font">우편번호검색</button><br>
+                            <input type="text" style="width:26em"> <button class="s_select_font">우편번호검색</button><br>
                             <input type="text"><br>
                             <input type="text">
                         </td>
@@ -71,30 +71,6 @@
             </div>
         </div>
     </div>
-    <script>
-        const signUpButton = document.getElementById('signUp_mv');
-        const signInButton = document.getElementById('signIn_mv');
-        const container = document.getElementById('s_container');
-        function id_check() {
-            var id=document.getElementById('id');
-            var available=document.getElementById('s_available');
-            var id_value=id.value;
-            if(id_value.length>=4){
-                available.style.display="block";
-                document.getElementById('s_available').innerHTML="사용가능한 아이디입니다."
-            }
-            else{
-                available.style.display="none";
-                available.value="";
-            }
-            
-        }
-        signUpButton.addEventListener('click', () => {
-            container.classList.add("right-panel-active");  //container에 클래스 추가
-        });
-        signInButton.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });
-    </script>
+  <script src="${pageContext.request.contextPath}/resources/js/user/sign_in_up.js"></script>
 </body>
 </html>
