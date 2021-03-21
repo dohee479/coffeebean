@@ -36,4 +36,19 @@ public class MypageController {
 	public String basket() {
 		return "mypage/basket";
 	}
+	
+	@GetMapping("/my-review")
+	public String MyReview() {
+		return "mypage/my-review";
+	}
+	
+	@GetMapping("/my-qna")
+	public String MyQna() {
+		return "mypage/my-qna";
+	}
+	
+	@GetMapping("/delete-account")
+	public String DeleteAccount() {
+		return "mypage/delete-account";
+	}
 }
