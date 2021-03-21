@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="<%=application.getContextPath() %>/resources/bootstrap-4.6.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<%=application.getContextPath() %>/resources/css/reset/reset.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout/header.css">
+	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/layout/sidebar.css">
+	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/user/sign_in_up.css">
+	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/user/id_pwd_find.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout/sidebar.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/fill_out_order.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/order/order_complete.css">
