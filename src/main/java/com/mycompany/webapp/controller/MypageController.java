@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
+	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 
 	@GetMapping("/orderlist")
@@ -26,13 +27,12 @@ public class MypageController {
 		return "mypage/zzim";
 	}
 	
-
 	@GetMapping("/change-info")
 	public String ChangeInfo() {
 		return "mypage/change-info";
 	}
   
-	@GetMapping("basket")
+	@GetMapping("/basket")
 	public String basket() {
 		return "mypage/basket";
 	}

@@ -4,7 +4,7 @@
 $("header").mouseover(function() {
   $(this).addClass("header-background");
   // $(".hidden-menu").css("position", "relative")
-  $(".hidden-menu").sotp().slideDown();
+  $(".hidden-menu").slideDown();
 })
 
 $("header").mouseleave(function() {

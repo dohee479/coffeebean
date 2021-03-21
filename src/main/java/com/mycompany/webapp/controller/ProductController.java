@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 
 	@GetMapping("/country") 
@@ -21,16 +22,9 @@ public class ProductController {
 		return "/product/flavor";
 	}
 	
-	
 	@GetMapping("/detail")
 	public String Detail() {
 		return "/product/detail";
 	}
-	
-	@GetMapping("/story") 
-	public String ReStory() {
-		return "redirect:/story";
-	}
-	
 
 }
