@@ -22,7 +22,7 @@
                     
                     <li>회원정보
                         <ul>
-                            <li onclick=location.href="${pageContext.request.contextPath}/mypage/chang-info">- 회원정보 변경</li>
+                            <li onclick=location.href="${pageContext.request.contextPath}/mypage/change-info">- 회원정보 변경</li>
                             <li onclick=location.href='#'>- 회원탈퇴</li>
                         </ul>
                     </li>

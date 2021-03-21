@@ -138,12 +138,12 @@
 
 /* === 비교하기 시작 ====*/
 
-.modal-body{
+#compare .modal-body, #cart .modal-body, #zzim .modal-body{
     display: flex;
     flex-direction: column;
 }
 
-.btn-group{
+#compare .btn-group, #cart .btn-group, #zzim .btn-group{
     margin-bottom: 2em;
 }
 

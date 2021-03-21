@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /* 종현 test 123
  * 
  */
-@Controller
+@Controller()
 public class MainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
@@ -27,5 +27,8 @@ public class MainController {
 	public String home() {
 		return "home";
 	}
-	
+	@RequestMapping("/story")
+	public String Stroy() {
+		return "story/story";
+	}
 }

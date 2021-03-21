@@ -100,18 +100,16 @@
             margin: 5px;
         }
 
-        .modal-body{
+        #tracking .modal-body, #confirmation .modal-body, #cancel .modal-body, #refund .modal-body{
             display: flex;
             flex-direction: column;
-            margin-left: auto;
-            margin-right: auto;
+            text-align: center;
         }
         
-        .btn-group{
+        #tracking .btn-group, #confirmation .btn-group, #cancel .btn-group, #refund .btn-group{
             margin-bottom: 2em;
         }
         
-       
 
         .modal-body .custom-select{
             margin-bottom: 2em;
@@ -170,6 +168,11 @@
             width: 300px;
             margin: 20px 0;
         }
+
+		#cancel .form-group input , #refund .form-group input{
+			margin-left: auto;
+			margin-right: auto;
+		}
 
         .modal-body .track-box{
             display: flex;

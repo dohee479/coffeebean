@@ -1,7 +1,7 @@
-@charset "UTF-8";
-body {
+html, body {
   box-sizing: border-box;
   position: relative;
+  overflow-x: hidden;
 }
 
 header {
@@ -13,8 +13,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  box-shadow: rgb(0 0 0 / 20%) 0px 0px 8px;
-  padding-top: 2.2rem;
+  padding-top: 2.2rem; 
 }
 
 header ul {
@@ -26,13 +25,11 @@ header li {
 }
 
 header a {
-  color: #343a40;
-  font-weight: bold;
-  font-size: 18px;
+  color: white;
 }
 
 .header-background {
-  background-color: rgba(255, 255, 255, 0.89);
+  background-color: black;
 }
 
 .logo {
@@ -64,7 +61,7 @@ header nav ul li {
 .country::after, .taste::after {
   content: "";
   display: block;
-  height: 40px;
+  height: 50px;
 }
 
 .hidden-menu {
@@ -140,3 +137,7 @@ header nav ul li {
   opacity: 1;
   z-index: 2000;
 }
+
+
+
+
