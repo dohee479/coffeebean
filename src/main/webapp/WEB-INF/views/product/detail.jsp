@@ -33,7 +33,7 @@
                     <dd>200g, 500g, 1kg</dd>
                 </dl>
             </div> 
-            <form method="post">
+            <form method="">
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
