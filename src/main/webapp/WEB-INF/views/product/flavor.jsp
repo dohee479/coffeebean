@@ -48,7 +48,7 @@
         <div class="search-list">
           <div class="card">
             <a href="${pageContext.request.contextPath}/product/detail">
-              <img src="${pageContext.request.contextPath}/resources/images/product/item/원두3s.jpg" class="card-img-top" alt="...">
+              <img src="${pageContext.request.contextPath}/resources/images/product/item/원두3.jpg" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">[뉴크롭] 온두라스 산 안 드레스</h5>
                 <p class="card-text">#높은 바디감과 초콜릿의 달콤함</p>

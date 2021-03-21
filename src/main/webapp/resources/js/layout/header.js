@@ -4,7 +4,7 @@
 $("header").mouseover(function() {
   $(this).addClass("header-background");
   // $(".hidden-menu").css("position", "relative")
-  $(".hidden-menu").slideDown();
+  $(".hidden-menu").sotp().slideDown();
 })
 
 $("header").mouseleave(function() {
@@ -25,3 +25,4 @@ $(".close").on('click', function() {
   $("header").css("z-index", 1000);
   $(".search-modal").removeClass("see-modal");
 })
+
