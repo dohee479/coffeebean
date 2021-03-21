@@ -1,0 +1,254 @@
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 40px, 0);
+    transform: translate3d(0, 40px, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.textup {
+  animation-name: fadeInUp;
+  animation-duration: 1500ms;
+  animation-fill-mode: forwards;
+}
+
+body::-webkit-scrollbar { 
+  display: none; 
+}
+
+.backimg:nth-child(1) {
+  width: 100%;
+  height: 100vh;
+  background: url('/resources/images/main/main1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.backimg:nth-child(1) h1, .backimg:nth-child(4) h1{
+  font-size: 4rem;
+  margin: 1rem 0;
+  color: #FDFDFD;
+  opacity: 0;
+}
+
+.backimg:nth-child(1) div, .backimg:nth-child(4) div p {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #FDFDFD;
+  
+}
+
+.backimg:nth-child(1) div {
+  opacity: 0;
+}
+
+.backimg:nth-child(2) {
+  position: relative;
+}
+
+.backimg:nth-child(3) {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url("../common/images/main/main3_2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.backimg:nth-child(3) h1, .backimg:nth-child(3) a {
+  position: relative;
+  font-size: 2rem;
+  margin: 2rem;
+  color: #FDFDFD;
+  right: -20%;
+}
+
+.backimg:nth-child(3) h1 {
+  opacity: 0;
+}
+
+.backimg:nth-child(4) {
+  width: 100%;
+  height: 100vh;
+  background: url("../common/images/main/main4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.backimg:nth-child(4) div, .backimg:nth-child(4) h1 {
+  position: relative;
+  left: 15%;
+  color: #FDFDFD;
+  opacity: 0;
+}
+
+.story-btn {
+  color: #d0ebff;
+}
+
+.story-btn::after {
+  content: ">>";
+}
+
+
+
+.right-nav {
+  position: fixed;
+  top: 50%;
+  right: 3%;
+}
+
+.scroll::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255,0.4);
+  border-radius: 50%;
+  margin-top: 1rem;
+}
+
+.slides input {
+  display: none;
+}
+
+/* 오른쪽 버튼  */
+.navigation {
+  /* position: fixed; */
+  display: flex;
+  flex-direction: column;
+}
+
+.navi-btn {
+  border: 8px solid #40D3DC;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 1s;
+  
+}
+
+.first-page {
+  display: block;
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 1000;
+}
+
+.first-page-item{
+    display: inline-block;
+    position: relative;
+    width: 145px;
+    height: 100px;
+    margin: 0 15px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.first-page-item::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 145px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 4);
+  opacity: 0.5;
+}
+
+.page {
+  position: relative;
+}
+
+.pageimg {
+  /* position: absolute; */
+}
+
+.pageimg:nth-child(2) {
+  background-image: url("../common/images/원두1.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+
+}
+
+.pageimg:nth-child(3) {
+  background-image: url("../common/images/원두2.jpg");
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.visual {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.visual-none {
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+/* map부분 */
+.background{
+  height: 100vh;
+  background-color: black;
+  z-index: -999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img_map{
+  z-index: 1;
+}
+
+.nara_info{
+  position: absolute;
+  top: 30%;
+  color: #E2E2E2;
+  z-index: 100;
+}
+
+#nara_title{
+  color: white;
+  font-size: 45px;
+  line-height: 10px;
+}
+
+#nara_description{
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 600;
+  margin-top: 2rem;
+}

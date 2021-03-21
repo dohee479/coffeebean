@@ -1,0 +1,148 @@
+html, body {
+  box-sizing: border-box;
+  position: relative;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  /* background-color: #f1f3f5; */
+  display: flex;
+  color: white;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 2.2rem; 
+}
+
+header ul {
+  display: flex;
+} 
+
+header li {
+  flex: 1;
+  position: relative;
+}
+
+header a {
+  color: white;
+}
+
+.header-background {
+  background-color: black;
+}
+
+li div {
+  display: none;
+}
+
+.logo {
+  padding-left: 1rem;
+  flex: 0.5;
+}
+
+.logo img {
+  width: 35%;
+}
+
+nav {
+  flex: 1.5;
+}
+
+header nav ul {
+  display: flex;
+  align-items: center;
+}
+
+header nav ul li {
+  position: relative;
+}
+
+.country, .taste {
+  font-size: 18px;
+}
+
+.country::after, .taste::after {
+  content: "";
+  display: block;
+  height: 50px;
+}
+
+.hidden-menu {
+  position: relative;
+}
+
+.hidden-menu a {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: #adb5bd;
+}
+
+.story {
+  flex: 1;
+}
+
+.user-menu {
+  display: flex;
+}
+
+.user-item {
+  margin: 0 2rem;
+}
+
+.search-modal {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.search-modal div:nth-child(1) {
+  position: absolute;
+  right: 30px;
+  top: 15px;
+  color: white;
+  font-size: 2rem;
+}
+
+.search-modal div:nth-child(2) {
+  width: 30%;
+  border-bottom: 1px #fff solid;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 35%;
+}
+
+.search-modal input {
+  background: none;
+  border: 0;
+  color: white;
+  font-size: 18px;
+  width: 100%;
+  margin-bottom: 0.5rem;;
+}
+
+.search-modal input:focus {
+  outline: none;
+}
+
+.search-modal input::placeholder {
+  color: white;
+}
+
+.see-modal {
+  opacity: 1;
+  z-index: 2000;
+}
+
+
+
+
