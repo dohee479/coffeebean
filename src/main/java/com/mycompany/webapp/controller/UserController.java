@@ -23,13 +23,13 @@ public class UserController {
 		return "user/id_pwd_find";
 	}
 	
-	@PostMapping("/#")
-	public void updatePassword(User user) {
-		
-	}
-	
-	@PostMapping("/#")
-	public void delteteUser(User user) {
-		
-	}
+//	@PostMapping("/#")
+//	public void updatePassword(User user) {
+//		
+//	}
+//	
+//	@PostMapping("/#")
+//	public void delteteUser(User user) {
+//		
+//	}
 }
