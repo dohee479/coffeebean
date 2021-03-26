@@ -43,7 +43,7 @@
       <a href="story">원두이야기</a>
     </div>
     <div class="user-menu">
-      <div class="user-item"><a href="#">로그아웃</a></div>
+      <div class="user-item"><a href="${pageContext.request.contextPath}/user/sign_in_up">로그인</a></div>
       <div class="user-item"><a href="${pageContext.request.contextPath}/mypage/orderlist">마이페이지</a></div>
       <div class="user-item"><a href="${pageContext.request.contextPath}/mypage/basket"><img src="${pageContext.request.contextPath}/resources/images/header/cart.png" style="height:24px"></a></div>
       <div class="user-item"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/search.png"></div>

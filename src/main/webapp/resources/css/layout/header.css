@@ -69,6 +69,7 @@ header nav ul li {
 
 .hidden-menu {
   position: relative;
+  display: none;
 }
 
 .hidden-menu a {
