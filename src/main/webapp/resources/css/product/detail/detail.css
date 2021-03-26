@@ -83,8 +83,40 @@
     border-bottom: 1px solid #dbdbdb;
 }
 
+.total_box{
+	display: flex;
+	vertical-align: middle;
+}
+
+.count_box{
+	display: flex;
+	margin: 10px 0;
+	
+}
+
+.count_box .plus, .count_box .minus{
+	background-color : #dcdcdc;
+	width: 40px;
+	height: 30px;
+	text-align: center; 
+	font-weight: 600;
+	font-size: 15px;
+	margin: 5px;
+	padding: 5px 0; 
+}
+
+.count_box .count_value{
+	width: 50px;
+	height: 40px;
+	font-size: 18px;
+	font-weight: 500;
+	margin: 0px 5px 5px 5px;
+	border: 0px;
+	text-align: center;
+}
+
 .price_box .total_price{
-    margin: 20px 0px 20px 200px;
+    margin: 20px 0px 20px 50px;
 }
 
 .price_box .total_price .dt{

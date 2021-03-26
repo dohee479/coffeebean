@@ -39,16 +39,16 @@
                       <dt>용량선택</dt>                
                       <dd>
                           <select id = "volume" name="volume" class="custom-select" onchange="change_price()" style="width: 15em;">
-                              <option selected>용량을 선택하세요.</option>
-                              <option value="200">200g +0원</option>
-                              <option value="500">500g +7400원</option>
-                              <option value="1000">1000g +17200원</option>
+                              <option selected value="0">용량을 선택하세요.</option>
+                              <option value="200">200g</option>
+                              <option value="500">500g</option>
+                              <option value="1000">1000g</option>
                           </select>
                       </dd>
                       <dt>분쇄선택</dt>                
                       <dd>
                           <select id = "mesh" name="mesh" class="custom-select" onchange="change_mash()" style="width: 15em;">
-                              <option selected>분쇄유형을 선택하세요.</option>
+                              <option selected value="0" >분쇄유형을 선택하세요.</option>
                               <option value="1">홀빈(분쇄안함)</option>
                               <option value="2">프렌치프레스 분쇄</option>
                               <option value="3">핸드드립 분쇄</option>
@@ -69,13 +69,23 @@
                   </div>
               </div>
 
-              <div class="price_box">
-                  <div class="total_price">
-                      <span class="dt"><strong>총 합계금액</strong></span>
-                      <span class="dd">0</span>
-                      <strong>원</strong>
-                  </div>
-              </div> 
+              <div class="total_box">
+	              <!-- <input class="sale_count" type="number" min="1" max="99" name="count"> -->
+                <div class="count_box">
+                  <div class="minus">-</div>
+                    <input type="text" class="count_value" value=1 readonly/>
+                  <div class="plus">+</div>
+                </div>
+	
+	              <div class="price_box">
+	                <div class="total_price">
+	                  <span class="dt"><strong>총 합계금액</strong></span>
+	                  <span class="dd">0</span>
+	                  <strong>원</strong>
+	                </div>
+	              </div> 
+	            </div>
+	            
               <div class="btn_choice_box">
                   <button type="button" class="btn btn-light button" data-toggle="modal" data-target="#compare">비교하기</button>
                   <input type="button" name="cart" value="장바구니" class="btn btn-light button" formaction="#" data-toggle="modal" data-target="#cart" href=""/>
