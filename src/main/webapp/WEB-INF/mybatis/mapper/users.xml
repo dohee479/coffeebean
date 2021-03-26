@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.webapp.dao.UsersDao">
+	<insert id="insert" parameterType="user">
+		insert into users
+		(user_id, user_name, user_password, user_tel, user_eamil, user_address, user_detail_address, user_authority, user_enabled)
+		values
+		(#{user_id}, #{user_name}, #{user_password}, #{user_tel} #{user_eamil}, #{user_address}, #{user_detail_address}, 'ROLE_USER', 1)
+	</insert>
+	
+<!-- 	<resultMap id="userResultMap" type="user">
+	  <result property="userid" column="userid" />
+	  <result property="uname" column="username"/>
+	  <result property="upassword" column="userpassword"/>
+	  <result property="uauthority" column="userauthority"/>
+	  <result property="uenabled" column="userenabled"/>
+	</resultMap> -->
+	
+	<select id="selectByUid" parameterType="string" resultType="user">
+		select *
+		from users
+		where user_id = #{user_id}
+	</select>
+	
+	<update id="updatePassword" parameterType="user">
+		update users set
+			user_password = #{user_password}
+			where user_id = #{user_id}
+	</update>
+	
+	<delete id="deleteUser" parameterType="user">
+		delete from users where user_id = #{user_id}
+	</delete>
+</mapper>

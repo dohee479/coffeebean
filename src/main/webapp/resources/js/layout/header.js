@@ -3,7 +3,6 @@
  */
 $("header").mouseover(function() {
   $(this).addClass("header-background");
-  // $(".hidden-menu").css("position", "relative")
   $(".hidden-menu").slideDown();
 })
 

@@ -12,7 +12,7 @@
                     
                    
                     <input type="text" placeholder="아이디">
-                    <button onclick=location.href="${pageContext.request.contextPath}/main/main">로그인</button> <br>
+                    <button onclick=location.href="${pageContext.request.contextPath}/product/country">로그인</button> <br>
                     <input type="text" placeholder="비밀번호">
                     <button style="background-color: rgb(102,102,102);" id="signUp_mv">회원가입</button>
             </div>
