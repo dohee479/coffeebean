@@ -1,5 +1,13 @@
 package com.mycompany.webapp.dao;
 
-public interface BasketItemsDao {
+import java.util.List;
 
+import com.mycompany.webapp.dto.BasketItem;
+
+public interface BasketItemsDao {
+	public List<BasketItem> selectAll(String users_user_id);
+	public BasketItem selectByBasketItemId(int basket_item_id);
+	public void insert(BasketItem basketItem);
+	public void update(BasketItem basketItem);
+	public void deleteByBasketItemId(int basket_item_id);
 }

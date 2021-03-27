@@ -152,6 +152,12 @@
             text-align: center;
         }
         
+        
+        .select_option .count_box{
+        	margin-left: 33%;
+        }
+        
+        
         .button-group .cancel,  .button-group .erase{
             border: 1px solid #DCDCDC;
             background-color: white;
