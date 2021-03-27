@@ -1,4 +1,52 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.mycompany.webapp.dao.OrdersDao">
+
+	<!-- users_user_id로 해당 사용자의 모든 주문목록 가져오기 --> 
+	<select id="selectAll" parameterType="string" resultType="order">
+		select order_id, users_user_id, order_receiver, order_address, order_detail_address, order_date, order_msg, order_state
+		from users
+		where users_user_id = #{users_user_id}
+	</select>
+	
+	<!-- OrderId로 주문 컬럼 한 행 가져오기 -->
+	<select id="selectByOrderId" parameterType="int" resultType="order">
+		select order_id, users_user_id, order_receiver, order_address, order_detail_address, order_date, order_msg, order_state
+		from users
+		where order_id = #{order_id}	
+	</select>
+	
+	<!-- 주문 생성 -->
+	<!-- 현재 order_id 는 시퀀스로 지정 -->
+	<!-- 주문 생성후 주문상태는 1로 지정 -->
+	<insert id="insert" parameterType="order">
+		<selectKey keyProperty="order_id" resultType="int" order ="BEFORE">
+			select seq_orders_order_id.nextval from dual
+		</selectKey>
+	
+		insert into orders
+		(select order_id, users_user_id, order_receiver, order_address, order_detail_address, order_date, order_msg, order_state)
+		values
+		(#{select order_id}, #{users_user_id}, #{order_receiver}, #{order_address}, #{order_detail_address}, sysdate, #{order_msg}, 1)
+	
+	</insert>
+	
+	<!-- 구매확정, 환불 취소 -->
+	<!-- parameterType이 주문번호와, orderstate임
+	order id로 해당 주문 칼럼을 찾아 order state를 update 시킴
+	현재 복수의 int 타입의 파라미터를 받음 따로 hashmap을 사용해야 할 수도 있음 
+	DB에서 어떻게 처리하는지 아직 모름 
+	-->
+	<update id="update" parameterType="int">
+		update orders set
+		order_state = #{order_state}
+		where order_id = #{order_id} 
+	</update>
+	
+	<delete id="deleteByOrderId" parameterType="int">
+		delete from orders
+		where order_id = #{order_id}
+	</delete>
+	
 </mapper>
