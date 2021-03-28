@@ -6,5 +6,6 @@
 		<typeAlias type="com.mycompany.webapp.dto.User" alias="user" />
 		<typeAlias type="com.mycompany.webapp.dto.Order" alias="order" />
 		<typeAlias type="com.mycompany.webapp.dto.BasketItem" alias="basketItem" />
+		<typeAlias type="com.mycompany.webapp.dto.Zzim" alias="zzim" />
 	</typeAliases>
 </configuration>
