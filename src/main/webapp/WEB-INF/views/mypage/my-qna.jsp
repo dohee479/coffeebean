@@ -32,42 +32,13 @@
 	      </div>
 	    </div>
 	  </div>
-	  <%--
-	  <div class="card">
-	    <div class="card-header" id="headingTwo">
-	      <h2 class="mb-0">
-	        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-	          <span>정말 원산지가 케냐인가요?</span>
-	        </button>
-	      </h2>
-	    </div>
-	    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#myqnaaccordionExample">
-	      <div class="card-body">
-	        어떻게 믿죠?
-	      </div>
-	    </div>
-	  </div>
-	  <div class="card">
-	    <div class="card-header" id="headingThree">
-	      <h2 class="mb-0">
-	        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-	        <span>신맛이 어느정도인가요?</span>
-	        </button>
-	      </h2>
-	    </div>
-	    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#myqnaaccordionExample">
-	      <div class="card-body">
-	        식초보다 시나욤
-	      </div>
-	    </div>
-	  </div>
-	  --%>
+	  
 	</div>
 	<button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#mystaticBackdrop">
 	  상품문의 글쓰기
 	</button>
 	
-	<!--Modal-->
+	<!-- 글쓰기 모달 -->
 	<div class="modal fade" id="mystaticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
@@ -77,14 +48,16 @@
 	            <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <div class="modal-body">
-	        <input type="text" class="input-title" placeholder="제목을 입력하세요.">
-	        <textarea class="input-content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">등록</button>
-	      </div>
+	      <form method="get" action="my-qna">
+		      <div class="modal-body">
+		        <input type="text" class="input-title" name="myqna-createTitle" placeholder="제목을 입력하세요.">
+		        <textarea class="input-content" name="myqna-createContent" wrap="physical" placeholder="내용을 입력하세요."></textarea>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+		        <button type="submit" class="btn btn-danger">등록</button>
+		      </div>
+	      </form>
 	    </div>
 	  </div>
 	</div>
@@ -101,14 +74,16 @@
 	            <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <div class="modal-body">
-	        <input type="text" class="input-title" placeholder="수정할 제목을 입력하세요.">
-	        <textarea class="input-content" wrap="physical" placeholder="수정할 내용을 입력하세요."></textarea>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">등록</button>
-	      </div>
+	      <form method="get" action="my-qna">
+		      <div class="modal-body">
+		        <input type="text" class="input-title" name="myqna-updateTitle" placeholder="수정할 제목을 입력하세요.">
+		        <textarea class="input-content" wrap="physical"  name="myqna-updateContent" placeholder="수정할 내용을 입력하세요."></textarea>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+		        <button type="submit" class="btn btn-danger">등록</button>
+		      </div>
+	      </form>
 	    </div>
 	  </div>
 	</div>
@@ -126,10 +101,12 @@
 	      <div class="modal-body">
 	          <h2>정말 삭제하시겠습니까?</h2>
 	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
-	      </div>
+	      <form method="get" action="my-qna">
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+		        <button type="submit" name="myqna-delete" value="delete" class="btn btn-danger">예</button>
+		      </div>
+	      </form>
 	    </div>
 	  </div>
 	</div>
