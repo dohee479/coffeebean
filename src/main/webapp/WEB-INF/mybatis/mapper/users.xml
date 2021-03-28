@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.UsersDao">
+
+	<!-- 회원가입시 사용 -->
 	<insert id="insert" parameterType="user">
 		insert into users
 		(user_id, user_name, user_password, user_tel, user_eamil, user_address, user_detail_address, user_authority, user_enabled)
@@ -8,27 +10,46 @@
 		(#{user_id}, #{user_name}, #{user_password}, #{user_tel} #{user_eamil}, #{user_address}, #{user_detail_address}, 'ROLE_USER', 1)
 	</insert>
 	
-<!-- 	<resultMap id="userResultMap" type="user">
-	  <result property="userid" column="userid" />
-	  <result property="uname" column="username"/>
-	  <result property="upassword" column="userpassword"/>
-	  <result property="uauthority" column="userauthority"/>
-	  <result property="uenabled" column="userenabled"/>
-	</resultMap> -->
-	
-	<select id="selectByUid" parameterType="string" resultType="user">
+	<!-- 로그인시 사용 -->
+	<!-- 비밀번호 찾기 시 사용 -->
+	<!-- 비밀번호 변경 시 사용 -->
+	<!-- 회원정보 변경 시 사용 -->
+	<select id="selectById" parameterType="string" resultType="user">
 		select *
 		from users
 		where user_id = #{user_id}
 	</select>
 	
-	<update id="updatePassword" parameterType="user">
-		update users set
-			user_password = #{user_password}
-			where user_id = #{user_id}
+	<!-- 아이디 찾기시 사용 -->
+	<!-- 이메일을 유니크키로? -->
+	<select id="selectByEmail" parameterType="string" resultType="user">
+		select *
+		from users
+		where user_email=#{user_email}
+	</select>
+	
+
+	
+	<!--  회원 정보 변경 시 사용 -->
+	<update id="updateInfo" parameterType="user">
+		update users
+		set user_id = #{user_id},
+			user_name = #{user_name},
+			user_tel=#{user_tel},
+			user_address=#{user_address},
+			user_detail_address=#{user_detail_address}
+		where user_id = #{user_id}
 	</update>
 	
-	<delete id="deleteUser" parameterType="user">
+	<!-- 비밀번호 변경 시 사용 -->
+	<update id="updatePassword" parameterType="user">
+		update users
+		set user_password = #{user_password}
+		where user_id = #{user_id}
+	</update>
+	
+	<!-- 회원 정보 탈퇴 시 사용 -->
+	<delete id="delete" parameterType="string">
 		delete from users where user_id = #{user_id}
 	</delete>
 </mapper>
