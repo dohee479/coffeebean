@@ -475,6 +475,5 @@
   <!-- 상품 후기 글쓰기 모달 종료 -->
 <!--Modal 끝-->
   </div>
-</body>
+</div>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
-</html>

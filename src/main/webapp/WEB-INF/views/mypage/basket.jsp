@@ -52,6 +52,8 @@
 
 
         <script src="../navbar/nav.js"></script>
+        
         <script src="${pageContext.request.contextPath}/resources/js/user/sign_in_up.js"></script>
-</body>
-</html>
+	</div>
+	</div>
+<%@ include file="/WEB-INF/views/layout/footer.jsp" %>
