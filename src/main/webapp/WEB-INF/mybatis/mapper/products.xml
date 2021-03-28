@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.ProductsDao">
+	<select id="selectCountry" parameterType="string" resultType="product">
+		select *
+		from products
+		where product_country = #{product_country}
+		order by product_id desc
+	</select>
+	
+	<select id="selectTaste" parameterType="string" resultType="product">
+		select *
+		from products
+		where product_taste = #{product_taste}
+		order by product_id desc
+	</select>
+	
+	<select id="selectByProductId" parameterType="int" resultType="product">
+		select *
+		from products
+		where prodcut_id = #{product_id}
+	</select>
+	
+	<insert id="insertProduct" parameterType="product">
+		<selectKey keyProperty="prduct_id" resultType="int" order="BEFORE">
+			select seq_proudct_id.nextval from dual
+		</selectKey>
+		insert into products
+		values(seq_product_id.nextval, #{product_title}, #{product_country}, #{product_taste}, #{product_price}, 
+		#{product_detail_attachoname}, #{product_detail_attachoname}, #{product_detail_attachoname},
+		#{product_attachoname}, #{product_attachoname}, #{product_attachoname}, #{product_sale_count}, null)
+	</insert>
 </mapper>
