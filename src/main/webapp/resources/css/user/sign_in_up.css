@@ -21,13 +21,11 @@
     position: relative;
 }
 .s_content .s_container .s_form_container{
-    position: absolute;
     top:0;
     width: 100%;
 }
 .s_content .s_container .s_sign_in_container{
     z-index: 1;
-    opacity: 1;
     display: inline-flexbox;
     left:10%;
 }
@@ -88,10 +86,6 @@
     margin-top:2em;
 }
 
-.s_content .s_container .s_sign_up_container{
-    opacity: 0;
-    z-index: 0;
-}
 .s_sign_up_container > table{
     border-collapse: collapse;
     left:0;
@@ -129,13 +123,6 @@
     background-color: blue;
 }
 
-.s_container.right-panel-active .s_sign_in_container{
-    opacity: 0;
-}
-.s_container.right-panel-active .s_sign_up_container{
-    opacity: 1;
-    z-index: 2;
-}
 .s_select_font {
     padding:0.7em;
     border:1px solid #dee2e6;

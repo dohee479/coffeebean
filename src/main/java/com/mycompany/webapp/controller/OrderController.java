@@ -16,10 +16,10 @@ public class OrderController {
 	public String fill_out_order(){
 		return "order/fill_out_order";
 	}
+
 	
 	@GetMapping("/order_complete")
 	public String order_complete() {
 		return "order/order_complete";
 	}
-
 }

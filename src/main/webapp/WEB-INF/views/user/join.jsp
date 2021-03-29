@@ -1,22 +1,8 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
-    <div class="s_content">
-        <div class=s_container id=s_container>
-            <div class="s_form_container s_sign_in_container">
-                <h1>로그인</h1>
-                    <div >
-                        <h4 class="s_i_h4">회원 로그인</h4>
-                        <a href="${pageContext.request.contextPath}/user/id_pwd_find">아이디/비밀번호 찾기</a>
-                    </div>
-                    
-                   
-                    <input type="text" placeholder="아이디">
-                    <button onclick=location.href="${pageContext.request.contextPath}/product/country">로그인</button> <br>
-                    <input type="text" placeholder="비밀번호">
-                    <button style="background-color: rgb(102,102,102);" id="signUp_mv">회원가입</button>
-            </div>
-
+    <form class="s_content" action="${pageContext.request.contextPath}/user/login">
             <div class="s_form_container s_sign_up_container">
                 <h1>회원가입</h1>
                 <h4 class="s_u_h4">기본 정보</h4>
@@ -65,13 +51,9 @@
 
 
                 </table>
-                <button id="signIn_mv" >취소</button>
-                <button style="background-color: rgb(102,102,102);" onclick=location.replace("${pageContext.request.contextPath}/user/sign_in_up")>회원가입</button>
-
+                <button type="button" id="signIn_mv" onclick=location.href="${pageContext.request.contextPath}/user/login">취소</button>
+                <button type="submit" style="background-color: rgb(102,102,102);">회원가입</button>
             </div>
-        </div>
-    </div>
-  <script src="${pageContext.request.contextPath}/resources/js/user/sign_in_up.js"></script>
- 	
+    </form> 	
 </div>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
