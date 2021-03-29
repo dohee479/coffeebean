@@ -16,9 +16,9 @@
 			basket_product_count, 
 			products_product_title, 
 			products_product_price, 
-			products_product_imgonmae, 
-			products_product_imgsnmae, 
-			products_product_imgtype
+			products_product_attachoname, 
+			products_product_attachsname, 
+			products_product_attachtype
 			
 		from basket_items, products
 		where basket_items.products_product_id = products.product_id
@@ -41,7 +41,7 @@
 
 	<insert id="insert" parameterType="basketItem">
 	<selectKey keyProperty="basket_item_id" resultType="int" order ="BEFORE">
-			select seq_basket_items_basket_item_id.nextval from dual
+			select seq_basket_item_id.nextval from dual
 	</selectKey>
 	
 		insert into basket_items
