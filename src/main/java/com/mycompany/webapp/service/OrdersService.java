@@ -2,6 +2,7 @@ package com.mycompany.webapp.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mycompany.webapp.dao.OrdersDao;
@@ -33,7 +34,7 @@ public class OrdersService {
 	 배송지 변경이나 주문 완료 후 옵션 수정 할 수 없음
 	 다만 구매확정, 환불, 취소의 경우 order_state 필드 업데이트 필요.
 	*/
-	public void updateOrder(int order_id, int order_state) {
+	public void updateOrder(@Param("order_id") int order_id, @Param("order_state") int order_state) {
 		ordersDao.update(order_id, order_state);
 	}
 	
