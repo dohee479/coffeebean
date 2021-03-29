@@ -1,7 +1,7 @@
 package com.mycompany.webapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.UsersDao;
@@ -23,11 +23,11 @@ public class UsersService {
 		if(dbUser==null) {
 			return "wrongUid";
 		}else {
-			BCryptPasswordEncoder bpe=new BCryptPasswordEncoder();
+			/*BCryptPasswordEncoder bpe=new BCryptPasswordEncoder();
 			boolean result=bpe.matches(user.getUser_password(), dbUser.getUser_password());
 			if(result==false) {
 				return "wrongUpassword";
-			}
+			}*/
 		}
 		
 		
