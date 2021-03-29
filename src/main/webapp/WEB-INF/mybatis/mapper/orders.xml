@@ -22,7 +22,7 @@
 	<!-- 주문 생성후 주문상태는 1로 지정 -->
 	<insert id="insert" parameterType="order">
 		<selectKey keyProperty="order_id" resultType="int" order ="BEFORE">
-			select seq_orders_order_id.nextval from dual
+			select seq_order_id.nextval from dual
 		</selectKey>
 	
 		insert into orders

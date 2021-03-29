@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/layout/header.jsp"%>
-    <form class="s_content" method="post" action="${pageContext.request.contextPath}/user/login">
+    <form class="s_content" method="post" action="${pageContext.request.contextPath}/login">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
         <div class=s_container id=s_container>
             <div class="s_form_container s_sign_in_container">

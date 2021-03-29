@@ -12,9 +12,9 @@ public class BasketItem {
 	// 아래 join시 추가되는 필드
 	private String prducts_product_title;
 	private int products_product_price;
-	private String products_product_imgoname; 
-	private String products_product_imgsname;
-	private String products_product_imgtype;
+	private String products_product_attachoname; 
+	private String products_product_attachsname;
+	private String products_product_attachtype;
 	
 	public int getBasket_item_id() {
 		return basket_item_id;
@@ -64,23 +64,24 @@ public class BasketItem {
 	public void setProducts_product_price(int products_product_price) {
 		this.products_product_price = products_product_price;
 	}
-	public String getProducts_product_imgoname() {
-		return products_product_imgoname;
+	public String getProducts_product_attachoname() {
+		return products_product_attachoname;
 	}
-	public void setProducts_product_imgoname(String products_product_imgoname) {
-		this.products_product_imgoname = products_product_imgoname;
+	public void setProducts_product_attachoname(String products_product_attachoname) {
+		this.products_product_attachoname = products_product_attachoname;
 	}
-	public String getProducts_product_imgsname() {
-		return products_product_imgsname;
+	public String getProducts_product_attachsname() {
+		return products_product_attachsname;
 	}
-	public void setProducts_product_imgsname(String products_product_imgsname) {
-		this.products_product_imgsname = products_product_imgsname;
+	public void setProducts_product_attachsname(String products_product_attachsname) {
+		this.products_product_attachsname = products_product_attachsname;
 	}
-	public String getProducts_product_imgtype() {
-		return products_product_imgtype;
+	public String getProducts_product_attachtype() {
+		return products_product_attachtype;
 	}
-	public void setProducts_product_imgtype(String products_product_imgtype) {
-		this.products_product_imgtype = products_product_imgtype;
+	public void setProducts_product_attachtype(String products_product_attachtype) {
+		this.products_product_attachtype = products_product_attachtype;
 	}
+	
 	
 }
