@@ -14,8 +14,8 @@ public class Product {
 	private int product_price;
 	// product 상세정보를 나타내주는 이미지
 	private String product_detail_attachoname;
-	private String product_detail_battachsname;
-	private String product_detail_battachtype;
+	private String product_detail_attachsname;
+	private String product_detail_attachtype;
 	// product 이미지
 	private String product_attachoname;
 	private String product_attachsname;
@@ -61,17 +61,17 @@ public class Product {
 	public void setProduct_detail_attachoname(String product_detail_attachoname) {
 		this.product_detail_attachoname = product_detail_attachoname;
 	}
-	public String getProduct_detail_battachsname() {
-		return product_detail_battachsname;
+	public String getProduct_detail_attachsname() {
+		return product_detail_attachsname;
 	}
-	public void setProduct_detail_battachsname(String product_detail_battachsname) {
-		this.product_detail_battachsname = product_detail_battachsname;
+	public void setProduct_detail_attachsname(String product_detail_attachsname) {
+		this.product_detail_attachsname = product_detail_attachsname;
 	}
-	public String getProduct_detail_battachtype() {
-		return product_detail_battachtype;
+	public String getProduct_detail_attachtype() {
+		return product_detail_attachtype;
 	}
-	public void setProduct_detail_battachtype(String product_detail_battachtype) {
-		this.product_detail_battachtype = product_detail_battachtype;
+	public void setProduct_detail_attachtype(String product_detail_attachtype) {
+		this.product_detail_attachtype = product_detail_attachtype;
 	}
 	public String getProduct_attachoname() {
 		return product_attachoname;

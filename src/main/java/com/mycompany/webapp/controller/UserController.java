@@ -14,15 +14,18 @@ import com.mycompany.webapp.dto.User;
 public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	@GetMapping("/sign_in_up")
-	public String sign_in_up() {
-		return "user/sign_in_up";
+	@GetMapping("/login")
+	public String login() {
+		return "user/login";
 	}
 	@GetMapping("/id_pwd_find")
 	public String id_pwd_find() {
 		return "user/id_pwd_find";
 	}
-	
+	@GetMapping("/join")
+	public String join() {
+		return "user/join";
+	}
 //	@PostMapping("/#")
 //	public void updatePassword(User user) {
 //		
