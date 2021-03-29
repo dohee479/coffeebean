@@ -10,55 +10,54 @@
                     <table>
                         <thead>
                             <tr class="attribute">
-                                <th class="order_no">주문번호</th>
-                                <th class="title">상품명/옵션</th>
-                                <th class="price">상품금액/수량</th>
-                                <th class="state">주문상태</th>
+                                <td class="order_no">주문번호</td>
+                                <td class="title">상품명/옵션</td>
+                                <td class="price">상품금액/수량</td>
+                                <td class="state">주문상태</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="items">
-                                <td class="order_no">
+                                <td rowspan="2" class="order_no">  <!-- 한주문에 몇개의 상품이 들어있는지 알아아 햠 -->
                                     2021000001
-                                </td>
+                                </td>   
                                 <td class="item_wrap">
                                     <div class="item_img"><img class="item_img" src="<%=application.getContextPath()%>/resources/images/mypage/orderlist/item_img.jpg"></div>
-                                    <div class="item_title"><span>[뉴크롭] 케냐 AA 키암부</span></div>
+                                    <div class="item_title"><span>[뉴크롭] 케냐 AA 키암부</span><span><strong>/200g,홀빈</strong></span></div>
                                 </td>
                                 <td class="price">
                                     <span class="price">5800</span>원/
                                     <span class="count">1</span>개
                                 </td>
-                                <td class="state">
-                                    <span>주문완료</span>
-                                    <button type="button" class="delivery_tracking" data-toggle="modal" data-target="#tracking">배송조회</button><br>
-                                    <span class="cancel" data-toggle="modal" data-target="#cancel">취소하기</span>
-                                </td>
-                                </td>
-                            </tr>
-                            <tr class="items">
-                                <td class="order_no">
-                                    2021000001
-                                </td>
+                                <td rowspan="2" class="state">
+	                               <span>배송완료</span>
+	                               <button type="button" class="delivery_tracking" data-toggle="modal" data-target="#tracking">배송조회</button>
+	                               <button type="button" class="confirmation" data-toggle="modal" data-target="#confirmation">구매확정</button><br>
+	                               <span class="refund" data-toggle="modal" data-target="#refund">환불하기</span>
+	                           </td>
+                           </tr>
+                           <tr class="items">
                                 <td class="item_wrap">
                                     <div class="item_img"><img class="item_img" src="<%=application.getContextPath()%>/resources/images/mypage/orderlist/item_img2.jpg"></div>
-                                    <div class="item_title"><span>스타블렌드</span></div>
+                                    <div class="item_title"><span>스타블렌드</span><span><strong>/200g,홀빈</strong></span></div>
+                                    
                                 </td>
                                 <td class="price">
                                     <span class="price">2500</span>원/
                                     <span class="count">1</span>개
                                 </td>
-                                <td class="state">
-                                    <span>배송완료</span>
-                                    <button type="button" class="delivery_tracking" data-toggle="modal" data-target="#tracking">배송조회</button>
-                                    <button type="button" class="confirmation" data-toggle="modal" data-target="#confirmation">구매확정</button><br>
-                                    <span class="refund" data-toggle="modal" data-target="#refund">환불하기</span>
-                                </td>
-                            </tr>
+                           </tr>
+                           
                         </tbody>  
                     </table>
                 </div>
             </div>
+            
+            <!-- <td rowspan="2" class="state">
+               <span>주문완료</span>
+               <button type="button" class="delivery_tracking" data-toggle="modal" data-target="#tracking">배송조회</button><br>
+               <span class="cancel" data-toggle="modal" data-target="#cancel">취소하기</span>
+            </td> -->
     
             <!-- 배송조회 모달 시작-->
             <div class="modal fade" id="tracking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
