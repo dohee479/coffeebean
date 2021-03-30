@@ -2,4 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.OrderProductsDao">
 
+	<!-- users_user_id로 해당 사용자의 모든 주문목록 가져오기 --> 
+	<select id="selectAll" parameterType="int" resultType="orderProduct">
+		select 
+			order_product_id,
+			order_product_volume,
+			order_product_grind, 
+			order_product_count, 
+			orders_order_id, 
+			products_product_id
+			products_product_title, 
+			products_product_price, 
+			products_product_imgonmae, 
+			products_product_imgsnmae, 
+			products_product_imgtype,
+			order_state
+		from order_products, products, orders
+		
+		where orders_order_id = #{orders_order_id}
+	</select>
+
+	<!-- insert orderProduct -->
+	<insert id="insert" parameterType="orderProduct">
+	<selectKey keyProperty="order_product_id" resultType="int" order ="BEFORE">
+		select seq_order_product_id.nextval from dual
+	</selectKey>
+		insert into order_products
+			(
+				order_product_id,
+				order_product_volume, 
+				order_product_grind, 
+				order_product_count, 
+				orders_order_id, 
+				products_product_id
+			)
+		values
+			(
+				#{order_product_id.nextval}, 
+				#{order_product_volume}, 
+				#{order_product_grind}, 
+				#{order_product_count}, 
+				#{orders_order_id}, 
+				#{products_product_id}
+			)
+	</insert>
+	
+	<!-- update orderProduct -->
+	<update id="update" parameterType="int">
+		update order_products set
+		orders_order_id = #{orders_order_id}
+		products_product_id = #{products_product_id}
+		where order_id = #{order_id}
+	</update>
+	
+	<!-- delete orderProduct -->
+	<delete id="deleteByOrderProductId" parameterType="int">
+		delete from order_products
+		where order_product_id = #{order_product_id}
+	</delete>
+	
 </mapper>
