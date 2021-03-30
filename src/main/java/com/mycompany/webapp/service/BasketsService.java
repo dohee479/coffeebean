@@ -1,12 +1,15 @@
-package com.mycompany.webapp.service;
+																						package com.mycompany.webapp.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BasketItemsDao;
 import com.mycompany.webapp.dto.BasketItem;
 
+@Service
 public class BasketsService {
 	
 	@Autowired
@@ -39,6 +42,7 @@ public class BasketsService {
 	
 	public void deleteBasketItem(int basket_item_id) {
 		basketItemsDao.deleteByBasketItemId(basket_item_id);
+		
 	}
 
 }
