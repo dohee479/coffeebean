@@ -20,19 +20,6 @@ public class UsersService {
 	public String login(User user) {
 		User dbUser = usersDao.selectById(user.getUser_id());
 		
-<<<<<<< HEAD
-		if(dbUser==null) {
-			return "wrongUid";
-		}else {
-			/*BCryptPasswordEncoder bpe=new BCryptPasswordEncoder();
-			boolean result=bpe.matches(user.getUser_password(), dbUser.getUser_password());
-			if(result==false) {
-				return "wrongUpassword";
-			}*/
-		}
-		
-		
-=======
 //		if(dbUser==null) {
 //			return "wrongUid";
 //		}else {
@@ -44,7 +31,6 @@ public class UsersService {
 //		}
 //		
 //		
->>>>>>> branch 'develop' of https://github.com/dohee479/coffeebean.git
 		return "success";
 	}
 	
