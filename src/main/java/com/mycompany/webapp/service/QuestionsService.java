@@ -12,13 +12,13 @@ public class QuestionsService {
 	@Autowired
 	private QuestionsDao questionDao;
 	
-	public List<Question> getListByProductQuestion(int question_id){
-		List<Question> list=questionDao.selectProduct(question_id);
+	public List<Question> getListByProductQuestion(int products_product_id){
+		List<Question> list=questionDao.selectProduct(products_product_id);
 		return list;
 	}
 	
-	public List<Question> getListByUserQuestion(int question_id){
-		List<Question> list=questionDao.selectUser(question_id);
+	public List<Question> getListByUserQuestion(int users_user_id){
+		List<Question> list=questionDao.selectUser(users_user_id);
 		return list;
 	}
 	

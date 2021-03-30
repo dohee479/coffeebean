@@ -6,7 +6,7 @@
 	<select id="selectProduct" parameterType="int" resultType="question">
 		select * 
 		from question
-		where product_product_id = #{product_product_id}
+		where products_product_id = #{products_product_id}
 		order by question_id desc
 	</select>
 	
