@@ -12,21 +12,26 @@ public class QuestionsService {
 	@Autowired
 	private QuestionsDao questionDao;
 	
-	public List<Question> getListByOrderId(int question_id){
-		List<Question> list=questionDao.selectAll(question_id);
+	public List<Question> getListByProductQuestion(int question_id){
+		List<Question> list=questionDao.selectProduct(question_id);
 		return list;
 	}
 	
-	public void createOrderProduct(Question question) {
+	public List<Question> getListByUserQuestion(int question_id){
+		List<Question> list=questionDao.selectUser(question_id);
+		return list;
+	}
+	
+	public void createQuestion(Question question) {
 		questionDao.insert(question);
 	}
 	
-	public void updateOrderProduct(int question_id) {
+	public void updateQuestion(int question_id) {
 		questionDao.update(question_id);
 	}
 	
-	public void deleteOrderProduct(int question_id) {
-		questionDao.deleteByOrderProductId(question_id);
+	public void deleteQuestion(int question_id) {
+		questionDao.delete(question_id);
 	}
 	
 }

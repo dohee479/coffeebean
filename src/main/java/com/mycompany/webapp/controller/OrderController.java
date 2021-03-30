@@ -22,4 +22,5 @@ public class OrderController {
 	public String order_complete() {
 		return "order/order_complete";
 	}
+	
 }
