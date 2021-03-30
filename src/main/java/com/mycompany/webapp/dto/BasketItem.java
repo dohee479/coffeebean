@@ -8,13 +8,14 @@ public class BasketItem {
 	private int basket_volume;
 	private int basket_grind;
 	private int basket_product_count;
-	
+
 	// 아래 join시 추가되는 필드
-	private String prducts_product_title;
-	private int products_product_price;
-	private String products_product_attachoname; 
-	private String products_product_attachsname;
-	private String products_product_attachtype;
+	private String product_title;
+	private int product_price;
+	private String product_attachoname; 
+	private String product_attachsname;
+	private String product_attachtype;
+	
 	
 	public int getBasket_item_id() {
 		return basket_item_id;
@@ -52,36 +53,36 @@ public class BasketItem {
 	public void setBasket_product_count(int basket_product_count) {
 		this.basket_product_count = basket_product_count;
 	}
-	public String getPrducts_product_title() {
-		return prducts_product_title;
+	public String getProduct_title() {
+		return product_title;
 	}
-	public void setPrducts_product_title(String prducts_product_title) {
-		this.prducts_product_title = prducts_product_title;
+	public void setProduct_title(String product_title) {
+		this.product_title = product_title;
 	}
-	public int getProducts_product_price() {
-		return products_product_price;
+	public int getProduct_price() {
+		return product_price;
 	}
-	public void setProducts_product_price(int products_product_price) {
-		this.products_product_price = products_product_price;
+	public void setProduct_price(int product_price) {
+		this.product_price = product_price;
 	}
-	public String getProducts_product_attachoname() {
-		return products_product_attachoname;
+	public String getProduct_attachoname() {
+		return product_attachoname;
 	}
-	public void setProducts_product_attachoname(String products_product_attachoname) {
-		this.products_product_attachoname = products_product_attachoname;
+	public void setProduct_attachoname(String product_attachoname) {
+		this.product_attachoname = product_attachoname;
 	}
-	public String getProducts_product_attachsname() {
-		return products_product_attachsname;
+	public String getProduct_attachsname() {
+		return product_attachsname;
 	}
-	public void setProducts_product_attachsname(String products_product_attachsname) {
-		this.products_product_attachsname = products_product_attachsname;
+	public void setProduct_attachsname(String product_attachsname) {
+		this.product_attachsname = product_attachsname;
 	}
-	public String getProducts_product_attachtype() {
-		return products_product_attachtype;
+	public String getProduct_attachtype() {
+		return product_attachtype;
 	}
-	public void setProducts_product_attachtype(String products_product_attachtype) {
-		this.products_product_attachtype = products_product_attachtype;
+	public void setProduct_attachtype(String product_attachtype) {
+		this.product_attachtype = product_attachtype;
 	}
-	
+
 	
 }

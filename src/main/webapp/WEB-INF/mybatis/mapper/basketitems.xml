@@ -14,14 +14,14 @@
 			basket_volume,
 			basket_grind, 
 			basket_product_count, 
-			products_product_title, 
-			products_product_price, 
-			products_product_attachoname, 
-			products_product_attachsname, 
-			products_product_attachtype
+			product_title, 
+			product_price, 
+			product_attachoname, 
+			product_attachsname, 
+			product_attachtype
 			
 		from basket_items, products
-		where basket_items.products_product_id = products.product_id
+		where users_user_id = #{users_user_id} and basket_items.products_product_id = products.product_id
 	</select>
 	
 	<!-- 장바구니에 담긴 상품 하나를 가져오는 SQL  -->
@@ -48,19 +48,19 @@
 			(
 				basket_item_id, 
 				users_user_id, 
-				Products_product_id, 
+				products_product_id, 
 				basket_volume,
 				basket_grind, 
 				basket_product_count
 			)
 			values
 			(
-				#{basket_item_id}
-				#{users_user_id}
-				#{products_product_id}
-				#{BasketItem.basket_volume}
-				#{BasketItem.basket_grind}
-				#{BasketItem.basket_prdouct_count}
+				#{basket_item_id},
+				#{users_user_id},
+				#{product_id},
+				#{basket_volume},
+				#{basket_grind},
+				#{basket_product_count}
 			)
 	</insert>
 	
@@ -73,8 +73,8 @@
 	</update>
 	
 	<!-- 장바구니에서 하나의 아이템을 삭제함 -->
-	<delete id="deleteByBasketItemId" parameterType="int">
-		delete from baket_items
-		where basket_item_id = #{basket_item_id}
+	<delete id="deleteByBasketItemId" parameterType="int" > 
+			delete from basket_items
+			where basket_item_id = #{basket_item_id}
 	</delete>
 </mapper>
