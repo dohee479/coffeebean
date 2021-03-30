@@ -9,8 +9,9 @@ public class User {
 	private String user_email;
 	private String user_address;
 	private String user_detail_address;
-	private String user_enabled;
+	private String user_zipcode;
 	private String user_authority;
+	private String user_enabled;
 	
 	public String getUser_id() {
 		return user_id;
@@ -65,6 +66,12 @@ public class User {
 	}
 	public void setUser_authority(String user_authority) {
 		this.user_authority = user_authority;
+	}
+	public String getUser_zipcode() {
+		return user_zipcode;
+	}
+	public void setUser_zipcode(String user_zipcode) {
+		this.user_zipcode = user_zipcode;
 	}
 	
 	
