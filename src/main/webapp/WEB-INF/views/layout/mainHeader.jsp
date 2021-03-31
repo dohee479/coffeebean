@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -43,7 +44,17 @@
       <a href="story">원두이야기</a>
     </div>
     <div class="user-menu">
-      <div class="user-item"><a href="${pageContext.request.contextPath}/user/login">로그인</a></div>
+      <sec:authorize access="isAnonymous()">
+    		<div class="user-item"><a href="<%=application.getContextPath()%>/user/login">로그인</a></div>
+    	</sec:authorize>
+      	<sec:authorize access="isAuthenticated()">
+               <span class="text-dark">User: <sec:authentication property="name"/> </span>
+               <form method="post" class="user-item" action="${pageContext.request.contextPath}/logout">
+	               	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" class="user-item"/>
+	                <button type="submit">로그아웃</button>
+               </form>
+                 
+          </sec:authorize>
       <div class="user-item"><a href="${pageContext.request.contextPath}/mypage/orderlist">마이페이지</a></div>
       <div class="user-item"><a href="${pageContext.request.contextPath}/mypage/basket"><img src="${pageContext.request.contextPath}/resources/images/header/cart.png" style="height:24px"></a></div>
       <div class="user-item"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/search.png"></div>
