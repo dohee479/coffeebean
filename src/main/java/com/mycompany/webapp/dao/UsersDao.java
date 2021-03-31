@@ -9,7 +9,9 @@ public interface UsersDao {
 
 	public int insert(User user);
 	public User selectById(String user_id);
-	public User selectByEmail(String user_id);
+	public User selectByEmail(String user_email);
+	public User selectByNameEmail(User user);
+	public User selectByIdName(User user);
 	public int updateInfo(User user);
 	public int updatePassword(User user);
 	public int delete(String user_id);
