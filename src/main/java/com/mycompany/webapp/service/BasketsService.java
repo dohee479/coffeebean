@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BasketItemsDao;
 import com.mycompany.webapp.dto.BasketItem;
+import com.mycompany.webapp.dto.Pager;
 
 @Service
 public class BasketsService {
@@ -16,8 +17,8 @@ public class BasketsService {
 	private BasketItemsDao basketItemsDao;
 	
 	/* 사용자 자신의 장바구니 목록 불러오기 */
-	public List<BasketItem> getBasketItemListByUserId(String users_user_id){
-		List<BasketItem> list = basketItemsDao.selectAll(users_user_id);
+	public List<BasketItem> getBasketItemListByUserId(String users_user_id, Pager pager){
+		List<BasketItem> list = basketItemsDao.selectAll(users_user_id, pager);
 		return list;
 	}
 	
@@ -43,6 +44,11 @@ public class BasketsService {
 	public void deleteBasketItem(int basket_item_id) {
 		basketItemsDao.deleteByBasketItemId(basket_item_id);
 		
+	}
+	
+	public int getTotalRows() {
+		int rows = basketItemsDao.count();
+		return rows;
 	}
 
 }
