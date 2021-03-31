@@ -3,6 +3,7 @@ package com.mycompany.webapp.controller;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 import java.security.Principal;
 import java.util.List;
 
@@ -10,12 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.util.FileCopyUtils;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.BasketItem;
 import com.mycompany.webapp.dto.Pager;
+
 import com.mycompany.webapp.service.BasketsService;
 
 @Controller
@@ -95,7 +100,7 @@ public class MypageController {
 		basketItem.setBasket_grind(Integer.parseInt(request.getParameterValues("grind")[0]));
 		basketItem.setBasket_product_count(Integer.parseInt(request.getParameterValues("count")[0]));
 		basketItem.setUsers_user_id(principal.getName());
-		
+	
 		basketsService.createBasketItem(basketItem);
 	
 		return "redirect:/mypage/basket";	
@@ -139,7 +144,6 @@ public class MypageController {
 		}
 		
 	}
-	
 	
 	@GetMapping("/my-review")
 	public String MyReview() {

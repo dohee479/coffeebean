@@ -11,4 +11,5 @@ public interface OrderProductsDao {
 	public void insert(OrderProduct orderProduct);
 	public void update(int orders_order_id,int products_product_id);
 	public void deleteByOrderProductId(int products_product_id);
+	
 }

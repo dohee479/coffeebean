@@ -49,6 +49,7 @@ public class BasketsService {
 	public int getTotalRows() {
 		int rows = basketItemsDao.count();
 		return rows;
+
 	}
 
 }
