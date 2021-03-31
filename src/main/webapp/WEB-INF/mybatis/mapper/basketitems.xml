@@ -3,39 +3,54 @@
 
 <mapper namespace="com.mycompany.webapp.dao.BasketItemsDao">
 
-	<!-- »ç¿ëÀÚ ÀÚ½ÅÀÇ Àå¹Ù±¸´Ï ¸ñ·Ï ºÒ·¯¿À±â-->
-	<!-- »ç¿ëÀÚ¿¡°Ô Ç¥½ÃµÇ´Â È­¸éÀ» À§ÇÑ SQL·Î »çÁø, °¡°ÝÀÌ ¸ðµÎ Ç¥½ÃµÇ¾î¾ß ÇÔ -->
-	<!-- Àå¹Ù±¸´Ï Å×ÀÌºíÀÇ item_id¿Í »óÇ°Å×ÀÌºíÀÇ item_id¸¦ ±âÁØÀ¸·Î Á¶ÀÎÇÏ¿© »óÇ°ÀÇ ÀÌ¸§°ú, °¡°Ý, »çÁøÀÌ¸§À» ºÒ·¯¿È -->
-	<select id="selectAll" parameterType="string" resultType="basketItem">
-		select 
-			basket_item_id, 
-			users_user_id, 
-			Products_product_id, 
-			basket_volume,
-			basket_grind, 
-			basket_product_count, 
-			product_title, 
-			product_price, 
+	<!-- ì‚¬ìš©ìž ìžì‹ ì˜ ìž¥ë°”êµ¬ë‹ˆ ëª©ë¡ ë¶ˆëŸ¬ì˜¤ê¸°-->
+	<!-- ì‚¬ìš©ìžì—ê²Œ í‘œì‹œë˜ëŠ” í™”ë©´ì„ ìœ„í•œ SQLë¡œ ì‚¬ì§„, ê°€ê²©ì´ ëª¨ë‘ í‘œì‹œë˜ì–´ì•¼ í•¨ -->
+	<!-- ìž¥ë°”êµ¬ë‹ˆ í…Œì´ë¸”ì˜ item_idì™€ ìƒí’ˆí…Œì´ë¸”ì˜ item_idë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì¡°ì¸í•˜ì—¬ ìƒí’ˆì˜ ì´ë¦„ê³¼, ê°€ê²©, ì‚¬ì§„ì´ë¦„ì„ ë¶ˆëŸ¬ì˜´ -->
+
+	<select id="selectAll" resultType="basketItem"> <!-- parameterType="string" @Param ìœ¼ë¡œ ë˜ì € ì¤Œ ìƒëžµê°€ëŠ¥? -->
+		select rnum, basket_item_id, users_user_id, Products_product_id, basket_volume, basket_grind, basket_product_count, product_title, product_price, product_attachoname,
+			   product_attachsname, product_attachtype
+	      from (
+	          select rownum as rnum, basket_item_id, users_user_id, Products_product_id, basket_volume, basket_grind, basket_product_count, product_title, product_price, product_attachoname,
+			   product_attachsname, product_attachtype
+	          from (
+	              select basket_item_id, users_user_id, Products_product_id, basket_volume, basket_grind, basket_product_count, product_title, product_price, product_attachoname,
+			   product_attachsname, product_attachtype
+	              from (
+			              select 
+							basket_item_id, 
+							users_user_id, 
+							Products_product_id, 
+							basket_volume,
+							basket_grind, 
+							basket_product_count, 
+							product_title, 
+							product_price, 
+							product_attachoname, 
+							product_attachsname, 
+							product_attachtype
+							
+						from basket_items, products
+						where users_user_id = #{users_user_id} and basket_items.products_product_id = products.product_id
+	              )
+	              
+	              order by basket_item_id desc
+	          )
+	          where rownum &lt;= #{pager.endRowNo}
+	      )
+	      where rnum &gt;= #{pager.startRowNo}
+	</select>
+	
+	<!-- ìž¥ë°”êµ¬ë‹ˆì— ë‹´ê¸´ ìƒí’ˆ í•˜ë‚˜ë¥¼ ê°€ì ¸ì˜¤ëŠ” SQL  -->
+	<!-- ìž¥ë°”êµ¬ë‹ˆ ë‹´ê¸´ ì´ë¯¸ì§€ ê°€ì ¸ì˜¬ë•Œ ì‚¬ìš©í•¨ -->
+	<!-- í˜„ìž¬ ì²¨ë¶€ ì´ë¯¸ì§€ ê°€ì ¸ì˜¤ëŠ” ìš©ë„ë¡œ ì‚¬ìš© -->
+	<select id="selectByBasketItemId" parameterType="int" resultType="basketItem">
+		select
 			product_attachoname, 
 			product_attachsname, 
 			product_attachtype
-			
 		from basket_items, products
-		where users_user_id = #{users_user_id} and basket_items.products_product_id = products.product_id
-	</select>
-	
-	<!-- Àå¹Ù±¸´Ï¿¡ ´ã±ä »óÇ° ÇÏ³ª¸¦ °¡Á®¿À´Â SQL  -->
-	<!-- ¼³°èÇÑ ±â´É»ó ÇÊ¿ä ¾ø¾î º¸ÀÓ -->
-	<select id="selectByBasketItemId" parameterType="int" resultType="basketItem">
-		select
-			basket_item_id, 
-			users_user_id, 
-			Products_product_id, 
-			basket_volume,
-			basket_grind, 
-			basket_product_count
-		from basket_items
-		where basket_item_id = #{basket_item_id}
+		where basket_item_id = #{basket_item_id} and basket_items.products_product_id = products.product_id
 	</select>
 	
 
@@ -72,9 +87,13 @@
 		where basket_item_id = #{basket_item_id}
 	</update>
 	
-	<!-- Àå¹Ù±¸´Ï¿¡¼­ ÇÏ³ªÀÇ ¾ÆÀÌÅÛÀ» »èÁ¦ÇÔ -->
+	<!-- ìž¥ë°”êµ¬ë‹ˆì—ì„œ í•˜ë‚˜ì˜ ì•„ì´í…œì„ ì‚­ì œí•¨ -->
 	<delete id="deleteByBasketItemId" parameterType="int" > 
 			delete from basket_items
 			where basket_item_id = #{basket_item_id}
 	</delete>
+	
+	<select id="count" resultType="int"> 
+  		select count(*) from basket_items
+  	</select>
 </mapper>

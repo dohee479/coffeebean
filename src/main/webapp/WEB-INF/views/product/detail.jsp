@@ -35,7 +35,7 @@
             </div> 
             <form method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-            <input type="hidden" name="itemNo" value=997 /> <%-- value="${product_id}" --%>
+            <input type="hidden" name="itemNo" value=7 /> <%-- value="${product_id}" --%>
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
