@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,7 +13,7 @@ public class OrderController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
-	@GetMapping("/fill_out_order")
+	@PostMapping("/fill_out_order")
 	public String fill_out_order(){
 		return "order/fill_out_order";
 	}
@@ -22,4 +23,5 @@ public class OrderController {
 	public String order_complete() {
 		return "order/order_complete";
 	}
+	
 }
