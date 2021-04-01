@@ -18,7 +18,7 @@
 	<select id="selectByProductId" parameterType="int" resultType="product">
 		select *
 		from products
-		where prodcut_id = #{product_id}
+		where product_id = #{product_id}
 	</select>
 	
 	<insert id="insertProduct" parameterType="product">

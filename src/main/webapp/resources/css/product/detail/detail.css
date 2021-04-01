@@ -233,7 +233,14 @@
     color: white;
 }
 
-
+.button-group .gozzim{
+    border: 1px solid #EB5050;
+    background-color: #EB5050;
+    padding: 7px 20px 7px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
 
 
 

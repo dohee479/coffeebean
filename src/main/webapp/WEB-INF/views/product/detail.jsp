@@ -12,7 +12,7 @@
         </div>
         <div class="item_info_box">
             <div class="item_title">
-                <span>[뉴크롭] 케냐 AA 키암부</span>
+                <span name="product_title" id="product_title">[뉴크롭] 케냐 AA 키암부</span>
             
             </div>  
             <div class="item_description">
@@ -35,7 +35,7 @@
             </div> 
             <form method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-            <input type="hidden" name="itemNo" value=7 /> <%-- value="${product_id}" --%>
+            <input type="hidden" name="product_id" value=2 id="product_id"/> <%-- value="${product_id}" --%>
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
@@ -199,12 +199,11 @@
         </div>
         <div class="modal-body">
           <div class="zzim_img"><img src="<%=application.getContextPath()%>/resources/images/product/detail/zzim.png"></div>
-          <span class="message1">상품을 찜했습니다.</span>
-          <span class="message2">찜리스트 가기</span>
+          <span class="message2 font-weight-bold">상품을 찜목록에 추가합니다.</span>
           
           <div class="button-group">
             <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-            <button class="gocart" onclick="location.href='<%=application.getContextPath() %>/mypage/zzim'">확인</button>
+            <button class="gozzim" type="button" id="gozzim">확인</button>
           </div>
 
         </div>
@@ -480,4 +479,26 @@
 <!--Modal 끝-->
   </div>
 </div>
+
+<script>
+	$('#gozzim').on("click",function(){
+		const product_id=$("#product_id").val();
+		console.log(product_id);
+		$.ajax({
+			url:"/kong/mypage/zzim_insert?${_csrf.parameterName}=${_csrf.token}",
+			data:{product_id},
+			method:"post",
+		}).then(data=>{
+			console.log(data.result);
+			if(data.result==="success"){
+				alert("찜리스트에 추가하였습니다.")
+				location.replace("${pageContext.request.contextPath}/product/detail");				
+			}else{
+				alert("이미 찜한 상품입니다.");
+				location.replace("${pageContext.request.contextPath}/product/detail");				
+			}
+			
+		})
+	});
+</script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

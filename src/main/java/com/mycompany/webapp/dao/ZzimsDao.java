@@ -7,6 +7,7 @@ import com.mycompany.webapp.dto.Zzim;
 
 public interface ZzimsDao {
 	public int insert(Zzim zzim);
+	public Zzim alreadyProduct(Zzim zzim);
 	public List<Product> selectAll(String user_id);
 	public int delete(Zzim zzim);
 }
