@@ -74,7 +74,9 @@
               <div class="cart_img"><img src="<%=application.getContextPath()%>/resources/images/mypage/zzim/cart.png"></div>
               <span class="message1">상품을 장바구니에 추가합니다.</span>
               <span class="message2"></span>
-              <form method="">
+              <form method="post" action="<%=application.getContextPath()%>/mypage/addBasket">
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+              <input type="hidden" name="itemNo" value=7 /> <%-- value="${product_id}" --%>
               <div class=select_option>
                   <dl class="option">             
                       <dd>
@@ -86,7 +88,7 @@
                           </select>
                       </dd>              
                       <dd>
-                          <select id = "mesh" name="mesh" class="custom-select" style="width: 15em; margin: 5px 0 10px 0;">
+                          <select id = "mesh" name="grind" class="custom-select" style="width: 15em; margin: 5px 0 10px 0;">
                               <option selected value="0" >분쇄유형을 선택하세요.</option>
                               <option value="1">홀빈(분쇄안함)</option>
                               <option value="2">프렌치프레스 분쇄</option>
@@ -97,7 +99,7 @@
                       <dd>
                       <div class="count_box">
 		                  <div class="minus">-</div>
-		                    <input type="text" class="count_value" value=1 readonly/>
+		                    <input type="text" class="count_value" name="count" value=1 readonly/>
 		                  <div class="plus">+</div>
 		              </div>
 		              </dd>

@@ -28,7 +28,7 @@
 		
 		
 		<!--    탈퇴 모달    -->
-		<div class="modal fade update-modal"  data-backdrop="static">
+		<form class="modal fade update-modal"  data-backdrop="static" method="post" action="${pageContext.request.contextPath}/mypage/delete-account">
 		  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -40,13 +40,13 @@
 		      <div class="modal-body">
 		        <p>정말로 탈퇴하시겠습니까?</p>
 		      </div>
-		      <div class="modal-footer">
+		      <div class="modal-footer" >
 		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">아니오</button>
-		        <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+		        <button type="submit" class="btn btn-danger">예</button>
 		      </div>
 		    </div>
 		  </div>
-	</div>
+	</form>
 </div>
 
 </div>

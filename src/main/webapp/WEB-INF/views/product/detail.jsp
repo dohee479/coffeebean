@@ -33,7 +33,9 @@
                     <dd>200g, 500g, 1kg</dd>
                 </dl>
             </div> 
-            <form method="">
+            <form method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+            <input type="hidden" name="itemNo" value=7 /> <%-- value="${product_id}" --%>
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
@@ -47,7 +49,7 @@
                       </dd>
                       <dt>분쇄선택</dt>                
                       <dd>
-                          <select id = "mesh" name="mesh" class="custom-select" onchange="change_mash()" style="width: 15em;">
+                          <select id = "mesh" name="grind" class="custom-select" onchange="change_mash()" style="width: 15em;">
                               <option selected value="0" >분쇄유형을 선택하세요.</option>
                               <option value="1">홀빈(분쇄안함)</option>
                               <option value="2">프렌치프레스 분쇄</option>
@@ -73,7 +75,7 @@
 	              <!-- <input class="sale_count" type="number" min="1" max="99" name="count"> -->
                 <div class="count_box">
                   <div class="minus">-</div>
-                    <input type="text" class="count_value" value=1 readonly/>
+                    <input type="text" name = "count" class="count_value" readonly/>
                   <div class="plus">+</div>
                 </div>
 	
@@ -86,9 +88,34 @@
 	              </div> 
 	            </div>
 	            
+	            <!-- 장바구니 모달 시작-->
+		        <div class="modal fade" id="cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		          <div class="modal-dialog modal-dialog-centered" role="document">
+		            <div class="modal-content">
+		              <div class="modal-header">
+		                <span class="modal-title" id="exampleModalLabel">장바구니 담기</span>
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                  <span aria-hidden="true">&times;</span>
+		                </button>
+		              </div>
+		              <div class="modal-body">
+		                <div class="cart_img"><img src="<%=application.getContextPath()%>/resources/images/product/detail/cart.png"></div>
+		                <span class="message1">상품을 장바구니에 추가합니다.</span>
+		                <span class="message2"></span>
+		                
+		                <div class="button-group">
+		                  <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
+		                  <button type="submit" class="gocart" formaction="<%=application.getContextPath()%>/mypage/addBasket">확인</button>
+		                </div>
+		    
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	            
               <div class="btn_choice_box">
                   <button type="button" class="btn btn-light button" data-toggle="modal" data-target="#compare">비교하기</button>
-                  <input type="button" name="cart" value="장바구니" class="btn btn-light button" formaction="#" data-toggle="modal" data-target="#cart" href=""/>
+                  <input type="button" name="cart" value="장바구니" class="btn btn-light button" data-toggle="modal" data-target="#cart"/>
                   <input type="button" name="zzim" value="찜하기" class="btn btn-light button" formaction="#" data-toggle="modal" data-target="#zzim"/>
                   <input type="submit" name="purchase" value="구매하기" class="btn btn-info button" formaction="<%=application.getContextPath() %>/order/fill_out_order" data-toggle="modal" data-target="# #"/>
                   <!-- formaction 으로 하나의 form 안에 여러 submit을 작성하기 위함 action을 따로 작성하지 않아도 됨 -->
@@ -158,30 +185,7 @@
         </div>
     </div>
 
-        <!-- 장바구니 모달 시작-->
-        <div class="modal fade" id="cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <span class="modal-title" id="exampleModalLabel">장바구니 담기</span>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="cart_img"><img src="<%=application.getContextPath()%>/resources/images/product/detail/cart.png"></div>
-                <span class="message1">상품이 장바구니에 담겼습니다.</span>
-                <span class="message2">바로 확인하시겠습니까?</span>
-                
-                <div class="button-group">
-                  <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-                  <button class="gocart" onclick="location.href='<%=application.getContextPath() %>/mypage/basket'">확인</button>
-                </div>
-    
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
    <!-- 찜하기 모달 시작-->
    <div class="modal fade" id="zzim" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

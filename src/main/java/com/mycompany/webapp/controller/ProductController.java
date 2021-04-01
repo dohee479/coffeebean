@@ -13,17 +13,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.service.ProductsService;
+import com.mycompany.webapp.service.QuestionsService;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 	@Autowired
 	private ProductsService productsService;
+
+	@Autowired
+	private QuestionsService questionsService;
+
 	
 	@GetMapping("/country") 
 	public String Country(String c, String s, Model model) {

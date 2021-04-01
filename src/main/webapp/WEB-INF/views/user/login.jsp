@@ -13,11 +13,12 @@
                     
                    
                     <input type="text" name="user_id" placeholder="아이디">
-                    <button type="submit">로그인</button> <br>
+                    <button type="submit" id="login">로그인</button> <br>
                     <input type="text" name="user_password" placeholder="비밀번호">
                     <button type="button" style="background-color: rgb(102,102,102);" id="signUp_mv" onclick="location.href='${pageContext.request.contextPath}/user/join'">회원가입</button>
             </div>
         </div>
     </form>    
 </div>
+
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
