@@ -1,8 +1,6 @@
 package com.mycompany.webapp.service;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.ProductsDao;
 import com.mycompany.webapp.dto.Product;
@@ -21,8 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
-import com.mycompany.webapp.dao.ProductsDao;
-import com.mycompany.webapp.dto.Product;
 
 @Service
 public class ProductsService {
@@ -61,7 +57,6 @@ public class ProductsService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void getDetailImg(int product_id, HttpServletResponse response) {
@@ -100,4 +95,5 @@ public class ProductsService {
   	public Product getProduct(int product_id) {
 		Product dbProduct=productsDao.selectByProductId(product_id);
 		return dbProduct;
+  	}
 }

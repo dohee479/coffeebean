@@ -211,7 +211,7 @@ public class MypageController {
 	@PostMapping("/addBasket")
 	public String addBasket(BasketItem basketItem, HttpServletRequest request, Principal principal) {
 		
-		basketItem.setProduct_id(Integer.parseInt(request.getParameterValues("itemNo")[0]));
+		basketItem.setProduct_id(Integer.parseInt(request.getParameterValues("product_id")[0]));
 		basketItem.setBasket_volume(Integer.parseInt(request.getParameterValues("volume")[0]));
 		basketItem.setBasket_grind(Integer.parseInt(request.getParameterValues("grind")[0]));
 		basketItem.setBasket_product_count(Integer.parseInt(request.getParameterValues("count")[0]));
