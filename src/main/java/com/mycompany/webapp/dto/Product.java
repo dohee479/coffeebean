@@ -2,6 +2,8 @@ package com.mycompany.webapp.dto;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Product {
 
 	private int product_id;
@@ -12,6 +14,13 @@ public class Product {
 	private String product_taste;
 	// 가격
 	private int product_price;
+	/*	private int product_grade;
+		public int getProduct_grade() {
+			return product_grade;
+		}
+		public void setProduct_grade(int product_grade) {
+			this.product_grade = product_grade;
+		}*/
 	// product 상세정보를 나타내주는 이미지
 	private String product_detail_attachoname;
 	private String product_detail_attachsname;
@@ -24,6 +33,14 @@ public class Product {
 	private int product_sale_count;
 	
 	private List<Review> reviews;
+	
+	/*	private MultipartFile attach;
+		public MultipartFile getAttach() {
+			return attach;
+		}
+		public void setAttach(MultipartFile attach) {
+			this.attach = attach;
+		}*/
 	
 	public int getProduct_id() {
 		return product_id;
@@ -103,8 +120,4 @@ public class Product {
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-
-	
-	
-	
 }

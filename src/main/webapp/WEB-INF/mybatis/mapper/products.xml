@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mycompany.webapp.dao.ProductsDao">
-	<select id="selectCountry" parameterType="string" resultType="product">
+	<select id="selectCountry" parameterType="HashMap" resultType="product">
 		select *
 		from products
-		where product_country = #{product_country}
-		order by product_id desc
+		where product_country = #{c}
+		order by
+		<if test="s == null">product_grade desc</if>
+		<if test="s == 'count'">product_sale_count desc</if>
+		<if test="s == 'price_dsc'">product_price desc</if>
+		<if test="s == 'price_asc'">product_price </if>
 	</select>
 	
 	<select id="selectTaste" parameterType="string" resultType="product">
 		select *
 		from products
-		where product_taste = #{product_taste}
-		order by product_id desc
+		where product_taste = #{f}
+		order by
+		<if test="s == null">product_grade desc</if>
+		<if test="s == 'count'">product_sale_count desc</if>
+		<if test="s == 'price_dsc'">product_price desc</if>
+		<if test="s == 'price_asc'">product_price </if>
 	</select>
 	
 	<select id="selectByProductId" parameterType="int" resultType="product">

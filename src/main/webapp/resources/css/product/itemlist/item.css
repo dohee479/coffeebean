@@ -12,28 +12,28 @@
 }
 
 
-.flavor_title {
+.country-title, .flavor_title {
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0 0 20px 0;
 }
 
-.flavor {
+#country, .flavor {
   margin: 1.5rem 0;
 }
 
-.country-list, .recommend-list form ul {
+.country-list, .flavor-list, .recommend-list ul {
   display: flex;
 }
 
-.country-list li, .recommend-list form li {
+.country-list li, .flavor-list li, .recommend-list ul li {
   flex: 1;
   margin: 1rem 0 0 0;
   font-size: 1rem;
   list-style: none;
 }
 
-.recommend-list form {
+.recommend-list ul {
   border-top: 1px solid;
   margin: 16px 0;
 }
@@ -44,6 +44,10 @@ input[type='radio'] {
 
 .recommend-list {
   margin-top: 4rem;
+}
+
+.recommend-list > span {
+	font-weight: bold;
 }
 
 label {
@@ -74,6 +78,10 @@ label {
 .card-text {
   color: #adb5bd;
   font-size: 0.5rem;;
+}
+
+.on {
+	font-weight: bold;
 }
 
 

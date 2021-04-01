@@ -1,6 +1,23 @@
 package com.mycompany.webapp.controller;
 
 
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,9 +54,17 @@ import com.mycompany.webapp.service.ProductsService;
 import com.mycompany.webapp.service.UsersService;
 import com.mycompany.webapp.service.ZzimsService;
 
+import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.Question;
+import com.mycompany.webapp.dto.User;
+import com.mycompany.webapp.service.QuestionsService;
+
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
+	@Autowired
+	private QuestionsService questionsService;
+
 	
 	@Autowired
 	private BasketsService basketsService;
@@ -271,6 +296,31 @@ public class MypageController {
 	@GetMapping("/my-qna")
 	public String MyQna() {
 		return "mypage/my-qna";
+	}
+	
+	/* CREATE QNA */
+	@PostMapping("/my-qna-create")
+	public String MyQnaCreate(Question question,Principal principal) {
+		logger.info("my-qna CREATE TEST");
+		question.setUsers_user_id(principal.getName());
+		questionsService.createQuestion(question);
+		return "redirect:/mypage/my-qna";
+	}
+	
+	/* UPDATE QNA */
+	@PostMapping("/my-qna-update")
+	public String MyQnaUpdate(Question question) {
+		logger.info("my-qna UPDATE TEST");
+		questionsService.updateQuestion(question);
+		return "redirect:/mypage/my-qna";
+	}
+	
+	/* DELETE QNA */
+	@PostMapping("/my-qna-delete")
+	public String MyQnaDelete(int question_id) {
+		logger.info("my-qna DELETE TEST");
+		questionsService.deleteQuestion(question_id);
+		return "redirect:/mypage/my-qna";
 	}
 	
 	@GetMapping("/delete-account")
