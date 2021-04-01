@@ -48,10 +48,11 @@
 	            <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <form method="get" action="my-qna">
+	      <form method="post" action="${pageContext.request.contextPath}/mypage/my-qna-create">
+	      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		      <div class="modal-body">
-		        <input type="text" class="input-title" name="myqna-createTitle" placeholder="제목을 입력하세요.">
-		        <textarea class="input-content" name="myqna-createContent" wrap="physical" placeholder="내용을 입력하세요."></textarea>
+		        <input type="text" class="input-title" name="question_title" placeholder="제목을 입력하세요.">
+		        <textarea class="input-content" name="question_content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
@@ -74,10 +75,10 @@
 	            <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <form method="get" action="my-qna">
+	      <form method="get" action="my-qna-update">
 		      <div class="modal-body">
-		        <input type="text" class="input-title" name="myqna-updateTitle" placeholder="수정할 제목을 입력하세요.">
-		        <textarea class="input-content" wrap="physical"  name="myqna-updateContent" placeholder="수정할 내용을 입력하세요."></textarea>
+		        <input type="text" class="input-title" name="question_title" placeholder="수정할 제목을 입력하세요.">
+		        <textarea class="input-content" name="question_content" wrap="physical"  placeholder="수정할 내용을 입력하세요."></textarea>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
@@ -101,7 +102,7 @@
 	      <div class="modal-body">
 	          <h2>정말 삭제하시겠습니까?</h2>
 	      </div>
-	      <form method="get" action="my-qna">
+	      <form method="get" action="my-qna-delete">
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
 		        <button type="submit" name="myqna-delete" value="delete" class="btn btn-danger">예</button>

@@ -3,10 +3,12 @@ package com.mycompany.webapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.QuestionsDao;
 import com.mycompany.webapp.dto.Question;
 
+@Service
 public class QuestionsService {
 	
 	@Autowired
@@ -26,8 +28,8 @@ public class QuestionsService {
 		questionDao.insert(question);
 	}
 	
-	public void updateQuestion(int question_id) {
-		questionDao.update(question_id);
+	public void updateQuestion(Question question) {
+		questionDao.update(question);
 	}
 	
 	public void deleteQuestion(int question_id) {
