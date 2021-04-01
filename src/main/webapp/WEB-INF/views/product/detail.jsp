@@ -34,7 +34,7 @@
             </div> 
             <form method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-            <input type="hidden" name="product_id" value=2 id="product_id"/> <%-- value="${product_id}" --%>
+            <input type="hidden" name="product_id" value="${product.product_id}" id="product_id"/> <%-- value="${product_id}" --%>
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
@@ -491,10 +491,12 @@
 			console.log(data.result);
 			if(data.result==="success"){
 				alert("찜리스트에 추가하였습니다.")
-				location.replace("${pageContext.request.contextPath}/product/detail");				
+				location.reload();
+				//location.replace("${pageContext.request.contextPath}/product/detail");				
 			}else{
 				alert("이미 찜한 상품입니다.");
-				location.replace("${pageContext.request.contextPath}/product/detail");				
+				location.reload();
+				//location.replace("${pageContext.request.contextPath}/product/detail");				
 			}
 			
 		})

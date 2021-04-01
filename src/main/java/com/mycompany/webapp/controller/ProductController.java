@@ -71,4 +71,11 @@ public class ProductController {
 		productsService.getDetailImg(product_id, response);
 	}
 
+	
+	@GetMapping("/detail")
+	public String detail(int product_id, Model model) {
+		Product dbProduct=productsService.getProduct(product_id);
+		model.addAttribute("product",dbProduct);
+		return "/product/detail";
+	}
 }
