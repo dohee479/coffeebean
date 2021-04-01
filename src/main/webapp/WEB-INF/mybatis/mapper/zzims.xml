@@ -9,14 +9,19 @@
 		values(#{users_user_id},#{products_product_id})
 	</insert>
 	
+	<select id="alreadyProduct" parameterType="zzim" resultType="zzim">
+		select *
+		from zzims
+		where users_user_id=#{users_user_id} AND products_product_id=#{products_product_id}
+	</select>
 	
 	<!--찜리스트에서 찜 목록 불러올때(select) 사용-->
 	<select id="selectAll" parameterType="string" resultType="product">
-		select  p.product_img,p.product_title,p.product_price
+		select  *
 		from products p
 		where p.product_id in(select z.products_product_id
-                    		  from zzims
-                    		  where z.users_user_id=#{user_id})
+                    		  from zzims z
+                    		  where z.users_user_id=#{users_user_id})
 	</select>
 	
 	<!--찜테이블에서 update는 사용X-->

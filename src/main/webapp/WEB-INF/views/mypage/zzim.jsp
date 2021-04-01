@@ -20,36 +20,52 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="items">
-                            <!-- <td class="checkbox"><input type="checkbox"></td> -->
-                            <td class="item_wrap">
-                                <div class="item_img"><img class="item_img" src="<%=application.getContextPath()%>/resources/images/mypage/zzim/item_img.jpg"></div>
-                                <div class="item_title"><span>[뉴크롭] 케냐 AA 키암부</span></div>
-                            </td>
-                            <td class="price">
-                                <span class="price">5800</span>원
-                                <!-- <span class="count">1</span>개 -->
-                            </td>
-                            <td class="act">
-                                <button class="cart" data-toggle="modal" data-target="#cart">장바구니</button><br>
-                                <button class="del" data-toggle="modal" data-target="#erase">삭제하기</button>
-                            </td>
-                        </tr>
-                        <tr class="items">
-                           <!--  <td class="checkbox"><input type="checkbox"></td> -->
-                            <td class="item_wrap">
-                                <div class="item_img"><img class="item_img" src="<%=application.getContextPath()%>/resources/images/mypage/zzim/item_img2.jpg"></div>
-                                <div class="item_title"><span>스타블렌드</span></div>
-                            </td>
-                            <td class="price">
-                                <span class="price">2500</span>원
-                                <!-- <span class="count">1</span>개 -->
-                            </td>
-                            <td class="act">
-                                <button class="cart" data-toggle="modal" data-target="#cart">장바구니</button><br>
-                                <button class="del" data-toggle="modal" data-target="#erase">삭제하기</button>
-                            </td>
-                        </tr>
+                    
+                    	<c:forEach var="zzimList" items="${zzimList}">
+	                    	<tr class="items">
+		                    	<form method="post" action="${pageContext.request.contextPath}/mypage/deletezzim">
+		                    	 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		                            <!-- <td class="checkbox"><input type="checkbox"></td> -->
+		                            <td class="item_wrap">
+		                            	<input type="hidden" name="product_id" id="product_id" value="${zzimList.product_id}">
+		                                <div class="item_img"><img class="item_img" width="100px" src="zzimdownloadAttach?product_id=${zzimList.product_id}"></div>
+		                                <div class="item_title"><span class="btn" onclick="productClick(${zzimList.product_id})">${zzimList.product_title}</span></div>
+		                            </td>
+		                            <td class="price">
+		                                <span class="price">${zzimList.product_price}</span>원
+		                                <!-- <span class="count">1</span>개 -->
+		                            </td>
+		                            <td class="act">
+		                                <button class="cart" type="button" data-toggle="modal" data-target="#cart">장바구니</button><br>
+		                                <button class="del" type="button" data-toggle="modal" data-target="#erase${zzimList.product_id}">삭제하기</button>
+		                            </td>
+		                            <div class="modal fade erasem" id="erase${zzimList.product_id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								      <div class="modal-dialog modal-dialog-centered" role="document">
+								        <div class="modal-content">
+								          <div class="modal-header">
+								            <span class="modal-title" id="exampleModalLabel">찜리스트 삭제</span>
+								            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								              <span aria-hidden="true">&times;</span>
+								            </button>
+								          </div>
+								          <div class="modal-body">
+								            <div class="erase_img"><img src="<%=application.getContextPath()%>/resources/images/mypage/zzim/erase.png"></div>
+								            <span class="message1">상품이 리스트에서 삭제되었습니다.</span>
+								            
+								            <div class="button-group">
+								              <button type="submit" class="erase">확인</button>
+								            </div>
+								
+								          </div>
+								        </div>
+								      </div>
+								    </div>
+		                        </form>
+	                        </tr>
+	                        
+                    	</c:forEach>
+                        
+     						
                     </tbody>  
                 </table>
             </div>
@@ -115,29 +131,16 @@
         </div>
       </div>
       <!-- 삭제하기 모달 -->
-    <div class="modal fade" id="erase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <span class="modal-title" id="exampleModalLabel">찜리스트 삭제</span>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="erase_img"><img src="<%=application.getContextPath()%>/resources/images/mypage/zzim/erase.png"></div>
-            <span class="message1">상품이 리스트에서 삭제되었습니다.</span>
-            
-            <div class="button-group">
-              <button class="erase" data-dismiss="modal" aria-label="Close">확인</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
+    
 
 </div>
 
+<script>
+	const productClick=(product_id)=>{
+		console.log(product_id);
+		
+		location.href="${pageContext.request.contextPath}/product/detail?product_id="+product_id;		
+	}
+</script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
 </body>
