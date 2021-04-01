@@ -11,11 +11,13 @@
                             <th style="border-top: solid 1px #343a40;">이름</th><td style="border-top: solid 1px #343a40;"><input type="text" name="id_user_name" id="id_user_name"></td>
                         </tr>
                         <tr>
+
                             <th>이메일</th><td><input style="width:19.5em;" type="email" name="user_email" id="user_email"><select name="email" id="email">
                                 <option value="">직접입력</option>
                                 <option value="@naver.com">@naver.com</option>
                                 <option value="@daum.net">@daum.net</option>
                                 <option value="@gmail.com">@gmail.com</option>
+
                               </select></td>
                         </tr>
                     </table>
