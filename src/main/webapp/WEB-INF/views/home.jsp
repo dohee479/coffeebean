@@ -21,7 +21,7 @@
           </div>
           <img id="img_map" class="img_map" src="${pageContext.request.contextPath}/resources/images/main/map_img.png" usemap="#image-map" >
           <map name="image-map">
-              <area href="${pageContext.request.contextPath}/product/country" coords="171,289,199,289,199,311,229,312,226,336,197,336,196,323,173,322" shape="poly"
+              <area href="${pageContext.request.contextPath}/product/country?c=과테말라" coords="171,289,199,289,199,311,229,312,226,336,197,336,196,323,173,322" shape="poly"
               onmouseover="
                   highlight('${pageContext.request.contextPath}/resources/images/main/Guate.png'); 
                   SetTitle('과테말라');
@@ -32,7 +32,7 @@
                   ResetInfo();
                   ">
   
-              <area href="${pageContext.request.contextPath}/product/country" coords="289,381,298,379,301,368,313,367,314,355,334,357,338,376,361,380,363,391,389,394,388,411,375,417,374,451,365,451,364,442,354,441,351,426,341,431,337,416,328,420,325,405,290,406" shape="poly"
+              <area href="${pageContext.request.contextPath}/product/country?c=브라질" coords="289,381,298,379,301,368,313,367,314,355,334,357,338,376,361,380,363,391,389,394,388,411,375,417,374,451,365,451,364,442,354,441,351,426,341,431,337,416,328,420,325,405,290,406" shape="poly"
               onmouseover="
                   highlight('${pageContext.request.contextPath}/resources/images/main/Brasil.png'); 
                   SetTitle('브라질');
@@ -43,7 +43,7 @@
                   ResetInfo();
                   ">
   
-              <area href="${pageContext.request.contextPath}/product/country" coords="579,369,603,370,603,381,615,381,615,392,602,391,602,404,565,403,564,387,578,383" shape="poly"
+              <area href="${pageContext.request.contextPath}/product/country?c=케냐" coords="579,369,603,370,603,381,615,381,615,392,602,391,602,404,565,403,564,387,578,383" shape="poly"
               onmouseover="
                   highlight('${pageContext.request.contextPath}/resources/images/main/kenya.png'); 
                   SetTitle('케냐');
@@ -54,7 +54,7 @@
                   ResetInfo();
                   ">
   
-              <area href="${pageContext.request.contextPath}/product/country" coords="579,366,602,367,603,356,628,355,628,344,616,344,615,334,602,331,602,320,581,320" shape="poly"
+              <area href="${pageContext.request.contextPath}/product/country?c=에티오피아" coords="579,366,602,367,603,356,628,355,628,344,616,344,615,334,602,331,602,320,581,320" shape="poly"
               onmouseover="
                   highlight('${pageContext.request.contextPath}/resources/images/main/Ethi.png'); 
                   SetTitle('에티오피아');
@@ -65,7 +65,7 @@
                   ResetInfo();
                   ">
   
-              <area href="${pageContext.request.contextPath}/product/country" coords="251,341,287,342,286,391,252,393,253,369,265,368,265,354,251,354" shape="poly"
+              <area href="${pageContext.request.contextPath}/product/country?c=콜롬비아" coords="251,341,287,342,286,391,252,393,253,369,265,368,265,354,251,354" shape="poly"
               onmouseover="
                   highlight('${pageContext.request.contextPath}/resources/images/main/Colom.png'); 
                   SetTitle('콜롬비아');

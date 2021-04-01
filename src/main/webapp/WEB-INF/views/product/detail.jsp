@@ -8,25 +8,25 @@
 <div class="container" >
     <div class="content_top">
         <div class="detail_item_img" >
-            <img src="<%=application.getContextPath()%>/resources/images/product/detail/item_img.jpg">
+            <img src="${pageContext.request.contextPath}/product/downloadImg?product_id=${product.product_id}">
         </div>
         <div class="item_info_box">
             <div class="item_title">
-                <span>[뉴크롭] 케냐 AA 키암부</span>
+                <span>${product.product_title}</span>
             
             </div>  
             <div class="item_description">
                 <dl class="desc">
-                    <dt>짧은설명</dt>
-                    <dd>은은한 초콜릿의 단맛</dd>
+                    <dt>맛&향</dt>
+                    <dd>${product.product_taste}</dd>
                 </dl>
                 <dl class="price">
                     <dt>판매가</dt>
-                    <dd class="price">5800</dd>
+                    <dd class="price">${product.product_price}</dd>
                 </dl>
                 <dl class=origin>
                     <dt>원산지</dt>
-                    <dd>케냐</dd>
+                    <dd>${product.product_country}</dd>
                 </dl>
                 <dl class=volume>
                     <dt>용량</dt>
@@ -226,7 +226,7 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="detail-item">
-          <img src="<%=application.getContextPath()%>/resources/images/product/detail/상품상세정보.jpg"/>
+          <img src="downloadDetailImg?product_id=${product.product_id}"/>
         </div>
         <div class="tab-pane fade" id="detail-delievery">
           <img  src="<%=application.getContextPath()%>/resources/images/product/detail/배송안내.png"/>

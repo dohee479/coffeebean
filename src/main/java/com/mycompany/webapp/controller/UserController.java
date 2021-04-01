@@ -22,15 +22,15 @@ public class UserController {
 	public String loginForm() {
 		return "user/login";
 	}
-	@PostMapping("/login")
-	public String login(User user) {
-		String result = usersService.login(user);
-		if (result.equals("success")) {
-			return "redirect:/";
-		} else {
-			return "redirect:/user/login";			
-		}
-	}
+//	@PostMapping("/login")
+//	public String login(User user) {
+//		String result = usersService.login(user);
+//		if (result.equals("success")) {
+//			return "redirect:/";
+//		} else {
+//			return "redirect:/user/login";			
+//		}
+//	}
 	@GetMapping("/id_pwd_find")
 	public String id_pwd_find() {
 		return "user/id_pwd_find";

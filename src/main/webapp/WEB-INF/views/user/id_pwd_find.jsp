@@ -10,7 +10,7 @@
                             <th style="border-top: solid 1px #343a40;">이름</th><td style="border-top: solid 1px #343a40;"><input type="text"></td>
                         </tr>
                         <tr>
-                            <th>이메일</th><td><input style="width:19.5em;" type="email"><select name="email" id="email">
+                            <th>이메일</th><td><input style="width:19.5em;" type="email" name="user_email"><select id="email">
                                 <option value="volvo">직접입력</option>
                                 <option value="saab">naver.com</option>
                                 <option value="opel">daum.net</option>
