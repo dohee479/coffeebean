@@ -1,7 +1,5 @@
 package com.mycompany.webapp.controller;
 
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -59,17 +57,17 @@ import com.mycompany.webapp.service.QuestionsService;
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
+	
 	@Autowired
 	private QuestionsService questionsService;
 
-	
 	@Autowired
 	private BasketsService basketsService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
-	
 	@Autowired
 	private UsersService usersService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
 	@GetMapping("/orderlist")
 	public String OrderList() {
