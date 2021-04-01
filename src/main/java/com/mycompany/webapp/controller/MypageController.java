@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -50,9 +51,17 @@ import com.mycompany.webapp.service.BasketsService;
 import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.service.UsersService;
 
+import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.Question;
+import com.mycompany.webapp.dto.User;
+import com.mycompany.webapp.service.QuestionsService;
+
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
+	@Autowired
+	private QuestionsService questionsService;
+
 	
 	@Autowired
 	private BasketsService basketsService;
@@ -215,6 +224,31 @@ public class MypageController {
 	@GetMapping("/my-qna")
 	public String MyQna() {
 		return "mypage/my-qna";
+	}
+	
+	/* CREATE QNA */
+	@PostMapping("/my-qna-create")
+	public String MyQnaCreate(Question question,Principal principal) {
+		logger.info("my-qna CREATE TEST");
+		question.setUsers_user_id(principal.getName());
+		questionsService.createQuestion(question);
+		return "redirect:/mypage/my-qna";
+	}
+	
+	/* UPDATE QNA */
+	@PostMapping("/my-qna-update")
+	public String MyQnaUpdate(Question question) {
+		logger.info("my-qna UPDATE TEST");
+		questionsService.updateQuestion(question);
+		return "redirect:/mypage/my-qna";
+	}
+	
+	/* DELETE QNA */
+	@PostMapping("/my-qna-delete")
+	public String MyQnaDelete(int question_id) {
+		logger.info("my-qna DELETE TEST");
+		questionsService.deleteQuestion(question_id);
+		return "redirect:/mypage/my-qna";
 	}
 	
 	@GetMapping("/delete-account")

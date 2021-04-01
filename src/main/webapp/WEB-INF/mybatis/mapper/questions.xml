@@ -5,7 +5,7 @@
 	<!-- 상품 정보에 대한 전체 문의 --> 
 	<select id="selectProduct" parameterType="int" resultType="question">
 		select * 
-		from question
+		from questions
 		where products_product_id = #{products_product_id}
 		order by question_id desc
 	</select>
@@ -15,18 +15,37 @@
 	-->
 	<select id="selectUser" parameterType="int" resultType="question">
 		select *
-		from question
+		from questions
 		where users_user_id=#{users_user_id}
 		order by question_id desc
 	</select>
 	
-	<update id="update" parameterType="int">
-		update boards set
+	<!--  question insert 추가 페이지 -->
+	<insert id="insert" parameterType="question">
+		<selectKey keyProperty="question_id" resultType="int" order="BEFORE">
+			select seq_question_id.nextval from dual
+		</selectKey>
+		insert into questions(question_id, question_title, question_content,
+							question_date, users_user_id, products_product_id)
+    	values (
+    		#{question_id},
+    		#{question_title},
+    		#{question_content},
+    		SYSDATE,
+    		#{users_user_id},
+    		500
+    	)
+	</insert>
+	
+	<update id="update" parameterType="question">
+		update questions set
 			question_title=#{question_title},
 			question_content=#{question_content}
 		where question_id = #{question_id}
 	</update>
 	
 	<delete id="delete" parameterType="int">
+		delete from questions
+		where question_id=#{question_id}
 	</delete>
 </mapper>
