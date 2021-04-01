@@ -20,15 +20,26 @@
 		where user_id = #{user_id}
 	</select>
 	
-	<!-- 아이디 찾기시 사용 -->
-	<!-- 이메일을 유니크키로? -->
 	<select id="selectByEmail" parameterType="string" resultType="user">
 		select *
 		from users
 		where user_email=#{user_email}
 	</select>
+	<!-- 아이디 찾기시 사용 -->
+	<!-- 이메일을 유니크키로? -->
+	<select id="selectByNameEmail" parameterType="user" resultType="user">
+		select *
+		from users
+		where user_email=#{user_email} AND user_name=#{user_name}
+	</select>
 	
-
+	<!-- 비밀번호 찾기시 사용 -->
+	<!-- 이메일을 유니크키로? -->
+	<select id="selectByIdName" parameterType="user" resultType="user">
+		select *
+		from users
+		where user_id=#{user_id} AND user_name=#{user_name}
+	</select>
 	
 	<!--  회원 정보 변경 시 사용 -->
 	<update id="updateInfo" parameterType="user">
@@ -36,6 +47,7 @@
 		set user_id = #{user_id},
 			user_name = #{user_name},
 			user_tel=#{user_tel},
+			user_zipcode=#{user_zipcode},
 			user_address=#{user_address},
 			user_detail_address=#{user_detail_address}
 		where user_id = #{user_id}
