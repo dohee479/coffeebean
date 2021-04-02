@@ -21,15 +21,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
-import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.PathVariable;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.mycompany.webapp.dto.Question;
 
 import com.mycompany.webapp.dto.Product;
@@ -101,6 +96,7 @@ public class ProductController {
 		logger.info("detail DELETE TEST");
 		questionsService.deleteQuestion(question_id);
 		return "redirect:/product/detail";
+	}
     
 	@GetMapping("/detail/{product_id}")
 	public String Detail(@PathVariable("product_id") int product_id, Model model) {
@@ -122,8 +118,7 @@ public class ProductController {
 	public void downloadDetailImg(int product_id, HttpServletResponse response) {
 		productsService.getDetailImg(product_id, response);
 	}
-}	
-
+	
 	@GetMapping("/detail")
 	public String detail(int product_id, Model model) {
 		Product dbProduct=productsService.getProduct(product_id);
