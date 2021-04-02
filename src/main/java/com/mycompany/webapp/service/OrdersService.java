@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.OrdersDao;
 import com.mycompany.webapp.dto.Order;
+import com.mycompany.webapp.dto.User;
 
+@Service
 public class OrdersService {
 
 	@Autowired
@@ -25,8 +28,9 @@ public class OrdersService {
 		return order;
 	}
 	
-	public void createOrder(Order order) {
-		ordersDao.insert(order);
+	public int createOrder(User user) {
+		int order_id=ordersDao.insert(user);
+		return order_id;
 	}
 	
 	/*  
