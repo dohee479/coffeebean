@@ -1,7 +1,7 @@
 package com.mycompany.webapp.service;
 
 
-
+import org.springframework.stereotype.Service;
 import com.mycompany.webapp.dao.ProductsDao;
 import com.mycompany.webapp.dto.Product;
 
@@ -97,3 +97,4 @@ public class ProductsService {
 		return dbProduct;
   	}
 }
+

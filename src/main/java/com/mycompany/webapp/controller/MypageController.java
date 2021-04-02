@@ -1,8 +1,6 @@
 package com.mycompany.webapp.controller;
 
 
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -62,13 +60,14 @@ import com.mycompany.webapp.service.QuestionsService;
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
+	
 	@Autowired
 	private QuestionsService questionsService;
 
-	
 	@Autowired
 	private BasketsService basketsService;
 	
+
 	@Autowired
 	private ZzimsService zzimsService;
 
@@ -80,6 +79,8 @@ public class MypageController {
 	
 	@Autowired
 	private UsersService usersService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
 	@GetMapping("/orderlist")
 	public String OrderList() {
@@ -263,7 +264,6 @@ public class MypageController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@GetMapping("/my-review")
@@ -272,7 +272,11 @@ public class MypageController {
 	}
 	
 	@GetMapping("/my-qna")
-	public String MyQna() {
+	public String MyQna(Model model,Principal principal) {
+		//현재 사용자의 계정을 받아와서 Service에 전달
+		List<Question> list=
+				questionsService.getListByUserQuestion(principal.getName());
+		model.addAttribute("list",list);
 		return "mypage/my-qna";
 	}
 	
@@ -288,6 +292,7 @@ public class MypageController {
 	/* UPDATE QNA */
 	@PostMapping("/my-qna-update")
 	public String MyQnaUpdate(Question question) {
+		//dto 호출
 		logger.info("my-qna UPDATE TEST");
 		questionsService.updateQuestion(question);
 		return "redirect:/mypage/my-qna";
@@ -295,9 +300,10 @@ public class MypageController {
 	
 	/* DELETE QNA */
 	@PostMapping("/my-qna-delete")
-	public String MyQnaDelete(int question_id) {
+	public String MyQnaDelete(Question question) {
 		logger.info("my-qna DELETE TEST");
-		questionsService.deleteQuestion(question_id);
+		logger.info("Delete의 question_id"+question.getQuestion_id());
+		questionsService.deleteQuestion(question.getQuestion_id());
 		return "redirect:/mypage/my-qna";
 	}
 	
@@ -317,6 +323,6 @@ public class MypageController {
 		/*
 		 * usersService.delete(user_id); logger.info("딜리트에 들어옴");
 		 */
-		
 	}
+	
 }

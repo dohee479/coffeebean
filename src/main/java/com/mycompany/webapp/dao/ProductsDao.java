@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.Question;
 
 public interface ProductsDao {
 	public List<Product> selectCountry(HashMap<String, String> params);
@@ -11,4 +12,9 @@ public interface ProductsDao {
 	public Product selectByProductId(int product_id);
 	public void insertProduct(Product product);
 	
+	/* 상품 QnA 작성 
+	public List<Question> selectProduct(int products_product_id);
+	public void createQuestion(Question question);
+	public void updateQuestion(Question question);
+	public void deleteQuestion(Question question);*/
 }

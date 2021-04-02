@@ -7,8 +7,8 @@
 <div id="delete-account" style="width:800px; margin-top: 100px; margin-left:100px;">
 	<h3 style="font-weight:bold;">회원탈퇴 하기</h3>
 	<hr/>
+	
 	<!--후기 Accordion UI-->
-
 	<div class="delete-member"
 	    style="margin-top: 50px; height: 200px; border: 1px solid #ced4da;
 	    display: flex;">
