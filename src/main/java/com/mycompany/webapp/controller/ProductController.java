@@ -22,9 +22,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -71,14 +68,6 @@ public class ProductController {
 		return "/product/flavor";
 	}
 	
-	@GetMapping("/detail")
-	public String Detail(Model model) {
-		//현재 상품의 id를 받아와서 Service에 전달
-		List<Question> list=
-				questionsService.getListByProductQuestion(500);
-		model.addAttribute("list",list);
-		return "/product/detail";
-	}
 	
 	/* 상세페이지-상품 QnA 코드 */
 	@PostMapping("/detail-qna-create")
@@ -101,6 +90,7 @@ public class ProductController {
 		logger.info("detail DELETE TEST");
 		questionsService.deleteQuestion(question_id);
 		return "redirect:/product/detail";
+	}
     
 	@GetMapping("/detail/{product_id}")
 	public String Detail(@PathVariable("product_id") int product_id, Model model) {
@@ -122,7 +112,6 @@ public class ProductController {
 	public void downloadDetailImg(int product_id, HttpServletResponse response) {
 		productsService.getDetailImg(product_id, response);
 	}
-}	
 
 	@GetMapping("/detail")
 	public String detail(int product_id, Model model) {

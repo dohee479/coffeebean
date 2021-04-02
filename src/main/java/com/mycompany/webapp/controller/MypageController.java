@@ -75,8 +75,6 @@ public class MypageController {
 	private ProductsService productsSerivce;
 	
 	
-	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
-	
 	@Autowired
 	private UsersService usersService;
 	
