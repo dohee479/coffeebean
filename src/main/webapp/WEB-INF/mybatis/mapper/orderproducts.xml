@@ -34,16 +34,18 @@
 				order_product_grind, 
 				order_product_count, 
 				orders_order_id, 
-				products_product_id
+				products_product_id,
+				order_product_price
 			)
 		values
 			(
-				#{order_product_id.nextval}, 
+				#{order_product_id}, 
 				#{order_product_volume}, 
 				#{order_product_grind}, 
 				#{order_product_count}, 
 				#{orders_order_id}, 
-				#{products_product_id}
+				#{products_product_id},
+				#{order_product_price}
 			)
 	</insert>
 	

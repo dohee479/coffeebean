@@ -6,31 +6,36 @@
 	<!-- users_user_id로 해당 사용자의 모든 주문목록 가져오기 --> 
 	<select id="selectAll" parameterType="string" resultType="order">
 		select order_id, users_user_id, order_receiver, order_address, order_detail_address, order_date, order_msg, order_state
-		from users
+		from orders
 		where users_user_id = #{users_user_id}
 	</select>
 	
 	<!-- OrderId로 주문 컬럼 한 행 가져오기 -->
 	<select id="selectByOrderId" parameterType="int" resultType="order">
-		select order_id, users_user_id, order_receiver, order_address, order_detail_address, order_date, order_msg, order_state
-		from users
+		select *
+		from orders
 		where order_id = #{order_id}	
 	</select>
 	
 	<!-- 주문 생성 -->
 	<!-- 현재 order_id 는 시퀀스로 지정 -->
 	<!-- 주문 생성후 주문상태는 1로 지정 -->
-	<insert id="insert" parameterType="user">
-		<selectKey keyProperty="order_id" resultType="int" order ="BEFORE">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="key">
+		 <selectKey resultType="int" order ="BEFORE">
 			select seq_order_id.nextval from dual
-		</selectKey>		
-		insert into orders
-		(order_id, users_user_id, order_receiver,order_zipcode, order_address, order_detail_address, order_date, order_state)
-		values
-		(#{order_id}, #{user_id}, #{user_id},#{user_zipcode}, #{user_address}, #{user_detail_address}, sysdate, 0)
-		
+		</selectKey>
+			insert into orders
+			(order_id, users_user_id, order_receiver,order_zipcode, order_address, order_detail_address, order_state,order_tel,order_date,order_total_price)
+			values
+			(seq_order_id.nextval, #{user.user_id}, #{user.user_id}, #{user.user_zipcode}, #{user.user_address}, #{user.user_detail_address},0,#{user.user_tel},sysdate,#{total_price})
+					
 	</insert>
 	
+	
+	
+	<select id="selectSeqOrderId" resultType="int">
+		select seq_order_id.currval from dual
+	</select>
 	
 	
 	<!-- 구매확정, 환불 취소 -->
@@ -41,7 +46,7 @@
 	-->
 	<update id="update" parameterType="int">
 		update orders set
-		order_state = #{order_state}
+		order_state = 1
 		where order_id = #{order_id} 
 	</update>
 	
