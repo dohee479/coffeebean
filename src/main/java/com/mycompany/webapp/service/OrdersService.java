@@ -28,8 +28,8 @@ public class OrdersService {
 		return order;
 	}
 	
-	public int createOrder(User user) {
-		int order_id=ordersDao.insert(user);
+	public int createOrder(User user,int total_price) {
+		int order_id=ordersDao.insert(user,total_price);
 		return order_id;
 	}
 	
@@ -38,8 +38,8 @@ public class OrdersService {
 	 배송지 변경이나 주문 완료 후 옵션 수정 할 수 없음
 	 다만 구매확정, 환불, 취소의 경우 order_state 필드 업데이트 필요.
 	*/
-	public void updateOrder(@Param("order_id") int order_id, @Param("order_state") int order_state) {
-		ordersDao.update(order_id, order_state);
+	public void updateOrder(int order_id) {
+		ordersDao.update(order_id);
 	}
 	
 	/* 
@@ -53,6 +53,9 @@ public class OrdersService {
 		ordersDao.deleteByOrderId(order_id);
 	}
 	
-	
+	public int getSeqOrderId() {
+		int seq_order_id= ordersDao.selectSeqOrderId();
+		return seq_order_id;
+	}
 	
 }
