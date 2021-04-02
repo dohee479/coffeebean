@@ -352,15 +352,39 @@
               </div>
 
           </div>
-          <button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#staticBackdrop">
+          <button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#mystaticBackdrop">
             상품문의 글쓰기
           </button> 
         </div>
       </div>
     </div> 
   </br>
+<!-- 글쓰기 모달 -->
+	<div class="modal fade" id="mystaticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h3 class="modal-title">상품문의 글쓰기</h3>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	            <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <form method="post" action="${pageContext.request.contextPath}/product/detail-qna-create">
+	      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		      <div class="modal-body">
+		        <input type="text" class="input-title" name="question_title" placeholder="제목을 입력하세요.">
+		        <textarea class="input-content" name="question_content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+		        <button type="submit" class="btn btn-danger">등록</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
 
-<!--Modal-->
+<!-- 
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -380,7 +404,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!--    수정, 삭제 모달 묶음    -->
   <div class ="update-delete-modal">
@@ -405,6 +429,7 @@
         </div>
       </div>
     </div>
+    
     <!--    삭제 모달    -->
     <div class="modal fade delete-modal" data-backdrop="static">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

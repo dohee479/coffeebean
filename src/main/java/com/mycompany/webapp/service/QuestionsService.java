@@ -12,28 +12,28 @@ import com.mycompany.webapp.dto.Question;
 public class QuestionsService {
 	
 	@Autowired
-	private QuestionsDao questionDao;
+	private QuestionsDao questionsDao;
 	
 	public List<Question> getListByProductQuestion(int products_product_id){
-		List<Question> list=questionDao.selectProduct(products_product_id);
+		List<Question> list=questionsDao.selectProduct(products_product_id);
 		return list;
 	}
 	
-	public List<Question> getListByUserQuestion(int users_user_id){
-		List<Question> list=questionDao.selectUser(users_user_id);
+	public List<Question> getListByUserQuestion(String users_user_id){
+		List<Question> list=questionsDao.selectUser(users_user_id);
 		return list;
 	}
 	
 	public void createQuestion(Question question) {
-		questionDao.insert(question);
+		questionsDao.insert(question);
 	}
 	
 	public void updateQuestion(Question question) {
-		questionDao.update(question);
+		questionsDao.update(question);
 	}
 	
 	public void deleteQuestion(int question_id) {
-		questionDao.delete(question_id);
+		questionsDao.delete(question_id);
 	}
 	
 }

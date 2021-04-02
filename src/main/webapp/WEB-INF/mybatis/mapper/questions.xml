@@ -11,9 +11,9 @@
 	</select>
 	
 	<!-- 사용자 my 문의 
-		유저의 id에 해당하는 question 목록들을 찾아 내림차순으로 정리
+		유저의 id(문자열)에 해당하는 question 목록들을 찾아 내림차순으로 정리
 	-->
-	<select id="selectUser" parameterType="int" resultType="question">
+	<select id="selectUser" parameterType="string" resultType="question">
 		select *
 		from questions
 		where users_user_id=#{users_user_id}
@@ -27,7 +27,7 @@
 		</selectKey>
 		insert into questions(question_id, question_title, question_content,
 							question_date, users_user_id, products_product_id)
-    	values (
+		values (
     		#{question_id},
     		#{question_title},
     		#{question_content},
@@ -37,6 +37,7 @@
     	)
 	</insert>
 	
+	<!-- 수정: 질문번호(id)로 해당 제목, 내용만 수정가능 -->
 	<update id="update" parameterType="question">
 		update questions set
 			question_title=#{question_title},
@@ -44,6 +45,7 @@
 		where question_id = #{question_id}
 	</update>
 	
+	<!-- 삭제: 질문번호(id)로 해당 컬럼만 삭제 -->
 	<delete id="delete" parameterType="int">
 		delete from questions
 		where question_id=#{question_id}
