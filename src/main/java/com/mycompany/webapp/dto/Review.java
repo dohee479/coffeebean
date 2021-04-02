@@ -2,6 +2,8 @@ package com.mycompany.webapp.dto;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Review {
 
 	private int review_id;
@@ -9,14 +11,16 @@ public class Review {
 	private int review_grade;
 	private String review_content;
 	// 리뷰에 들어가는 이미지
+	private MultipartFile review_attach;
 	private String review_attachoname;
 	private String review_attachsname;
 	private String review_attachtype;
 	// 리뷰 작성 날짜
 	private Date review_date;
 	
-	private User user;
-	private Product product;
+	private String users_user_id;
+	private int order_product_id;
+	private int products_product_id;
 
 	public int getReview_id() {
 		return review_id;
@@ -48,6 +52,14 @@ public class Review {
 
 	public void setReview_content(String review_content) {
 		this.review_content = review_content;
+	}
+
+	public MultipartFile getReview_attach() {
+		return review_attach;
+	}
+
+	public void setReview_attach(MultipartFile review_attach) {
+		this.review_attach = review_attach;
 	}
 
 	public String getReview_attachoname() {
@@ -82,22 +94,29 @@ public class Review {
 		this.review_date = review_date;
 	}
 
-	public Product getProduct() {
-		return product;
+	public String getUsers_user_id() {
+		return users_user_id;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setUsers_user_id(String users_user_id) {
+		this.users_user_id = users_user_id;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 	
-	
+	public int getOrder_product_id() {
+		return order_product_id;
+	}
+
+	public void setOrder_product_id(int order_product_id) {
+		this.order_product_id = order_product_id;
+	}
+
+	public int getProducts_product_id() {
+		return products_product_id;
+	}
+
+	public void setProducts_product_id(int products_product_id) {
+		this.products_product_id = products_product_id;
+	}
 	
 }

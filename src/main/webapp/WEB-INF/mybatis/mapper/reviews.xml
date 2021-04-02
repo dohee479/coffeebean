@@ -6,7 +6,7 @@
 			select seq_review_id.nextval from dual
 		</selectKey>
 		insert into reviews
-		values(seq_review_id.nextval, #{review_title}, #{review_grade}, #{review_content}, #{review_attachoname}, #{review_attachsname}, #{review_attachtype}, #{review_date}, #{user_id}, #{product_id})
+		values(#{review_id}, #{review_title}, #{review_grade}, #{review_content}, #{review_attachoname}, #{review_attachsname}, #{review_attachtype}, to_char(sysdate, 'yyyy/mm/dd hh24:mi:ss'), #{users_user_id}, #{order_product_id}, #{products_product_id})
 	</insert>
 	
 	<update id="update" parameterType="review">
@@ -21,4 +21,12 @@
 		where user_id = #{user_id} and product_id = #{product_id}
 	</delete>
 	
+	<select id="selectByProductId" parameterType="int" resultType="review">
+		select 
+			review_id, review_title, review_grade, review_content, 
+			review_attachoname, review_attachsname, review_attachtype, to_date(review_date, 'yyyy/mm/dd hh24:mi:ss'), users_user_id
+		from reviews
+		where products_product_id = #{products_product_id}
+		order by to_date(review_date, 'yyyy/mm/dd hh24:mi:ss') desc
+	</select>
 </mapper>
