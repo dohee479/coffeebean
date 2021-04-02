@@ -13,7 +13,6 @@
         <div class="item_info_box">
             <div class="item_title">
                 <span>${product.product_title}</span>
-            
             </div>  
             <div class="item_description">
                 <dl class="desc">
@@ -35,7 +34,7 @@
             </div> 
             <form method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-            <input type="hidden" name="itemNo" value=7 /> <%-- value="${product_id}" --%>
+            <input type="hidden" name="product_id" value="${product.product_id}" id="product_id"/> <%-- value="${product_id}" --%>
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
@@ -199,12 +198,11 @@
         </div>
         <div class="modal-body">
           <div class="zzim_img"><img src="<%=application.getContextPath()%>/resources/images/product/detail/zzim.png"></div>
-          <span class="message1">상품을 찜했습니다.</span>
-          <span class="message2">찜리스트 가기</span>
+          <span class="message2 font-weight-bold">상품을 찜목록에 추가합니다.</span>
           
           <div class="button-group">
             <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-            <button class="gocart" onclick="location.href='<%=application.getContextPath() %>/mypage/zzim'">확인</button>
+            <button class="gozzim" type="button" id="gozzim">확인</button>
           </div>
 
         </div>
@@ -319,38 +317,40 @@
               </div>
 
           </div>
-          <button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#staticBackdrop">
+          <button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#mystaticBackdrop">
             상품문의 글쓰기
           </button> 
         </div>
       </div>
     </div> 
   </br>
+<!-- 글쓰기 모달 -->
+	<div class="modal fade" id="mystaticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h3 class="modal-title">상품문의 글쓰기</h3>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	            <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <form method="post" action="${pageContext.request.contextPath}/product/detail-qna-create">
+	      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		      <div class="modal-body">
+		        <input type="text" class="input-title" name="question_title" placeholder="제목을 입력하세요.">
+		        <textarea class="input-content" name="question_content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+		        <button type="submit" class="btn btn-danger">등록</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+
 
 <!--Modal-->
-
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">상품문의 글쓰기</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <input type="text" class="input-title" placeholder="제목을 입력하세요.">
-          <textarea class="input-content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">등록</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
   <!--    수정, 삭제 모달 묶음    -->
   <div class ="update-delete-modal">
     <!--    수정 모달    -->
@@ -457,4 +457,28 @@
 <!--Modal 끝-->
   </div>
 </div>
+
+<script>
+	$('#gozzim').on("click",function(){
+		const product_id=$("#product_id").val();
+		console.log(product_id);
+		$.ajax({
+			url:"/kong/mypage/zzim_insert?${_csrf.parameterName}=${_csrf.token}",
+			data:{product_id},
+			method:"post",
+		}).then(data=>{
+			console.log(data.result);
+			if(data.result==="success"){
+				alert("찜리스트에 추가하였습니다.")
+				location.reload();
+				//location.replace("${pageContext.request.contextPath}/product/detail");				
+			}else{
+				alert("이미 찜한 상품입니다.");
+				location.reload();
+				//location.replace("${pageContext.request.contextPath}/product/detail");				
+			}
+			
+		})
+	});
+</script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

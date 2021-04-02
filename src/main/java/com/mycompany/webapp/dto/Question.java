@@ -3,7 +3,6 @@ package com.mycompany.webapp.dto;
 import java.util.Date;
 
 public class Question {
-	private boolean myqna_delete;
 	
 	private int question_id;
 	private String question_title;
@@ -47,12 +46,6 @@ public class Question {
 	}
 	public void setProducts_product_id(int products_product_id) {
 		this.products_product_id = products_product_id;
-	}
-	public boolean isMyqna_delete() {
-		return myqna_delete;
-	}
-	public void setMyqna_delete(boolean myqna_delete) {
-		this.myqna_delete = myqna_delete;
 	}
 	
 }

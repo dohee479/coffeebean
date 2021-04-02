@@ -1,5 +1,10 @@
 package com.mycompany.webapp.service;
 
+
+import org.springframework.stereotype.Service;
+import com.mycompany.webapp.dao.ProductsDao;
+import com.mycompany.webapp.dto.Product;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -18,6 +23,7 @@ import org.springframework.util.FileCopyUtils;
 import com.mycompany.webapp.dao.ProductsDao;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Review;
+
 
 @Service
 public class ProductsService {
@@ -55,7 +61,6 @@ public class ProductsService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void getDetailImg(int product_id, HttpServletResponse response) {
@@ -91,4 +96,11 @@ public class ProductsService {
 		return product;
 	}
 
+  
+  public Product getProduct(int product_id) {
+  Product dbProduct=productsDao.selectByProductId(product_id);
+  return dbProduct;
+  }
+
 }
+

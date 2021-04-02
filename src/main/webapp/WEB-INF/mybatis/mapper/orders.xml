@@ -20,17 +20,18 @@
 	<!-- 주문 생성 -->
 	<!-- 현재 order_id 는 시퀀스로 지정 -->
 	<!-- 주문 생성후 주문상태는 1로 지정 -->
-	<insert id="insert" parameterType="order">
+	<insert id="insert" parameterType="user">
 		<selectKey keyProperty="order_id" resultType="int" order ="BEFORE">
 			select seq_order_id.nextval from dual
-		</selectKey>
-	
+		</selectKey>		
 		insert into orders
-		(select order_id, users_user_id, order_receiver, order_address, order_detail_address, order_date, order_msg, order_state)
+		(order_id, users_user_id, order_receiver,order_zipcode, order_address, order_detail_address, order_date, order_state)
 		values
-		(#{select order_id}, #{users_user_id}, #{order_receiver}, #{order_address}, #{order_detail_address}, sysdate, #{order_msg}, 1)
-	
+		(#{order_id}, #{user_id}, #{user_id},#{user_zipcode}, #{user_address}, #{user_detail_address}, sysdate, 0)
+		
 	</insert>
+	
+	
 	
 	<!-- 구매확정, 환불 취소 -->
 	<!-- parameterType이 주문번호와, orderstate임
