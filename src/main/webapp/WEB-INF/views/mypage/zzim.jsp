@@ -52,7 +52,7 @@
 								            </div>
 								            <div class="modal-body">
 								              <div class="cart_img"><img src="<%=application.getContextPath()%>/resources/images/mypage/zzim/cart.png"></div>
-								              <span class="message1">상품을 장바구니에 추가합니다.</span>
+								              <span class="message1" style="margin: 0 0 0 130px;">상품을 장바구니에 추가합니다.</span>
 								              <span class="message2"></span>
 <%-- 								              <form method="post" action="<%=application.getContextPath()%>/mypage/addBasket">
  --%>								              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
@@ -60,16 +60,16 @@
 								              <div class=select_option>
 								                  <dl class="option">             
 								                      <dd>
-								                          <select id = "volume" name="volume" class="custom-select" style="width: 15em; margin: 0px;">
-								                              <option selected value="0">용량을 선택하세요.</option>
+								                          <select id = "volume" name="volume" class="custom-select" style="width: 15em; margin: 0 0 0 110px;">
+								                             <!--  <option selected value="0">용량을 선택하세요.</option> -->
 								                              <option value="200">200g</option>
 								                              <option value="500">500g</option>
 								                              <option value="1000">1000g</option>
 								                          </select>
 								                      </dd>              
 								                      <dd>
-								                          <select id = "mesh" name="grind" class="custom-select" style="width: 15em; margin: 5px 0 10px 0;">
-								                              <option selected value="0" >분쇄유형을 선택하세요.</option>
+								                          <select id = "mesh" name="grind" class="custom-select" style="width: 15em; margin: 0 0 0 110px;">
+								                              <!-- <option selected value="0" >분쇄유형을 선택하세요.</option> -->
 								                              <option value="1">홀빈(분쇄안함)</option>
 								                              <option value="2">프렌치프레스 분쇄</option>
 								                              <option value="3">핸드드립 분쇄</option>
@@ -85,7 +85,7 @@
 										              </dd>
 								                  </dl>
 								              </div>
-								              <div class="button-group">
+								              <div class="button-group" style="margin: 0 0 0 158px;">
 								                <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
 								                <button type="submit" class="gocart" formaction="<%=application.getContextPath() %>/mypage/addBasket">확인</button>
 								              </div>

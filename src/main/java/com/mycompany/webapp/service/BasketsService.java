@@ -17,8 +17,8 @@ public class BasketsService {
 	private BasketItemsDao basketItemsDao;
 	
 	/* 사용자 자신의 장바구니 목록 불러오기 */
-	public List<BasketItem> getBasketItemListByUserId(String users_user_id, Pager pager){
-		List<BasketItem> list = basketItemsDao.selectAll(users_user_id, pager);
+	public List<BasketItem> getBasketItemListByUserId(String users_user_id){
+		List<BasketItem> list = basketItemsDao.selectAll(users_user_id);
 		return list;
 	}
 	
