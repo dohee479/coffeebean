@@ -61,7 +61,7 @@
 
 #bsk_td_main{
     text-align:left;
-    vertical-align: left;
+    vertical-align: middle;
 
 }
 .bsk_table_1 td{
@@ -86,11 +86,27 @@
     align-content: center;
 }
 
+#bsk_td_main .basket_title{
+	font-size: 1em;
+	font-weight: 600;
+	margin-left: 3em;
+	
+	
+}
+
+#bsk_td_main .basket_option{
+	font-size: 1em;
+	color: #808080;
+	margin-left: 3em;
+}
+
 .bsk_button_div{
     display: flex;
     margin-top: 3em;
 }
-.bsk_button_div > .bsk_left_button > button{
+.bsk_button_div > .bsk_left_button > button,
+.bsk_button_div > .bsk_left_button > .deleteBasketItem
+{
     border: 1px solid #dee2e6;
     background-color:white;
     font-size: 0.7em;

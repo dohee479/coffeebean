@@ -180,30 +180,9 @@ public class MypageController {
 	public String basket(
 			Principal principal, 
 			Model model, 
-			HttpServletResponse response, 
-			String pageNo,
-			HttpSession session) {
-		
-			int intPageNo = 1;
-			if(pageNo == null) {
-				// 세션에서 Pager를 찾고, 있으면 pageNo를 설정
-				Pager pager = (Pager) session.getAttribute("pager");
-				
-				if(pager != null) {
-					intPageNo = pager.getPageNo();
-				}
-			} else {
-				intPageNo = Integer.parseInt(pageNo);
-		}
-			
-			int totalRows = basketsService.getTotalRows();
-			Pager pager = new Pager(5, 5, totalRows, intPageNo);
-			session.setAttribute("pager", pager);
-			
-			List<BasketItem> list = basketsService.getBasketItemListByUserId(principal.getName(), pager);
-			model.addAttribute("list", list);
-			model.addAttribute("pager", pager);
-
+			HttpServletResponse response) {
+				List<BasketItem> list = basketsService.getBasketItemListByUserId(principal.getName());
+				model.addAttribute("list", list);
 
 		return "mypage/basket";
 	}
@@ -258,7 +237,6 @@ public class MypageController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@GetMapping("/downloadAttach")
