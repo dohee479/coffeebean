@@ -20,7 +20,9 @@
                             <tr class="items">
                                 <td rowspan="2" class="order_no">  <!-- 한주문에 몇개의 상품이 들어있는지 알아아 햠 -->
                                     2021000001
-                                </td>   
+                                </td> 
+                                
+                                  
                                 <td class="item_wrap">
                                     <div class="item_img"><img class="item_img" src="<%=application.getContextPath()%>/resources/images/mypage/orderlist/item_img.jpg"></div>
                                     <div class="item_title"><span>[뉴크롭] 케냐 AA 키암부</span><span><strong>/200g,홀빈</strong></span></div>
