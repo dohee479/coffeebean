@@ -11,7 +11,7 @@ import com.mycompany.webapp.dto.Pager;
 
 @Mapper
 public interface BasketItemsDao {
-	public List<BasketItem> selectAll(@Param("users_user_id")String users_user_id, @Param("pager")Pager pager);
+	public List<BasketItem> selectAll(String users_user_id);
 	public BasketItem selectByBasketItemId(int basket_item_id);
 	public void insert(BasketItem basketItem);
 	public void update(BasketItem basketItem);

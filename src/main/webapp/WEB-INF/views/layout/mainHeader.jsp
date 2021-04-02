@@ -19,23 +19,23 @@
     <nav>
       <ul>
         <li>
-          <a class="country" href="product/country">나라</a>
+          <a class="country" href="product/country?c=과테말라">나라</a>
           <div class="hidden-menu">
-            <a href="product/country">케냐</a>
-            <a href="product/country">에티오피아</a>
-            <a href="product/country">브라질</a>
-            <a href="product/country">예멘</a>
-            <a href="product/country">베트남</a>
+            <a href="product/country?c=과테말라">과테말라</a>
+            <a href="product/country?c=브라질">브라질</a>
+            <a href="product/country?c=에티오피아">에티오피아</a>
+            <a href="product/country?c=케냐">케냐</a>
+            <a href="product/country?c=콜롬비아">콜롬비아</a>
           </div>
         </li>
         <li>
-          <a class="taste" href="product/flavor">맛/향</a>
+          <a class="taste" href="product/flavor?f=달콤쌉싸름">맛/향</a>
           <div class="hidden-menu">
-            <a href="product/flavor">달콤쌉싸름</a>
-            <a href="product/flavor">고소함</a>
-            <a href="product/flavor">묵직하고 달콤한 여운</a>
-            <a href="product/flavor">은은하고 편안함</a>
-            <a href="product/flavor">상큼한 산미</a>
+            <a href="product/flavor?f=달콤쌉싸름">달콤쌉싸름</a>
+            <a href="product/flavor?f=고소함">고소함</a>
+            <a href="product/flavor?f=묵직하고 달콤한 여운">묵직하고 달콤한 여운</a>
+            <a href="product/flavor?f=은은하고 편안함">은은하고 편안함</a>
+            <a href="product/flavor?f=상큼한 산미">상큼한 산미</a>
           </div>
         </li>
       </ul>

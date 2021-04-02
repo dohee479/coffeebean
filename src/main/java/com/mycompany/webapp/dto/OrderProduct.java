@@ -8,6 +8,7 @@ public class OrderProduct {
 	private int order_product_count;
 	private int orders_order_id;
 	private int products_product_id;
+	private int order_product_price;
 	
 	public int getOrder_product_id() {
 		return order_product_id;
@@ -44,5 +45,11 @@ public class OrderProduct {
 	}
 	public void setProducts_product_id(int products_product_id) {
 		this.products_product_id = products_product_id;
+	}
+	public int getOrder_product_price() {
+		return order_product_price;
+	}
+	public void setOrder_product_price(int order_product_price) {
+		this.order_product_price = order_product_price;
 	}
 }

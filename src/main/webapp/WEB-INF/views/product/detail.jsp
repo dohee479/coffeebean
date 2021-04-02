@@ -8,25 +8,24 @@
 <div class="container" >
     <div class="content_top">
         <div class="detail_item_img" >
-            <img src="<%=application.getContextPath()%>/resources/images/product/detail/item_img.jpg">
+            <img src="${pageContext.request.contextPath}/product/downloadImg?product_id=${product.product_id}">
         </div>
         <div class="item_info_box">
             <div class="item_title">
-                <span>[뉴크롭] 케냐 AA 키암부</span>
-            
+                <span>${product.product_title}</span>
             </div>  
             <div class="item_description">
                 <dl class="desc">
-                    <dt>짧은설명</dt>
-                    <dd>은은한 초콜릿의 단맛</dd>
+                    <dt>맛&향</dt>
+                    <dd>${product.product_taste}</dd>
                 </dl>
                 <dl class="price">
                     <dt>판매가</dt>
-                    <dd class="price">5800</dd>
+                    <dd class="price">${product.product_price}</dd>
                 </dl>
                 <dl class=origin>
                     <dt>원산지</dt>
-                    <dd>케냐</dd>
+                    <dd>${product.product_country}</dd>
                 </dl>
                 <dl class=volume>
                     <dt>용량</dt>
@@ -35,7 +34,7 @@
             </div> 
             <form method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-            <input type="hidden" name="itemNo" value=7 /> <%-- value="${product_id}" --%>
+            <input type="hidden" name="product_id" value="${product.product_id}" id="product_id"/> <%-- value="${product_id}" --%>
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
@@ -199,12 +198,11 @@
         </div>
         <div class="modal-body">
           <div class="zzim_img"><img src="<%=application.getContextPath()%>/resources/images/product/detail/zzim.png"></div>
-          <span class="message1">상품을 찜했습니다.</span>
-          <span class="message2">찜리스트 가기</span>
+          <span class="message2 font-weight-bold">상품을 찜목록에 추가합니다.</span>
           
           <div class="button-group">
             <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-            <button class="gocart" onclick="location.href='<%=application.getContextPath() %>/mypage/zzim'">확인</button>
+            <button class="gozzim" type="button" id="gozzim">확인</button>
           </div>
 
         </div>
@@ -230,7 +228,7 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="detail-item">
-          <img src="<%=application.getContextPath()%>/resources/images/product/detail/상품상세정보.jpg"/>
+          <img src="downloadDetailImg?product_id=${product.product_id}"/>
         </div>
         <div class="tab-pane fade" id="detail-delievery">
           <img  src="<%=application.getContextPath()%>/resources/images/product/detail/배송안내.png"/>
@@ -505,4 +503,28 @@
 <!--Modal 끝-->
   </div>
 </div>
+
+<script>
+	$('#gozzim').on("click",function(){
+		const product_id=$("#product_id").val();
+		console.log(product_id);
+		$.ajax({
+			url:"/kong/mypage/zzim_insert?${_csrf.parameterName}=${_csrf.token}",
+			data:{product_id},
+			method:"post",
+		}).then(data=>{
+			console.log(data.result);
+			if(data.result==="success"){
+				alert("찜리스트에 추가하였습니다.")
+				location.reload();
+				//location.replace("${pageContext.request.contextPath}/product/detail");				
+			}else{
+				alert("이미 찜한 상품입니다.");
+				location.reload();
+				//location.replace("${pageContext.request.contextPath}/product/detail");				
+			}
+			
+		})
+	});
+</script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

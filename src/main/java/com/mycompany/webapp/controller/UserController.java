@@ -30,11 +30,6 @@ public class UserController {
 		return "user/login";
 	}
 
-	/*
-	 * @PostMapping("/login") public String login(User user) { String result =
-	 * usersService.login(user); if (result.equals("success")) { return
-	 * "redirect:/"; } else { return "redirect:/user/login"; } }
-	 */
 	@GetMapping("/join")
 	public String joinForm() {
 		return "user/join";
@@ -56,7 +51,7 @@ public class UserController {
 		return jsonObject.toString();
 	}
 
-	
+
 	@GetMapping("/id_pwd_find")
 	public String id_pwd_find() {
 		return "user/id_pwd_find";
