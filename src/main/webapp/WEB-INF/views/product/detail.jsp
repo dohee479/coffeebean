@@ -21,7 +21,7 @@
                 </dl>
                 <dl class="price">
                     <dt>판매가</dt>
-                    <dd class="price">${product.product_price}</dd>
+                    <dd class="price" name="price">${product.product_price}</dd>
                 </dl>
                 <dl class=origin>
                     <dt>원산지</dt>
@@ -35,6 +35,7 @@
             <form method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
             <input type="hidden" name="product_id" value="${product.product_id}" id="product_id"/> <%-- value="${product_id}" --%>
+            <input type="hidden" name="price" value="${product.product_price}"/>
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                

@@ -195,6 +195,7 @@ public class MypageController {
 			Model model, 
 			HttpServletResponse response) {
 				List<BasketItem> list = basketsService.getBasketItemListByUserId(principal.getName());
+				
 				model.addAttribute("list", list);
 
 		return "mypage/basket";
@@ -208,9 +209,25 @@ public class MypageController {
 		basketItem.setBasket_grind(Integer.parseInt(request.getParameterValues("grind")[0]));
 		basketItem.setBasket_product_count(Integer.parseInt(request.getParameterValues("count")[0]));
 		basketItem.setUsers_user_id(principal.getName());
-	
+		basketItem.setOrder_product_price(Integer.parseInt(request.getParameterValues("price")[0]));
+		
+		if(request.getParameterValues("volume")[0].equals("200")){
+			basketItem.setOrder_product_price(basketItem.getOrder_product_price() * basketItem.getBasket_product_count());
+		}
+		
+		else if(request.getParameterValues("volume")[0].equals("500")){
+			basketItem.setOrder_product_price( basketItem.getOrder_product_price() *2 * basketItem.getBasket_product_count());
+		}
+		
+		else if(request.getParameterValues("volume")[0].equals("1000")){
+			basketItem.setOrder_product_price( basketItem.getOrder_product_price() *4 * basketItem.getBasket_product_count());
+		}
+		
+		
 		basketsService.createBasketItem(basketItem);
-	
+		
+		
+
 		return "redirect:/mypage/basket";	
 	}
 	

@@ -11,7 +11,7 @@ public class BasketItem {
 
 	// 아래 join시 추가되는 필드
 	private String product_title;
-	private int product_price;
+	private int order_product_price;
 	private String product_attachoname; 
 	private String product_attachsname;
 	private String product_attachtype;
@@ -59,12 +59,7 @@ public class BasketItem {
 	public void setProduct_title(String product_title) {
 		this.product_title = product_title;
 	}
-	public int getProduct_price() {
-		return product_price;
-	}
-	public void setProduct_price(int product_price) {
-		this.product_price = product_price;
-	}
+
 	public String getProduct_attachoname() {
 		return product_attachoname;
 	}
@@ -82,6 +77,12 @@ public class BasketItem {
 	}
 	public void setProduct_attachtype(String product_attachtype) {
 		this.product_attachtype = product_attachtype;
+	}
+	public int getOrder_product_price() {
+		return order_product_price;
+	}
+	public void setOrder_product_price(int order_product_price) {
+		this.order_product_price = order_product_price;
 	}
 
 	
