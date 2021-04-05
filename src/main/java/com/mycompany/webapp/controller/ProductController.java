@@ -1,18 +1,13 @@
 package com.mycompany.webapp.controller;
 
-
 import java.security.Principal;
 import java.util.List;
-
-
 
 import org.json.JSONObject;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,41 +66,35 @@ public class ProductController {
 		return "/product/flavor";
 	}
 	
-	@GetMapping("/detail")
-	public String Detail(Model model) {
-		//현재 상품의 id를 받아와서 Service에 전달
-		List<Question> list=
-				questionsService.getListByProductQuestion(500);
-		model.addAttribute("list",list);
-		return "/product/detail";
-	}
-	
 	/* 상세페이지-상품 QnA 코드 */
 	@PostMapping("/detail-qna-create")
 	public String DetailCreateQna(Question question,Principal principal){
-		logger.info("detail CREATE TEST");
 		question.setUsers_user_id(principal.getName());
 		questionsService.createQuestion(question);
-		return "redirect:/product/detail";
+		return "redirect:/product/detail/"+question.getProducts_product_id();
 	}
 	
+	/*	상품문의 UPDATE	*/
 	@PostMapping("/detail-qna-update")
 	public String DetailUpdateQna(Question question){
-		logger.info("detail UPDATE TEST");
 		questionsService.updateQuestion(question);
 		return "redirect:/product/detail";
 	}
 	
+	/*	상품문의 DELETE	*/
 	@PostMapping("/detail-qna-delete")
 	public String DetailDeleteQna(int question_id){
-		logger.info("detail DELETE TEST");
 		questionsService.deleteQuestion(question_id);
 		return "redirect:/product/detail";
 	}
 	
 	@GetMapping("/detail/{product_id}")
-	public String Detail(@PathVariable("product_id") int product_id, Model model) {
+	public String Detail(@PathVariable("product_id") int product_id, Model model,Principal principal,Question question) {
 		Product product = productsService.selectByProductId(product_id);
+		List<Question> list=
+				questionsService.getListByProductQuestion(product_id);
+		question.setProducts_product_id(product_id);
+		model.addAttribute("list",list);
 		List<Review> reviewList = reviewsService.reviewList(product_id);
 		model.addAttribute("product", product);
 		model.addAttribute("reviewList", reviewList);
