@@ -29,10 +29,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.BasketItem;
+import com.mycompany.webapp.dto.Review;
 import com.mycompany.webapp.dto.Order;
 import com.mycompany.webapp.dto.OrderProduct;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Question;
+
 import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.dto.Zzim;
 import com.mycompany.webapp.service.BasketsService;
@@ -40,6 +42,7 @@ import com.mycompany.webapp.service.OrderProductsService;
 import com.mycompany.webapp.service.OrdersService;
 import com.mycompany.webapp.service.ProductsService;
 import com.mycompany.webapp.service.QuestionsService;
+import com.mycompany.webapp.service.ReviewsService;
 import com.mycompany.webapp.service.UsersService;
 import com.mycompany.webapp.service.ZzimsService;
 
@@ -56,12 +59,17 @@ public class MypageController {
 	@Autowired
 	private BasketsService basketsService;
 	
-
 	@Autowired
 	private ZzimsService zzimsService;
 
 	@Autowired
 	private ProductsService productsSerivce;
+	
+	@Autowired
+	private UsersService usersService;
+	
+	@Autowired
+	private ReviewsService reviewsService;
 	
 	@Autowired
 	private OrderProductsService orderproductsService;
@@ -70,7 +78,6 @@ public class MypageController {
 	
 	@Autowired
 	private UsersService usersService;
-	
 	
 	@GetMapping("/orderlist")
 	public String OrderList(Principal principal,Model model) {
@@ -272,7 +279,9 @@ public class MypageController {
 	}
 	
 	@GetMapping("/my-review")
-	public String MyReview() {
+	public String MyReview(Authentication auth, Model model) {
+		List<Review> reviewList = reviewsService.getReviewByUser(auth.getName());
+		model.addAttribute("reviewList", reviewList);
 		return "mypage/my-review";
 	}
 	
@@ -329,5 +338,4 @@ public class MypageController {
 		 * usersService.delete(user_id); logger.info("딜리트에 들어옴");
 		 */
 	}
-	
 }

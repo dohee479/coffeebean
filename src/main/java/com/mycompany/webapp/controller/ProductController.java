@@ -21,15 +21,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
-import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.PathVariable;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.mycompany.webapp.dto.Question;
 
 import com.mycompany.webapp.dto.Product;
@@ -69,15 +64,6 @@ public class ProductController {
 		List<Product> productList = productsService.taste(f, s);
 		model.addAttribute("productList", productList);
 		return "/product/flavor";
-	}
-	
-	@GetMapping("/detail")
-	public String Detail(Model model) {
-		//현재 상품의 id를 받아와서 Service에 전달
-		List<Question> list=
-				questionsService.getListByProductQuestion(500);
-		model.addAttribute("list",list);
-		return "/product/detail";
 	}
 	
 	/* 상세페이지-상품 QnA 코드 */
@@ -122,6 +108,5 @@ public class ProductController {
 	@GetMapping("/detail/downloadDetailImg")
 	public void downloadDetailImg(int product_id, HttpServletResponse response) {
 		productsService.getDetailImg(product_id, response);
-	}	
-
+	}
 }
