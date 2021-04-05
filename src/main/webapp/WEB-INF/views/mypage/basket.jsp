@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 	<div class="bsk_content">    
     	<div class="bsk_containe detail">
@@ -16,7 +18,7 @@
                         	<th>상품금액</th>
                         	<th>합계금액</th>
                         </tr>
-                    
+                    	<c:set var="sum_price" value="0" />
                     	<c:forEach var="list" items="${list}">
                     
                     	<tr>
@@ -41,33 +43,27 @@
 							<c:if test="${list.basket_grind eq '4'}">
 								더치용분쇄
 							</c:if>
-							</span>
+							
                         	</td>
                         	<td><span>${list.basket_product_count}</span>개</td>
-                        	<td><span>${list.product_price}원</span></td>
+                        	<fmt:parseNumber var= "product_price" integerOnly= "true" value= "${list.order_product_price/list.basket_product_count}" />
+                        	<td><span>${product_price}원</span></td>
                         	<td>
                         	<span>
-                        	<c:set var = "item_total" value = "${list.product_price}" />
-                        	<c:if test="${list.basket_volume eq '400'}">
-                        		<c:set var = "item_total" value = "${list.product_price*2}" />	
-                        	</c:if>
-                        	<c:if test="${list.basket_volume eq '1000'}">
-                        		<c:set var = "item_total" value = "${list.product_price*4}" />	
-                        	</c:if>
-                        	<c:set var = "item_total" value = "${item_total*list.basket_product_count}" />	
-                        	${item_total}원
+							${list.order_product_price}원
                         	</span>
                         </td>
-                       </tr>        
+                       </tr>       
+                       <c:set var="sum_price" value="${sum_price + list.order_product_price }" />
                     </c:forEach>
                 </table>
                 
                	<div class="bsk_sumbox float-center ">
-                    <div class="d-inline-block align-self-center mr-3 text-right"><div>총 상품금액</div><div class="text-danger">원</div></div>
+                    <div class="d-inline-block align-self-cnter mr-3 text-right"><div>총 상품금액</div><div class="text-danger"><c:out value="${sum_price}"/>원</div></div>
                     <img class="mr-3 align-self-center" height="30px" src="<%=application.getContextPath()%>/resources/images/order/+.PNG"/>
                     <div class="d-inline-block align-self-center mr-3"><div>배송비</div><div>2500원</div></div>
                     <img class="mr-3 align-self-center" height="30px" src="<%=application.getContextPath()%>/resources/images/order/=.PNG"/>
-                    <div class="d-inline-block align-self-center mr-3"><div>합계</div><div class="text-danger">원</div></div>
+                    <div class="d-inline-block align-self-center mr-3"><div>합계</div><div class="text-danger">${ sum_price + 2500 }원</div></div>
                 </div>
             
         <div class="bsk_button_div">
@@ -76,8 +72,8 @@
                 <button>선택 상품 찜</button>
             </div>
             <div class="bsk_right_button">
-                <button onclick=location.href="${pageContext.request.contextPath}/order/fill_out_order">선택 상품 주문</button>
-                <button onclick=location.href="${pageContext.request.contextPath}/order/fill_out_order" style="background-color: rgb(219, 120, 103); color:white">전체 상품 주문</button>
+                <button type="submit" formaction="${pageContext.request.contextPath}/order/basket_order">선택 상품 주문</button>
+                <button type="submit" formaction="${pageContext.request.contextPath}/order/basket_order" style="background-color: rgb(219, 120, 103); color:white">전체 상품 주문</button>
             </div>          
         </div>
        </form>

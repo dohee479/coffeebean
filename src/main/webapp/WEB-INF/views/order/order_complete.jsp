@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <th>총 결제 금액</th>
-                    <td><span style="color: tomato; font-size: 1.5em;"> ${completeorder.order_total_price}</span>원</td>
+                    <td><span style="color: tomato; font-size: 1.5em;"> ${completeorder.order_total_price+2500}</span>원</td>
                 </tr>
             </table>
         </div>

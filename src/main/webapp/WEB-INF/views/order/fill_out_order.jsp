@@ -22,12 +22,12 @@
                         <th width="138em"> 수량</th>
                         <th width="138em">상품금액</th> 
                         <th width="138em">합계금액</th>
-                        <th width="138em">배송비</th>
+                        
                     </tr>
                  
                  <c:forEach var="orderinfo" items="${orderinfoList}">   
                  <c:set var="num" value="${num+1}"/>
-                 <c:set var="total_price" value="${total_price+orderinfo.order_product_price}" />
+                 <c:set var="total_price" value="${orderinfo.order_product_price}" />
                  
 	                    <tr>
 	                    	               
@@ -47,9 +47,12 @@
 								</c:if>
 	                        	</div></span></div></div></td>
 	                        <td >${orderinfo.order_product_count}</td>
-	                        <td >${orderinfo.product_price }</td>
-	                        <td>${orderinfo.order_product_price}</td>
-	                        <td>2500원</td>
+	                        <fmt:parseNumber var= "product_price" integerOnly= "true" value= "${orderinfo.product_price/orderinfo.order_product_count }"/>
+	                        <td >${product_price }원</td>
+	                        <td>${orderinfo.product_price}원</td>
+	                        
+	                        
+	                       
 	                    </tr>
 					</c:forEach>
                 </table>
