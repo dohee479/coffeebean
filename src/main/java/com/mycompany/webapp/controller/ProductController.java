@@ -25,15 +25,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
-
 import com.mycompany.webapp.dto.Question;
 
 import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.Review;
 import com.mycompany.webapp.service.ProductsService;
 
 import com.mycompany.webapp.service.QuestionsService;
+import com.mycompany.webapp.service.ReviewsService;
 
 @Controller
 @RequestMapping("/product")
@@ -43,11 +42,15 @@ public class ProductController {
 
 	@Autowired
 	private ProductsService productsService;
+	
+	@Autowired
+	private ReviewsService reviewsService;
 
 	@Autowired
 	private QuestionsService questionsService;
-
 	
+
+	// 나라
 	@GetMapping("/country") 
 	public String Country(String c, String s, Model model) {
 		List<Product> productList = productsService.country(c, s);
@@ -55,6 +58,7 @@ public class ProductController {
 		return "/product/country";
 	}
 	
+	// 맛&향
 	@GetMapping("/flavor") 
 	public String Flavor(String f, String s, Model model) {
 		List<Product> productList = productsService.taste(f, s);
@@ -62,7 +66,7 @@ public class ProductController {
 		return "/product/flavor";
 	}
 	
-	/*	상품문의 CREATE	*/
+	/* 상세페이지-상품 QnA 코드 */
 	@PostMapping("/detail-qna-create")
 	public String DetailCreateQna(Question question,Principal principal){
 		question.setUsers_user_id(principal.getName());
@@ -91,25 +95,22 @@ public class ProductController {
 				questionsService.getListByProductQuestion(product_id);
 		question.setProducts_product_id(product_id);
 		model.addAttribute("list",list);
+		List<Review> reviewList = reviewsService.reviewList(product_id);
 		model.addAttribute("product", product);
+		model.addAttribute("reviewList", reviewList);
 		return "/product/detail";
 	}
-	
+		
+	// 아이템 목록 이미지 받기
 	@GetMapping("/downloadImg")
 	public void downloadImg(int product_id, HttpServletResponse response) {
 		productsService.getProduct(product_id, response);
 	}
 	
+	// 상세페이지 상세정보 이미지 받기 
 	@GetMapping("/detail/downloadDetailImg")
 	public void downloadDetailImg(int product_id, HttpServletResponse response) {
 		productsService.getDetailImg(product_id, response);
-	}
+	}	
 
-	
-	@GetMapping("/detail")
-	public String detail(int product_id, Model model) {
-		Product dbProduct=productsService.getProduct(product_id);
-		model.addAttribute("product",dbProduct);
-		return "/product/detail";
-	}
 }

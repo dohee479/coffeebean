@@ -16,8 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
+
+import com.mycompany.webapp.dao.ProductsDao;
+import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.Review;
 
 
 @Service
@@ -32,28 +37,27 @@ public class ProductsService {
 		params.put("c", c);
 		params.put("s", s);
 		List<Product> countryList = productsDao.selectCountry(params);
-		System.out.println(countryList.get(0).getProduct_sale_count());
 		return countryList; 
 	}
 	
 	public void getProduct(int product_id, HttpServletResponse response) {
 		try {
-		Product product = productsDao.selectByProductId(product_id);
-		response.setContentType(product.getProduct_attachtype());
-		
-		String imgOriginalName = product.getProduct_attachoname();
-		// 응답 HTTP 헤더에 다운로드할 수 있도록 파일 이름을 지정
-		// 한글 파일일 경우, 깨짐 현상을 방지 (헤더에는 한글을 넣을 수 없다)
-		imgOriginalName = new String(imgOriginalName.getBytes("UTF-8"), "ISO-8859-1");
-		response.setHeader("Content-Disposition", "inline; filename=\"" + imgOriginalName + "\";");
-		
-		// 응답 HTTP 바디로 이미지 데이터 출력
-		InputStream is = new FileInputStream("D:/kong/" + product.getProduct_attachsname());
-		OutputStream os = response.getOutputStream();
-		FileCopyUtils.copy(is, os);
-		os.flush();
-		is.close();
-		os.close();
+			Product product = productsDao.selectByProductId(product_id);
+			response.setContentType(product.getProduct_attachtype());
+			
+			String imgOriginalName = product.getProduct_attachoname();
+			// 응답 HTTP 헤더에 다운로드할 수 있도록 파일 이름을 지정
+			// 한글 파일일 경우, 깨짐 현상을 방지 (헤더에는 한글을 넣을 수 없다)
+			imgOriginalName = new String(imgOriginalName.getBytes("UTF-8"), "ISO-8859-1");
+			response.setHeader("Content-Disposition", "inline; filename=\"" + imgOriginalName + "\";");
+			
+			// 응답 HTTP 바디로 이미지 데이터 출력
+			InputStream is = new FileInputStream("D:/kong/" + product.getProduct_attachsname());
+			OutputStream os = response.getOutputStream();
+			FileCopyUtils.copy(is, os);
+			os.flush();
+			is.close();
+			os.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -91,10 +95,12 @@ public class ProductsService {
 		Product product = productsDao.selectByProductId(product_id);
 		return product;
 	}
+
   
-  	public Product getProduct(int product_id) {
-		Product dbProduct=productsDao.selectByProductId(product_id);
-		return dbProduct;
-  	}
+  public Product getProduct(int product_id) {
+	  Product dbProduct=productsDao.selectByProductId(product_id);
+	  return dbProduct;
+  }
+
 }
 

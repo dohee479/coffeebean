@@ -400,8 +400,9 @@
     margin-bottom: auto;
 }
 
-#star-radio #star1, #star-radio  #star2, #star-radio  #star3, #star-radio  #star4, #star-radio  #star5{
+.radio-inline label{
     color:orange;
+    margin-right: 1rem;	
 }
 
 .update-delete-buttons {

@@ -10,6 +10,8 @@ public class OrderProduct {
 	private int products_product_id;
 	private int order_product_price;
 	
+	
+	private String product_title;
 	public int getOrder_product_id() {
 		return order_product_id;
 	}
@@ -51,5 +53,11 @@ public class OrderProduct {
 	}
 	public void setOrder_product_price(int order_product_price) {
 		this.order_product_price = order_product_price;
+	}
+	public String getProduct_title() {
+		return product_title;
+	}
+	public void setProduct_title(String products_product_title) {
+		this.product_title = products_product_title;
 	}
 }

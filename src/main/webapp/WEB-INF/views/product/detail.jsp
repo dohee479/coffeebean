@@ -233,66 +233,96 @@
         <div class="tab-pane fade" id="detail-delievery">
           <img  src="<%=application.getContextPath()%>/resources/images/product/detail/배송안내.png"/>
         </div>
-
+		
         <div class="tab-pane fade" id="detail-review" role="tabpanel" aria-labelledby="contact-tab">
             <!--후기 Accordion UI-->
             <div class="accordion" id="accordionExample">
+			  <c:forEach var="review" items="${reviewList}">
                 <div class="card">
-                  <div class="card-header" id="headingOne">
+                  <div class="card-header" id="heading${review.review_id}">
                     <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                       <span>후기1</span>
+                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse${review.review_id}" aria-expanded="false" aria-controls="collapse${review.review_id}">
+                       <span>${review.review_title}</span>
                       </button>
                     </h2>
                   </div>
               
-                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div id="collapse${review.review_id}" class="collapse" aria-labelledby="heading${review.review_id}" data-parent="#accordionExample">
                     <div class="card-body">
                       <div class="modal-buttons">
-                        <span>ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴsadsaㅇ</span>
+                        <span>${review.review_content}</span>
                         <div class="update-delete-buttons ml-3">
-                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal">수정</button>
-                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".delete-modal">삭제</button>
+                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal${review.review_id}">수정</button>
+                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".delete-modal${review.review_id}">삭제</button>
                         </div>
                       </div>
-
                     </div>
                   </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <span>후기2</span>
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                      22222222222
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <span>후기3</span>
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body">
-                      33333333
-                    </div>
-                  </div>
-                </div>
+                 </div>
+                   <!--    수정, 삭제 모달 묶음    -->
+			  <div class ="update-delete-modal">
+			    <!--    수정 모달    -->
+			
+			    <div class="modal fade update-modal${review.review_id}"  data-backdrop="static">
+			      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			        <div class="modal-content">
+			          <div class="modal-header">
+			            <h3 class="modal-title">수정하기</h3>
+			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                <span aria-hidden="true">&times;</span>
+			            </button>
+			          </div>
+			          <form method="post" action="${pageContext.request.contextPath}/review/update?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
+			          <input type="hidden" name="review_id" value="${review.review_id}"/>
+			          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
+				          <div class="modal-body">
+				            <input type="text" class="input-title" placeholder="수정할 제목을 입력하세요." name="review_title" value="${review.review_title}"/>
+				            <textarea class="input-content" wrap="physical" name="review_content"></textarea>
+				           	<div class="file-upload mt-4">
+					          <label for="selete-file">사진 첨부: </label>
+					          <input type="file" id="selete-file" name="review_attach">
+					        </div>
+				          </div>
+				          <div class="modal-footer">
+				            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+				            <button type="submit" class="btn btn-danger">등록</button>
+				          </div>
+			          </form>
+			        </div>
+			      </div>
+			    </div>
+			
+			    <!--    삭제 모달    -->
+			    <div class="modal fade delete-modal${review.review_id}" data-backdrop="static">
+			      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			        <div class="modal-content">
+			          <div class="modal-header">
+			            <h3 class="modal-title">글삭제</h3>
+			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                <span aria-hidden="true">&times;</span>
+			            </button>
+			          </div>
+			          <div class="modal-body">
+			              <h2>정말 삭제하시겠습니까?</h2>
+			          </div>
+			          <form method="post" action="${pageContext.request.contextPath}/review/delete">
+			          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
+				          <div class="modal-footer">
+				            <button type="button" class="btn btn-outline-secondary" id="asdasfas" data-dismiss="modal">취소</button>
+				            <button type="submit" class="btn btn-danger" name="review_id" value="${review.review_id}">예</button>
+				          </div>
+			          </form>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			  <!--    수정, 삭제 모달 묶음  종료  -->
+              </c:forEach>
             </div>
-
-            <button id="review-button"type="button" class="btn btn-light" data-toggle="modal" data-target=".create-review-modal">
-              상품후기 글쓰기
-            </button>
-
+	       	<button id="review-button"type="button" class="btn btn-light" data-toggle="modal" data-target=".create-review-modal">
+	            상품후기 글쓰기
+	        </button>
         </div>
 
 		<!-- 상품문의 탭 -->
@@ -357,57 +387,6 @@
 	  </div>
 	</div>
 
-
-
-
-
-  <!--    수정, 삭제 모달 묶음    -->
-  <div class ="update-delete-modal">
-    <!--    수정 모달    -->
-    <div class="modal fade update-modal"  data-backdrop="static">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title">수정하기</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <input type="text" class="input-title" placeholder="수정할 제목을 입력하세요.">
-            <textarea class="input-content" wrap="physical" placeholder="수정할 내용을 입력하세요."></textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">등록</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!--    삭제 모달    -->
-    <div class="modal fade delete-modal" data-backdrop="static">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title">글삭제</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <h2>정말 삭제하시겠습니까?</h2>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" id="asdasfas" data-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--    수정, 삭제 모달 묶음  종료  -->
-
   <!-- 상품 후기 글쓰기 모달 -->
   <div class="modal fade create-review-modal" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -418,42 +397,46 @@
               <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <form id="star-radio">
-            <span>평점: </span>
-            <label class="radio-inline">
-              <input type="radio" name="optradio" class="select-stars ml-2">
-              <span id="star1" class="shape-stars">★</span>
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="optradio" class="select-stars ml-2" >
-              <span id="star2" class="shape-stars">★★</span>
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="optradio" class="select-stars ml-2">
-              <span id="star3" class="shape-stars">★★★</span>
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="optradio" class="select-stars ml-2">
-              <span id="star4" class="shape-stars">★★★★</span>
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="optradio" class="select-stars ml-2">
-              <span id="star5" class="shape-stars">★★★★★</span>
-            </label>
-          </form>
-          <input type="text" class="input-title" placeholder="제목을 입력하세요.">
-          <textarea class="input-content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
-          <div class="file-upload mt-4">
-            <label for="selete-file">사진 첨부: </label>
-            <input type="file" id="selete-file">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" id="asdasfas" data-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">등록</button>
-        </div>
-      </div>
+        <form method="post" action="${pageContext.request.contextPath}/review/create?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
+        	<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> -->
+        	<input type="hidden" name="products_product_id" value="${product.product_id}">
+	        <div class="modal-body">
+	          <div id="star-radio">
+	            <span>평점: </span>
+	            <span class="radio-inline">
+	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star1" value=1 checked>
+	              <label for="star1" class="shape-stars">1</label>
+	            </span>
+	            <span class="radio-inline">
+	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star2" value=2>
+	              <label for="star2" class="shape-stars">2</label>
+	            </span>
+	            <span class="radio-inline">
+	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star3" value=3>
+	              <label for="star3" class="shape-stars">3</label>
+	            </span>
+	            <span class="radio-inline">
+	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star4" value=4>
+	              <label for="star4" class="shape-stars">4</label>
+	            </span>
+	            <span class="radio-inline">
+	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star5" value=5>
+	              <label for="star5" class="shape-stars">5</label>
+	            </span>
+	          </div>
+	          <input type="text" class="input-title" placeholder="제목을 입력하세요." name="review_title">
+	          <textarea class="input-content" wrap="physical" placeholder="내용을 입력하세요." name="review_content"></textarea>
+	          <div class="file-upload mt-4">
+	            <label for="selete-file">사진 첨부: </label>
+	            <input type="file" id="selete-file" name="review_attach">
+	          </div>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-outline-secondary" id="asdasfas" data-dismiss="modal">취소</button>
+	          <button type="submit" class="btn btn-danger" value="등록">등록</button>
+	        </div>
+	   </form>
+	  </div>
     </div>
   </div>
   <!-- 상품 후기 글쓰기 모달 종료 -->

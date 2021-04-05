@@ -7,6 +7,8 @@ public class Orderinfo {
 	private int order_id;
 	private String order_receiver;
 	private String user_id;
+	private String user_zipcode;
+
 	private String order_tel;
 	private String order_address;
 	private String order_detail_address;
@@ -17,32 +19,8 @@ public class Orderinfo {
 	private String order_account;
 	private int order_total_price;
 	
-	public Orderinfo(int order_id, String order_receiver, String user_id, String order_tel, String order_address,
-			String order_detail_address, int order_state, String order_account_name, int order_total_price,
-			int order_product_volume, int order_product_grind, int order_product_count, int order_product_price,
-			int product_id, String product_title, int product_price, String product_attachoname,
-			String product_attachsname, String product_attachtype) {
 
-		this.order_id = order_id;
-		this.order_receiver = order_receiver;
-		this.user_id = user_id;
-		this.order_tel = order_tel;
-		this.order_address = order_address;
-		this.order_detail_address = order_detail_address;
-		this.order_state = order_state;
-		this.order_account_name = order_account_name;
-		this.order_total_price = order_total_price;
-		this.order_product_volume = order_product_volume;
-		this.order_product_grind = order_product_grind;
-		this.order_product_count = order_product_count;
-		this.order_product_price = order_product_price;
-		this.product_id = product_id;
-		this.product_title = product_title;
-		this.product_price = product_price;
-		this.product_attachoname = product_attachoname;
-		this.product_attachsname = product_attachsname;
-		this.product_attachtype = product_attachtype;
-	}
+
 	private int order_product_volume;
 	private int order_product_grind;
 	private int order_product_count;
@@ -62,6 +40,40 @@ public class Orderinfo {
 	private int product_sale_count;
 	public int getOrder_id() {
 		return order_id;
+	}
+
+	public Orderinfo(int order_id, String order_receiver, String user_id, String order_tel, String order_address,
+			String order_detail_address, int order_state, String order_account_name,
+			int order_product_volume, int order_product_grind, int order_product_count, int order_product_price,
+			int product_id, String product_title, int product_price, String product_attachoname,
+			String product_attachsname, String product_attachtype, String user_zipcode) {
+		super();
+		this.order_id = order_id;
+		this.order_receiver = order_receiver;
+		this.user_id = user_id;
+		this.order_tel = order_tel;
+		this.order_address = order_address;
+		this.order_detail_address = order_detail_address;
+		this.order_state = order_state;
+		this.order_account_name = order_account_name;
+		this.order_product_volume = order_product_volume;
+		this.order_product_grind = order_product_grind;
+		this.order_product_count = order_product_count;
+		this.order_product_price = order_product_price;
+		this.product_id = product_id;
+		this.product_title = product_title;
+		this.product_price = product_price;
+		this.product_attachoname = product_attachoname;
+		this.product_attachsname = product_attachsname;
+		this.product_attachtype = product_attachtype;
+		this.user_zipcode=user_zipcode;
+	}
+	
+	public String getUser_zipcode() {
+		return user_zipcode;
+	}
+	public void setUser_zipcode(String user_zipcode) {
+		this.user_zipcode = user_zipcode;
 	}
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;

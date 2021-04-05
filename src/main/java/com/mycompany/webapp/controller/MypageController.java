@@ -1,27 +1,13 @@
 package com.mycompany.webapp.controller;
 
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,23 +29,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.BasketItem;
-import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Order;
+import com.mycompany.webapp.dto.OrderProduct;
 import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.Question;
+import com.mycompany.webapp.dto.Review;
 import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.dto.Zzim;
 import com.mycompany.webapp.service.BasketsService;
+import com.mycompany.webapp.service.OrderProductsService;
+import com.mycompany.webapp.service.OrdersService;
 import com.mycompany.webapp.service.ProductsService;
+import com.mycompany.webapp.service.QuestionsService;
+import com.mycompany.webapp.service.ReviewsService;
 import com.mycompany.webapp.service.UsersService;
 import com.mycompany.webapp.service.ZzimsService;
-
-import com.mycompany.webapp.dto.Product;
-import com.mycompany.webapp.dto.Question;
-import com.mycompany.webapp.dto.User;
-import com.mycompany.webapp.service.QuestionsService;
 
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
+	
+	@Autowired
+	private OrdersService ordersService;
 	
 	@Autowired
 	private QuestionsService questionsService;
@@ -74,14 +65,37 @@ public class MypageController {
 	@Autowired
 	private ProductsService productsSerivce;
 	
+	@Autowired
+	private OrderProductsService orderproductsService;
+
 	
 	@Autowired
 	private UsersService usersService;
 	
+	@Autowired
+	private ReviewsService reviewsService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
+	
+	
 	@GetMapping("/orderlist")
-	public String OrderList() {
+	public String OrderList(Principal principal,Model model) {
+		
+		List<Order> completeOrderList=ordersService.getCompleteOrderlist(principal.getName());
+
+		List<List<OrderProduct>> totalOrderProductList=new ArrayList<>();
+		List<List<String>> totalProductTitle=new ArrayList<>();
+		
+		for(Order order: completeOrderList) {
+			int order_id=order.getOrder_id();
+			List<OrderProduct> orderProductList=orderproductsService.getListByOrderId(order_id);			
+			totalOrderProductList.add(orderProductList);
+		}
+
+		model.addAttribute("totalOrderProductList",totalOrderProductList);
+		 
+		
 		return "mypage/orderlist";
 	}
 	
@@ -265,7 +279,9 @@ public class MypageController {
 	}
 	
 	@GetMapping("/my-review")
-	public String MyReview() {
+	public String MyReview(Authentication auth, Model model) {
+		List<Review> reviewList = reviewsService.getReviewByUser(auth.getName());
+		model.addAttribute("reviewList", reviewList);
 		return "mypage/my-review";
 	}
 	

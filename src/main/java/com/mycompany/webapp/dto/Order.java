@@ -8,6 +8,7 @@ public class Order {
 	private String order_receiver;
 	private String users_user_id;
 	private String order_tel;
+	private int order_zipcode;
 	private String order_address;
 	private String order_detail_address;
 	private Date order_date;
@@ -90,6 +91,12 @@ public class Order {
 	}
 	public void setOrder_total_price(int order_total_price) {
 		this.order_total_price = order_total_price;
+	}
+	public int getOrder_zipcode() {
+		return order_zipcode;
+	}
+	public void setOrder_zipcode(int order_zipcode) {
+		this.order_zipcode = order_zipcode;
 	}
 	
 	
