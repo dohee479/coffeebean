@@ -33,6 +33,7 @@ import com.mycompany.webapp.dto.Order;
 import com.mycompany.webapp.dto.OrderProduct;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Question;
+import com.mycompany.webapp.dto.Review;
 import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.dto.Zzim;
 import com.mycompany.webapp.service.BasketsService;
@@ -40,6 +41,7 @@ import com.mycompany.webapp.service.OrderProductsService;
 import com.mycompany.webapp.service.OrdersService;
 import com.mycompany.webapp.service.ProductsService;
 import com.mycompany.webapp.service.QuestionsService;
+import com.mycompany.webapp.service.ReviewsService;
 import com.mycompany.webapp.service.UsersService;
 import com.mycompany.webapp.service.ZzimsService;
 
@@ -66,10 +68,14 @@ public class MypageController {
 	@Autowired
 	private OrderProductsService orderproductsService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
-	
 	@Autowired
 	private UsersService usersService;
+	
+	@Autowired
+	private ReviewsService reviewsService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
+	
 	
 	
 	@GetMapping("/orderlist")
@@ -272,7 +278,9 @@ public class MypageController {
 	}
 	
 	@GetMapping("/my-review")
-	public String MyReview() {
+	public String MyReview(Authentication auth, Model model) {
+		List<Review> reviewList = reviewsService.getReviewByUser(auth.getName());
+		model.addAttribute("reviewList", reviewList);
 		return "mypage/my-review";
 	}
 	
