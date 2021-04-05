@@ -61,6 +61,8 @@ import com.mycompany.webapp.service.QuestionsService;
 @RequestMapping("/mypage")
 public class MypageController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
+	
 	@Autowired
 	private QuestionsService questionsService;
 
@@ -74,13 +76,9 @@ public class MypageController {
 	@Autowired
 	private ProductsService productsSerivce;
 	
-	
-	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
-	
 	@Autowired
 	private UsersService usersService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
 	@GetMapping("/orderlist")
 	public String OrderList() {

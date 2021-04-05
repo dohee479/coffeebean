@@ -101,6 +101,7 @@ public class ProductController {
 		logger.info("detail DELETE TEST");
 		questionsService.deleteQuestion(question_id);
 		return "redirect:/product/detail";
+	}
     
 	@GetMapping("/detail/{product_id}")
 	public String Detail(@PathVariable("product_id") int product_id, Model model) {
@@ -121,13 +122,12 @@ public class ProductController {
 	@GetMapping("/detail/downloadDetailImg")
 	public void downloadDetailImg(int product_id, HttpServletResponse response) {
 		productsService.getDetailImg(product_id, response);
-	}
-}	
+	}	
 
-	@GetMapping("/detail")
-	public String detail(int product_id, Model model) {
-		Product dbProduct=productsService.getProduct(product_id);
-		model.addAttribute("product",dbProduct);
-		return "/product/detail";
-	}
+	/*	@GetMapping("/detail")
+		public String detail(int product_id, Model model) {
+			Product dbProduct=productsService.getProduct(product_id);
+			model.addAttribute("product",dbProduct);
+			return "/product/detail";
+		}*/
 }
