@@ -75,8 +75,6 @@ public class MypageController {
 	private ProductsService productsSerivce;
 	
 	
-	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
-	
 	@Autowired
 	private UsersService usersService;
 	
@@ -280,29 +278,25 @@ public class MypageController {
 		return "mypage/my-qna";
 	}
 	
-	/* CREATE QNA */
+	/* 내문의 CREATE */
 	@PostMapping("/my-qna-create")
 	public String MyQnaCreate(Question question,Principal principal) {
-		logger.info("my-qna CREATE TEST");
 		question.setUsers_user_id(principal.getName());
 		questionsService.createQuestion(question);
 		return "redirect:/mypage/my-qna";
 	}
 	
-	/* UPDATE QNA */
+	/* 내문의 UPDATE */
 	@PostMapping("/my-qna-update")
-	public String MyQnaUpdate(Question question) {
-		//dto 호출
-		logger.info("my-qna UPDATE TEST");
+	public String MyQnaUpdate(Question question,Principal principal) {
+		question.setUsers_user_id(principal.getName());
 		questionsService.updateQuestion(question);
 		return "redirect:/mypage/my-qna";
 	}
 	
-	/* DELETE QNA */
+	/* 내문의 DELETE */
 	@PostMapping("/my-qna-delete")
 	public String MyQnaDelete(Question question) {
-		logger.info("my-qna DELETE TEST");
-		logger.info("Delete의 question_id"+question.getQuestion_id());
 		questionsService.deleteQuestion(question.getQuestion_id());
 		return "redirect:/mypage/my-qna";
 	}

@@ -295,70 +295,44 @@
 
         </div>
 
+		<!-- 상품문의 탭 -->
         <div class="tab-pane fade" id="detail-qna" role="tabpanel" aria-labelledby="contact-tab">
               
-            <div class="accordion" id="accordionExample">
-              <div class="card">
-                <div class="card-header" id="headingOne">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                     <span>상품의 유효기간이 언제까지 인가요?</span>
-                    </button>
-                  </h2>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <strong>Q : </strong><span class="title">커피를 가끔 먹어서 오래두고 먹을 것 같은데 유효기간이 긴가요?</span>
-                    <div class="answer">
-                      <strong>A :</strong> 네 생산일로부터 7개월 동안은 신선한 원두를 드실 수 있습니다. 감사합니다.
-                    </div>
-                    <div class="buttons">
-                      <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal">수정</button>
-                      <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".delete-modal">삭제</button>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header" id="headingTwo">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      <span>정말 원산지가 케냐인가요?</span>
-                    </button>
-                  </h2>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                  <div class="card-body">
-                    어떻게 믿죠?
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header" id="headingThree">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <span>신맛이 어느정도인가요?</span>
-                    </button>
-                  </h2>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div class="card-body">
-                    식초보다 시나욤
-                  </div>
-                </div>
-              </div>
-
-          </div>
-          <button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#mystaticBackdrop">
+           <c:forEach var="question" items="${list}" varStatus="status">
+		  	<div class="card">
+			    <div class="card-header" id="heading${status.count}">
+			      <h2 class="mb-0">
+			        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse${status.count}" aria-expanded="true" aria-controls="collapse${status.count}">
+			         <span id="qna-index">${status.count}</span>
+			         <span id="qna-title">${question.question_title}</span>
+			         <span id="qna-writer">작성자: ${question.users_user_id}</span>
+			         <span id="qna-date">${question.question_date}</span>
+			        </button>
+			      </h2>
+			    </div>
+			    <div id="collapse${status.count}" class="collapse" aria-labelledby="heading${status.count}" data-parent="#detail-qna">
+			      <div class="card-body">
+			        <strong>Q : </strong><span class="title">${question.question_content}</span>
+			        <div class="answer">
+			          <strong>A :</strong> 답변 대기중.....
+			        </div>
+			      </div>
+			    </div>
+		  	</div>
+		  	
+		</c:forEach>
+          
+        <sec:authorize access="isAuthenticated()">
+          <button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#product-qna-modal">
             상품문의 글쓰기
           </button> 
-        </div>
-      </div>
-    </div> 
-  </br>
-<!-- 글쓰기 모달 -->
-	<div class="modal fade" id="mystaticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        </sec:authorize>
+     </div>
+   </div>
+    
+</div>
+	<!-- 상품문의 글쓰기 모달 -->
+	<div class="modal fade" id="product-qna-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -370,39 +344,22 @@
 	      <form method="post" action="${pageContext.request.contextPath}/product/detail-qna-create">
 	      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		      <div class="modal-body">
-		        <input type="text" class="input-title" name="question_title" placeholder="제목을 입력하세요.">
-		        <textarea class="input-content" name="question_content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
+		        <input type="text" class="input-title" name="question_title" placeholder="제목을 입력하세요." maxlength="30">
+		        <textarea class="input-content" name="question_content" wrap="physical" placeholder="내용을 입력하세요." maxlength="300"></textarea>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-		        <button type="submit" class="btn btn-danger">등록</button>
+		        <button type="submit" name="products_product_id" 
+		        		value="${question.products_product_id}" class="btn btn-danger">등록</button>
 		      </div>
 	      </form>
 	    </div>
 	  </div>
 	</div>
 
-<!-- 
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">상품문의 글쓰기</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <input type="text" class="input-title" placeholder="제목을 입력하세요.">
-          <textarea class="input-content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">등록</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
+
+
 
   <!--    수정, 삭제 모달 묶음    -->
   <div class ="update-delete-modal">

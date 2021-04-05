@@ -33,7 +33,7 @@
     		#{question_content},
     		SYSDATE,
     		#{users_user_id},
-    		500
+    		#{products_product_id}
     	)
 	</insert>
 	
