@@ -26,6 +26,29 @@
         }
 
         /* 비율 끝 */
+	
+	
+		.orderProducts{
+			display:flex;
+			flex-direction: row;
+		}
+		
+		.productPriceAndCount{
+			vertical-align: middle;
+		}
+	
+		.title .titleAndOption{
+			margin-left: 200px;
+		}
+	
+		.title .priceAndCount{
+			margin-left: 210px;
+		}
+		
+		.orderProducts .price{
+			margin-top: 9%;
+		}
+
 
         .order_list table{
             border-collapse: collapse;
@@ -51,6 +74,24 @@
             
             padding: 10px;
         }
+        
+        .items .order_no{
+        	border-right: 1px solid #dcdcdc;
+        }
+        
+        .items .orderItemBox{
+        	
+        	border-right: 1px solid #dcdcdc;
+        	
+        }
+        
+       
+        
+       
+        
+      
+        
+
 
         .item_wrap .item_title{
             line-height: 7em;
@@ -68,9 +109,7 @@
             width: 7em;
         }
 
-        .items .price{
-            vertical-align: middle;
-        }
+  
 
         .items .state{
             border-right: 1px solid white;
@@ -83,6 +122,8 @@
         .items .order_no{
             vertical-align: middle;
         }
+        
+        
 
         .state .cancel, .state .refund{
             font-size: 12px;
