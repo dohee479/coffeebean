@@ -1,21 +1,6 @@
 package com.mycompany.webapp.controller;
 
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,19 +28,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.BasketItem;
-import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.Question;
+import com.mycompany.webapp.dto.Review;
 import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.dto.Zzim;
 import com.mycompany.webapp.service.BasketsService;
 import com.mycompany.webapp.service.ProductsService;
+import com.mycompany.webapp.service.QuestionsService;
+import com.mycompany.webapp.service.ReviewsService;
 import com.mycompany.webapp.service.UsersService;
 import com.mycompany.webapp.service.ZzimsService;
-
-import com.mycompany.webapp.dto.Product;
-import com.mycompany.webapp.dto.Question;
-import com.mycompany.webapp.dto.User;
-import com.mycompany.webapp.service.QuestionsService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -76,6 +59,9 @@ public class MypageController {
 	
 	@Autowired
 	private UsersService usersService;
+	
+	@Autowired
+	private ReviewsService reviewsService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
@@ -264,7 +250,9 @@ public class MypageController {
 	}
 	
 	@GetMapping("/my-review")
-	public String MyReview() {
+	public String MyReview(Authentication auth, Model model) {
+		List<Review> reviewList = reviewsService.getReviewByUser(auth.getName());
+		model.addAttribute("reviewList", reviewList);
 		return "mypage/my-review";
 	}
 	
@@ -321,5 +309,4 @@ public class MypageController {
 		 * usersService.delete(user_id); logger.info("딜리트에 들어옴");
 		 */
 	}
-	
 }

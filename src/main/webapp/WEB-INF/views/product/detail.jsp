@@ -274,14 +274,20 @@
 			                <span aria-hidden="true">&times;</span>
 			            </button>
 			          </div>
-			          <form method="post" action="${pageContext.request.contextPath}/review/update">
+			          <form method="post" action="${pageContext.request.contextPath}/review/update?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
+			          <input type="hidden" name="review_id" value="${review.review_id}"/>
+			          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
 				          <div class="modal-body">
-				            <input type="text" class="input-title" placeholder="수정할 제목을 입력하세요.">
-				            <textarea class="input-content" wrap="physical" placeholder="수정할 내용을 입력하세요."></textarea>
+				            <input type="text" class="input-title" placeholder="수정할 제목을 입력하세요." name="review_title" value="${review.review_title}"/>
+				            <textarea class="input-content" wrap="physical" name="review_content"></textarea>
+				           	<div class="file-upload mt-4">
+					          <label for="selete-file">사진 첨부: </label>
+					          <input type="file" id="selete-file" name="review_attach">
+					        </div>
 				          </div>
 				          <div class="modal-footer">
 				            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-				            <button type="button" class="btn btn-danger" data-dismiss="modal">등록</button>
+				            <button type="submit" class="btn btn-danger">등록</button>
 				          </div>
 			          </form>
 			        </div>
@@ -301,10 +307,12 @@
 			          <div class="modal-body">
 			              <h2>정말 삭제하시겠습니까?</h2>
 			          </div>
-			          <form method="post" action="">
+			          <form method="post" action="${pageContext.request.contextPath}/review/delete">
+			          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
 				          <div class="modal-footer">
 				            <button type="button" class="btn btn-outline-secondary" id="asdasfas" data-dismiss="modal">취소</button>
-				            <button type="button" class="btn btn-danger" data-dismiss="modal">예</button>
+				            <button type="submit" class="btn btn-danger" name="review_id" value="${review.review_id}">예</button>
 				          </div>
 			          </form>
 			        </div>
