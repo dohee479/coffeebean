@@ -105,6 +105,6 @@ public class ProductController {
 	@GetMapping("/detail/downloadDetailImg")
 	public void downloadDetailImg(int product_id, HttpServletResponse response) {
 		productsService.getDetailImg(product_id, response);
-	}
 
+	}	
 }

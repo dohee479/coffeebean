@@ -50,6 +50,8 @@ import com.mycompany.webapp.service.ZzimsService;
 @RequestMapping("/mypage")
 public class MypageController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
+	
 	@Autowired
 	private OrdersService ordersService;
 	
