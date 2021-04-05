@@ -288,8 +288,7 @@ public class MypageController {
 	@GetMapping("/my-qna")
 	public String MyQna(Model model,Principal principal) {
 		//현재 사용자의 계정을 받아와서 Service에 전달
-		List<Question> list=
-				questionsService.getListByUserQuestion(principal.getName());
+		List<Question> list=questionsService.getListByUserQuestion(principal.getName());
 		model.addAttribute("list",list);
 		return "mypage/my-qna";
 	}
@@ -317,6 +316,12 @@ public class MypageController {
 		return "redirect:/mypage/my-qna";
 	}
 	
+	@PostMapping("/cancel-order")
+	public String CancelOrder(Order order) {
+		ordersService.updateOrderState(order.getOrder_id());
+		return "redirect:/mypage/orderlist";
+	}
+	
 	@GetMapping("/delete-account")
 	public String DeleteAccount() {
 		return "mypage/delete-account";
@@ -328,8 +333,8 @@ public class MypageController {
 		String user_id=userDetails.getUsername();
 		logger.info(user_id);
 		session.invalidate();
-		//usersService.delete(user_id);
-		return "mypage/delete-account";
+		usersService.delete(user_id);
+		return "redirect:home";
 		/*
 		 * usersService.delete(user_id); logger.info("딜리트에 들어옴");
 		 */

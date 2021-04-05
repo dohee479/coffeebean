@@ -63,4 +63,8 @@ public class OrdersService {
 		return completeorderlist;
 	}
 	
+	public void updateOrderState(int order_id) {
+		ordersDao.updateOrderState(order_id);
+	}
+	
 }

@@ -71,13 +71,14 @@
 					                    <div class="modal-body">
 					                      <div class="cancel_img"><img src="<%=application.getContextPath()%>/resources/images/mypage/orderlist/cancel.png"></div>
 					                      <span class="message1 mb-3">${ orderlist[0].orders_order_id} 번의 주문을 취소합니다.</span>
-					                      <form action="" method="">
+					                      <form action="cancel-order" method="post">
+					                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					                        <!-- <div class="form-group">
 					                          <input type="text" class="form-control" id="cancel_reason">
 					                        </div> -->
 					                        <div class="button-group">
 					                            <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-					                            <button type="submit" class="gocart">확인</button>
+					                            <button type="submit" class="gocart" name="order_id" value="${ orderlist[0].orders_order_id}">확인</button>
 					                          </div>
 					                    </form>
 					                    </div>
@@ -190,5 +191,6 @@
               </div>
     </div>
 </div> --%>
-         
+   </div>
+   </div>     
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

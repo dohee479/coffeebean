@@ -65,6 +65,12 @@
 		where order_id = #{order_id} 
 	</update>
 	
+	<update id="updateOrderState" parameterType="int">
+		update orders set
+			order_state=9
+		where order_id=#{order_id}
+	</update>
+	
 	<delete id="deleteByOrderId" parameterType="int">
 		delete from orders
 		where order_id = #{order_id}
