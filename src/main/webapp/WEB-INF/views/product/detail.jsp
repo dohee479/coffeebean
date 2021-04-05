@@ -13,6 +13,7 @@
         <div class="item_info_box">
             <div class="item_title">
                 <span>${product.product_title}</span>
+            
             </div>  
             <div class="item_description">
                 <dl class="desc">
@@ -34,7 +35,7 @@
             </div> 
             <form method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-            <input type="hidden" name="product_id" value="${product.product_id}" id="product_id"/> <%-- value="${product_id}" --%>
+            <input type="hidden" name="itemNo" value=7 /> <%-- value="${product_id}" --%>
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
@@ -198,11 +199,12 @@
         </div>
         <div class="modal-body">
           <div class="zzim_img"><img src="<%=application.getContextPath()%>/resources/images/product/detail/zzim.png"></div>
-          <span class="message2 font-weight-bold">상품을 찜목록에 추가합니다.</span>
+          <span class="message1">상품을 찜했습니다.</span>
+          <span class="message2">찜리스트 가기</span>
           
           <div class="button-group">
             <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-            <button class="gozzim" type="button" id="gozzim">확인</button>
+            <button class="gocart" onclick="location.href='<%=application.getContextPath() %>/mypage/zzim'">확인</button>
           </div>
 
         </div>
@@ -234,33 +236,96 @@
           <img  src="<%=application.getContextPath()%>/resources/images/product/detail/배송안내.png"/>
         </div>
 		
-	        <div class="tab-pane fade" id="detail-review" role="tabpanel" aria-labelledby="contact-tab">
-	            <!--후기 Accordion UI-->
-	            <div class="accordion" id="accordionExample">
-				  <c:forEach var="review" items="${reviewList}">
-	                <div class="card">
-	                  <div class="card-header" id="headingOne">
-	                    <h2 class="mb-0">
-	                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-	                       <span>${review.review_title}</span>
-	                      </button>
-	                    </h2>
-	                  </div>
-	              
-	                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-	                    <div class="card-body">
-	                      <div class="modal-buttons">
-	                        <span>${review.review_content}</span>
-	                        <div class="update-delete-buttons ml-3">
-	                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal">수정</button>
-	                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".delete-modal">삭제</button>
-	                        </div>
-	                      </div>
-	                    </div>
-	                  </div>
-	                </div>
-	              </c:forEach>
-	        </div>
+        <div class="tab-pane fade" id="detail-review" role="tabpanel" aria-labelledby="contact-tab">
+            <!--후기 Accordion UI-->
+            <div class="accordion" id="accordionExample">
+			  <c:forEach var="review" items="${reviewList}">
+                <div class="card">
+                  <div class="card-header" id="heading${review.review_id}">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse${review.review_id}" aria-expanded="false" aria-controls="collapse${review.review_id}">
+                       <span>${review.review_title}</span>
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapse${review.review_id}" class="collapse" aria-labelledby="heading${review.review_id}" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <div class="modal-buttons">
+                        <span>${review.review_content}</span>
+                        <div class="update-delete-buttons ml-3">
+                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal${review.review_id}">수정</button>
+                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".delete-modal${review.review_id}">삭제</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+                   <!--    수정, 삭제 모달 묶음    -->
+			  <div class ="update-delete-modal">
+			    <!--    수정 모달    -->
+			
+			    <div class="modal fade update-modal${review.review_id}"  data-backdrop="static">
+			      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			        <div class="modal-content">
+			          <div class="modal-header">
+			            <h3 class="modal-title">수정하기</h3>
+			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                <span aria-hidden="true">&times;</span>
+			            </button>
+			          </div>
+			          <form method="post" action="${pageContext.request.contextPath}/review/update?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
+			          <input type="hidden" name="review_id" value="${review.review_id}"/>
+			          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
+				          <div class="modal-body">
+				            <input type="text" class="input-title" placeholder="수정할 제목을 입력하세요." name="review_title" value="${review.review_title}"/>
+				            <textarea class="input-content" wrap="physical" name="review_content"></textarea>
+				           	<div class="file-upload mt-4">
+					          <label for="selete-file">사진 첨부: </label>
+					          <input type="file" id="selete-file" name="review_attach">
+					        </div>
+				          </div>
+				          <div class="modal-footer">
+				            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+				            <button type="submit" class="btn btn-danger">등록</button>
+				          </div>
+			          </form>
+			        </div>
+			      </div>
+			    </div>
+			
+			    <!--    삭제 모달    -->
+			    <div class="modal fade delete-modal${review.review_id}" data-backdrop="static">
+			      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			        <div class="modal-content">
+			          <div class="modal-header">
+			            <h3 class="modal-title">글삭제</h3>
+			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                <span aria-hidden="true">&times;</span>
+			            </button>
+			          </div>
+			          <div class="modal-body">
+			              <h2>정말 삭제하시겠습니까?</h2>
+			          </div>
+			          <form method="post" action="${pageContext.request.contextPath}/review/delete">
+			          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
+				          <div class="modal-footer">
+				            <button type="button" class="btn btn-outline-secondary" id="asdasfas" data-dismiss="modal">취소</button>
+				            <button type="submit" class="btn btn-danger" name="review_id" value="${review.review_id}">예</button>
+				          </div>
+			          </form>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			  <!--    수정, 삭제 모달 묶음  종료  -->
+              </c:forEach>
+            </div>
+	       	<button id="review-button"type="button" class="btn btn-light" data-toggle="modal" data-target=".create-review-modal">
+	            상품후기 글쓰기
+	        </button>
+        </div>
 
         <div class="tab-pane fade" id="detail-qna" role="tabpanel" aria-labelledby="contact-tab">
               
@@ -287,70 +352,39 @@
                   </div>
                 </div>
               </div>
-              <div class="card">
-                <div class="card-header" id="headingTwo">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      <span>정말 원산지가 케냐인가요?</span>
-                    </button>
-                  </h2>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                  <div class="card-body">
-                    어떻게 믿죠?
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header" id="headingThree">
-                  <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <span>신맛이 어느정도인가요?</span>
-                    </button>
-                  </h2>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                  <div class="card-body">
-                    식초보다 시나욤
-                  </div>
-                </div>
-              </div>
-
           </div>
-          <button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#mystaticBackdrop">
+          <button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#staticBackdrop">
             상품문의 글쓰기
           </button> 
         </div>
       </div>
     </div> 
   </br>
-<!-- 글쓰기 모달 -->
-	<div class="modal fade" id="mystaticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h3 class="modal-title">상품문의 글쓰기</h3>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	            <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <form method="post" action="${pageContext.request.contextPath}/product/detail-qna-create">
-	      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		      <div class="modal-body">
-		        <input type="text" class="input-title" name="question_title" placeholder="제목을 입력하세요.">
-		        <textarea class="input-content" name="question_content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-		        <button type="submit" class="btn btn-danger">등록</button>
-		      </div>
-	      </form>
-	    </div>
-	  </div>
-	</div>
-
 
 <!--Modal-->
+
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">상품문의 글쓰기</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="input-title" placeholder="제목을 입력하세요.">
+          <textarea class="input-content" wrap="physical" placeholder="내용을 입력하세요."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">등록</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!--    수정, 삭제 모달 묶음    -->
   <div class ="update-delete-modal">
     <!--    수정 모달    -->
@@ -456,8 +490,6 @@
   <!-- 상품 후기 글쓰기 모달 종료 -->
 <!--Modal 끝-->
   </div>
-</div>
-
 <script>
 	$('#gozzim').on("click",function(){
 		const product_id=$("#product_id").val();

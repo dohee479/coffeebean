@@ -10,23 +10,36 @@
 	</insert>
 	
 	<update id="update" parameterType="review">
-		update boards set
-			review_title=#{review_title},
-			review_content=#{review_content}
-		where user_id = #{user_id} and product_id = #{product_id}
+		update reviews set
+			review_title = #{review_title},
+			review_content = #{review_content},
+			review_attachoname = #{review_attachoname},
+			review_attachsname = #{review_attachsname},
+			review_attachtype = #{review_attachtype},
+			review_date = to_char(sysdate, 'yyyy/mm/dd hh24:mi:ss')
+		where review_id = #{review_id}
 	</update>
 	
-	<delete id="deleteReview">
+	<delete id="delete" parameterType="int">
 		delete from reviews
-		where user_id = #{user_id} and product_id = #{product_id}
+		where review_id = #{review_id}
 	</delete>
 	
 	<select id="selectByProductId" parameterType="int" resultType="review">
 		select 
 			review_id, review_title, review_grade, review_content, 
-			review_attachoname, review_attachsname, review_attachtype, to_date(review_date, 'yyyy/mm/dd hh24:mi:ss'), users_user_id
+			review_attachoname, review_attachsname, review_attachtype, to_date(review_date, 'yyyy/mm/dd hh24:mi:ss'), users_user_id, order_product_id, products_product_id
 		from reviews
 		where products_product_id = #{products_product_id}
+		order by to_date(review_date, 'yyyy/mm/dd hh24:mi:ss') desc
+	</select>
+	
+	<select id="selectByUserId" parameterType="string" resultType="review">
+		select 
+			review_id, review_title, review_grade, review_content, 
+			review_attachoname, review_attachsname, review_attachtype, to_date(review_date, 'yyyy/mm/dd hh24:mi:ss'), users_user_id, order_product_id, products_product_id
+		from reviews
+		where users_user_id = #{user_Id}
 		order by to_date(review_date, 'yyyy/mm/dd hh24:mi:ss') desc
 	</select>
 </mapper>
