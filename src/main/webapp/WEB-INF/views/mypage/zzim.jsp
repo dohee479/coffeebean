@@ -143,7 +143,7 @@
 	const productClick=(product_id)=>{
 		console.log(product_id);
 		
-		location.href="${pageContext.request.contextPath}/product/detail?product_id="+product_id;		
+		location.href="${pageContext.request.contextPath}/product/detail/"+product_id;		
 	}
 </script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

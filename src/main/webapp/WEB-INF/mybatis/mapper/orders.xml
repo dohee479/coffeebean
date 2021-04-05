@@ -17,6 +17,13 @@
 		where order_id = #{order_id}	
 	</select>
 	
+	<select id="selectCompleteOrder" parameterType="String" resultType="order">
+		select *
+		from orders
+		where users_user_id = #{users_user_id} AND order_state!=0 AND order_state!=9
+		order by order_id
+	</select>
+	
 	<!-- 주문 생성 -->
 	<!-- 현재 order_id 는 시퀀스로 지정 -->
 	<!-- 주문 생성후 주문상태는 1로 지정 -->
@@ -44,9 +51,17 @@
 	현재 복수의 int 타입의 파라미터를 받음 따로 hashmap을 사용해야 할 수도 있음 
 	DB에서 어떻게 처리하는지 아직 모름 
 	-->
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="order">
 		update orders set
-		order_state = 1
+			order_receiver=#{order_receiver},
+			order_zipcode=#{order_zipcode},
+			order_address=#{order_address},
+			order_detail_address=#{order_detail_address},
+			order_tel=#{order_tel},
+			order_msg=#{order_msg},
+			order_account_name=#{order_account_name},
+			order_account=#{order_account},
+			order_state = 1		
 		where order_id = #{order_id} 
 	</update>
 	

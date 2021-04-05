@@ -41,6 +41,7 @@ public class Orderinfo {
 	public int getOrder_id() {
 		return order_id;
 	}
+
 	public Orderinfo(int order_id, String order_receiver, String user_id, String order_tel, String order_address,
 			String order_detail_address, int order_state, String order_account_name,
 			int order_product_volume, int order_product_grind, int order_product_count, int order_product_price,
