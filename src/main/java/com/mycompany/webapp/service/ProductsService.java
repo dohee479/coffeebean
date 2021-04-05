@@ -98,8 +98,8 @@ public class ProductsService {
 
   
   public Product getProduct(int product_id) {
-  Product dbProduct=productsDao.selectByProductId(product_id);
-  return dbProduct;
+	  Product dbProduct=productsDao.selectByProductId(product_id);
+	  return dbProduct;
   }
 
 }

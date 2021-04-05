@@ -11,6 +11,7 @@
     <form class="f_o_content" method="post" action="${pageContext.request.contextPath}/order/order_complete">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
     <input type="hidden" name="order_id" value="${orderinfoList[0].order_id}" />
+    <input type="hidden" name="orderinfo" value="${orderinfoList[0]}"/>
         <div class="f_o_containe detail">
             <div class="f_o_title"><h4 class="f_o_h_font">주문서작성/결제</h4> <div class="f_o_side"><span class="f_o_text_font1">01 장바구니 ></span><span class="f_o_text_font2">02 주문서작성/결제 ></span><span class="f_o_text_font1">03 주문완료</span></div></div><hr>
             <div>
@@ -23,9 +24,10 @@
                         <th width="138em">합계금액</th>
                         <th width="138em">배송비</th>
                     </tr>
+                 
                  <c:forEach var="orderinfo" items="${orderinfoList}">   
                  <c:set var="num" value="${num+1}"/>
-                 <c:set var="total_price" value="${total_price+orderinfo.product_price}" />
+                 <c:set var="total_price" value="${total_price+orderinfo.order_product_price}" />
                  
 	                    <tr>
 	                    	               
@@ -87,24 +89,24 @@
                 <h6 class="f_o_m_h_font">배송 정보</h6>
                 <tr>
                     <th style="border-top: solid 1px #343a40;">받으실분</th>
-                    <td style="border-top: solid 1px #343a40;"><input type="text" value="${orderinfoList[0].order_account_name}"></td>
+                    <td style="border-top: solid 1px #343a40;"><input type="text" name="order_receiver" value="${orderinfoList[0].order_receiver}"></td>
                 </tr>
                 <tr>
                     <th>받으실 곳</th>
                     <td>
-                        <input type="text" value="${orderinfoList[0].user_zipcode}"> <button>우편번호검색</button><br>
-                        <input type="text" value="${orderinfoList[0].order_address}"style="width: 40em">
-                        <input type="text" value="${orderinfoList[0].order_detail_address}"style="width: 40em">
+                        <input type="text" name="order_zipcode" value="${orderinfoList[0].user_zipcode}"> <button>우편번호검색</button><br>
+                        <input type="text" name="order_address" value="${orderinfoList[0].order_address}"style="width: 40em">
+                        <input type="text" name="order_detail_address" value="${orderinfoList[0].order_detail_address}"style="width: 40em">
                     </td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="text" value="${orderinfoList[0].order_tel }"></td>
+                    <td><input type="text" name="order_tel" value="${orderinfoList[0].order_tel }"></td>
                 </tr>
                 
                 <tr>
                     <th>남기실 말씀</th>
-                    <td><input type="text"></td>
+                    <td><input name="order_msg" type="text"></td>
                 </tr>
             </table>    
         </div>
@@ -130,12 +132,12 @@
                         <div class="f_o_account_form">
                             <div>무통장 입금</div><hr/>
                             <div class="f_o_font_gray">(무통장 입금의 경우 입금확인 후부터 배송단계가 진행됩니다.)</div>
-                            <div><span>입금자명</span><input type="text" style="margin-left: 2em;"></div>
-                            <div><span>입금은행</span><select name="account" id="account">
-                                <option value="sel">선택하세요</option>
-                                <option value="gy">기업은행 118-529312-01-014 (주)콩콩콩</option>
-                                <option value="nh">농협 321--0241-3124-11 (주)콩콩콩</option>
-                                <option value="sh">신한은행 421-43243-21-022 (주)콩콩콩</option>
+                            <div><span>입금자명</span><input type="text" name="order_account_name" style="margin-left: 2em;"></div>
+                            <div><span>입금은행</span><select name="order_account" id="order_account">
+                                <option value="">선택하세요</option>
+                                <option value="기업은행 118-529312-01-014">기업은행 118-529312-01-014 (주)콩콩콩</option>
+                                <option value="농협 321--0241-3124-11">농협 321--0241-3124-11 (주)콩콩콩</option>
+                                <option value="신한은행 421-43243-21-022">신한은행 421-43243-21-022 (주)콩콩콩</option>
                               </select></div>
                         </div>
                     </td>

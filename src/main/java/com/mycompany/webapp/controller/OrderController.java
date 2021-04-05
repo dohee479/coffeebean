@@ -49,8 +49,31 @@ public class OrderController {
 
 	
 	@PostMapping("/order_complete")
-	public String order_complete(int order_id) {
-		ordersService.updateOrder(order_id);
+	public String order_complete(int order_id,
+								String order_receiver,
+								int order_zipcode,
+								String order_address,
+								String order_detail_address,
+								String order_tel,
+								String order_msg,
+								String order_account_name,
+								String order_account,
+								Model model) {
+		
+		Order order=new Order();
+		order.setOrder_id(order_id);
+		order.setOrder_receiver(order_receiver);
+		order.setOrder_zipcode(order_zipcode);
+		order.setOrder_address(order_address);
+		order.setOrder_detail_address(order_detail_address);
+		order.setOrder_tel(order_tel);
+		order.setOrder_msg(order_msg);
+		order.setOrder_account_name(order_account_name);
+		order.setOrder_account(order_account);
+		ordersService.updateOrder(order);
+		
+		Order completeorder=ordersService.getOrder(order_id);
+		model.addAttribute("completeorder",completeorder);
 		
 		return "order/order_complete";
 	}
@@ -64,15 +87,18 @@ public class OrderController {
 		
 		int product_price=product.getProduct_price();
 		int total_price;
+		
 		if(volume.equals("200")) {
 			total_price=product_price*count;
 		}else if(volume.equals("500")) {
 			total_price=product_price*2*count;
+			product_price=product_price*2;			
 		}else {
 			total_price=product_price*4*count;
+			product_price=product_price*4;			
 		}
 		
-		
+		logger.info(product_price+"");
 		
 		
 		
@@ -105,7 +131,7 @@ public class OrderController {
 										total_price,
 										product.getProduct_id(),
 										product.getProduct_title(),
-										product.getProduct_price(),
+										product_price,
 										product.getProduct_attachoname(),
 										product.getProduct_attachsname(),
 										product.getProduct_attachtype(),

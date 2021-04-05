@@ -38,8 +38,8 @@ public class OrdersService {
 	 배송지 변경이나 주문 완료 후 옵션 수정 할 수 없음
 	 다만 구매확정, 환불, 취소의 경우 order_state 필드 업데이트 필요.
 	*/
-	public void updateOrder(int order_id) {
-		ordersDao.update(order_id);
+	public void updateOrder(Order order) {
+		ordersDao.update(order);
 	}
 	
 	/* 
@@ -56,6 +56,11 @@ public class OrdersService {
 	public int getSeqOrderId() {
 		int seq_order_id= ordersDao.selectSeqOrderId();
 		return seq_order_id;
+	}
+	
+	public List<Order> getCompleteOrderlist(String users_user_id){
+		List<Order> completeorderlist=ordersDao.selectCompleteOrder(users_user_id);
+		return completeorderlist;
 	}
 	
 }
