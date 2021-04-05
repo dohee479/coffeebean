@@ -29,7 +29,7 @@
             
                     <li>나의 상품후기
                         <ul>
-                            <li onclick=location.href="${pageContext.request.contextPath}/mypage/my-review">- 나의 상품후기</li>
+                            <li><a href="my-review">나의 상품후기</a></li>
                         </ul>
                     </li>
                 </ul>

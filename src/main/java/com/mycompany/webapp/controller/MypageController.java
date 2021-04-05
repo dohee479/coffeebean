@@ -1,27 +1,13 @@
 package com.mycompany.webapp.controller;
 
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,23 +29,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.BasketItem;
-import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Review;
+import com.mycompany.webapp.dto.Order;
+import com.mycompany.webapp.dto.OrderProduct;
 import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.Question;
+
 import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.dto.Zzim;
 import com.mycompany.webapp.service.BasketsService;
+import com.mycompany.webapp.service.OrderProductsService;
+import com.mycompany.webapp.service.OrdersService;
 import com.mycompany.webapp.service.ProductsService;
+import com.mycompany.webapp.service.QuestionsService;
+import com.mycompany.webapp.service.ReviewsService;
 import com.mycompany.webapp.service.UsersService;
 import com.mycompany.webapp.service.ZzimsService;
-
-import com.mycompany.webapp.dto.Product;
-import com.mycompany.webapp.dto.Question;
-import com.mycompany.webapp.dto.User;
-import com.mycompany.webapp.service.QuestionsService;
 
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
+	
+	@Autowired
+	private OrdersService ordersService;
 	
 	@Autowired
 	private QuestionsService questionsService;
@@ -67,21 +59,39 @@ public class MypageController {
 	@Autowired
 	private BasketsService basketsService;
 	
-
 	@Autowired
 	private ZzimsService zzimsService;
 
 	@Autowired
 	private ProductsService productsSerivce;
 	
-	
 	@Autowired
 	private UsersService usersService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
+	@Autowired
+	private ReviewsService reviewsService;
+	
+	@Autowired
+	private OrderProductsService orderproductsService;
+	
 	
 	@GetMapping("/orderlist")
-	public String OrderList() {
+	public String OrderList(Principal principal,Model model) {
+		
+		List<Order> completeOrderList=ordersService.getCompleteOrderlist(principal.getName());
+
+		List<List<OrderProduct>> totalOrderProductList=new ArrayList<>();
+		List<List<String>> totalProductTitle=new ArrayList<>();
+		
+		for(Order order: completeOrderList) {
+			int order_id=order.getOrder_id();
+			List<OrderProduct> orderProductList=orderproductsService.getListByOrderId(order_id);			
+			totalOrderProductList.add(orderProductList);
+		}
+
+		model.addAttribute("totalOrderProductList",totalOrderProductList);
+		 
+		
 		return "mypage/orderlist";
 	}
 	
@@ -214,7 +224,6 @@ public class MypageController {
 	
 	@GetMapping("/zzimdownloadAttach")
 	public void zzimdownloadAttach(int product_id, HttpServletResponse response) {
-		logger.info("실행");
 		try {
 			Product product = productsSerivce.getProduct(product_id);
 			// 응답 HTTP 헤더에 저장될 바디의 타product_id입
@@ -240,7 +249,6 @@ public class MypageController {
 	
 	@GetMapping("/downloadAttach")
 	public void downloadAttach(int basket_item_id, HttpServletResponse response) {
-		logger.info("실행");
 		try {
 			BasketItem basketItem = basketsService.getBasketItem(basket_item_id);
 			// 응답 HTTP 헤더에 저장될 바디의 타product_id입
@@ -265,7 +273,9 @@ public class MypageController {
 	}
 	
 	@GetMapping("/my-review")
-	public String MyReview() {
+	public String MyReview(Authentication auth, Model model) {
+		List<Review> reviewList = reviewsService.getReviewByUser(auth.getName());
+		model.addAttribute("reviewList", reviewList);
 		return "mypage/my-review";
 	}
 	
@@ -281,7 +291,6 @@ public class MypageController {
 	/* CREATE QNA */
 	@PostMapping("/my-qna-create")
 	public String MyQnaCreate(Question question,Principal principal) {
-		logger.info("my-qna CREATE TEST");
 		question.setUsers_user_id(principal.getName());
 		questionsService.createQuestion(question);
 		return "redirect:/mypage/my-qna";
@@ -290,8 +299,6 @@ public class MypageController {
 	/* UPDATE QNA */
 	@PostMapping("/my-qna-update")
 	public String MyQnaUpdate(Question question) {
-		//dto 호출
-		logger.info("my-qna UPDATE TEST");
 		questionsService.updateQuestion(question);
 		return "redirect:/mypage/my-qna";
 	}
@@ -299,8 +306,6 @@ public class MypageController {
 	/* DELETE QNA */
 	@PostMapping("/my-qna-delete")
 	public String MyQnaDelete(Question question) {
-		logger.info("my-qna DELETE TEST");
-		logger.info("Delete의 question_id"+question.getQuestion_id());
 		questionsService.deleteQuestion(question.getQuestion_id());
 		return "redirect:/mypage/my-qna";
 	}
@@ -314,7 +319,6 @@ public class MypageController {
 	public String DeleteAccount_process(Authentication authentication,HttpSession session) {
 		UserDetails userDetails =(UserDetails)authentication.getPrincipal();
 		String user_id=userDetails.getUsername();
-		logger.info(user_id);
 		session.invalidate();
 		//usersService.delete(user_id);
 		return "mypage/delete-account";
@@ -322,5 +326,4 @@ public class MypageController {
 		 * usersService.delete(user_id); logger.info("딜리트에 들어옴");
 		 */
 	}
-	
 }

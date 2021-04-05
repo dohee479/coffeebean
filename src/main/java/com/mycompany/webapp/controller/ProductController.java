@@ -21,12 +21,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.PathVariable;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.mycompany.webapp.dto.Question;
 
 import com.mycompany.webapp.dto.Product;
@@ -68,11 +66,9 @@ public class ProductController {
 		return "/product/flavor";
 	}
 	
-	
 	/* 상세페이지-상품 QnA 코드 */
 	@PostMapping("/detail-qna-create")
 	public String DetailCreateQna(Question question,Principal principal){
-		logger.info("detail CREATE TEST");
 		question.setUsers_user_id(principal.getName());
 		questionsService.createQuestion(question);
 		return "redirect:/product/detail";
@@ -80,18 +76,16 @@ public class ProductController {
 	
 	@PostMapping("/detail-qna-update")
 	public String DetailUpdateQna(Question question){
-		logger.info("detail UPDATE TEST");
 		questionsService.updateQuestion(question);
 		return "redirect:/product/detail";
 	}
 	
 	@PostMapping("/detail-qna-delete")
 	public String DetailDeleteQna(int question_id){
-		logger.info("detail DELETE TEST");
 		questionsService.deleteQuestion(question_id);
 		return "redirect:/product/detail";
 	}
-    
+
 	@GetMapping("/detail/{product_id}")
 	public String Detail(@PathVariable("product_id") int product_id, Model model) {
 		Product product = productsService.selectByProductId(product_id);
@@ -113,10 +107,4 @@ public class ProductController {
 		productsService.getDetailImg(product_id, response);
 	}
 
-	@GetMapping("/detail")
-	public String detail(int product_id, Model model) {
-		Product dbProduct=productsService.getProduct(product_id);
-		model.addAttribute("product",dbProduct);
-		return "/product/detail";
-	}
 }

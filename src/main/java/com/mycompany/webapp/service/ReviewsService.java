@@ -42,4 +42,34 @@ public class ReviewsService {
 		List<Review> reviewList = reviewsDao.selectByProductId(product_id);
 		return reviewList;
 	}
+	
+	public int delete(int review_id) {
+		return reviewsDao.delete(review_id);
+	}
+	
+	public int update(Review review) {
+		MultipartFile review_attach = review.getReview_attach();
+		if (!review_attach.isEmpty()) {
+			review.setReview_attachoname(review_attach.getOriginalFilename());
+			review.setReview_attachtype(review_attach.getContentType());
+			String saveName = new Date().getTime() + "-" + review_attach.getOriginalFilename();
+			review.setReview_attachsname(saveName);
+			File file = new File("D:/kong/" + review.getReview_attachsname());
+			try {
+				review_attach.transferTo(file);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return reviewsDao.update(review);
+	}
+	
+	public List<Review> getReviewByUser(String user_id) {
+		List<Review> reviewList = reviewsDao.selectByUserId(user_id);
+		return reviewList;
+	}
 }
