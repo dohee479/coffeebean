@@ -9,9 +9,10 @@ public class OrderProduct {
 	private int orders_order_id;
 	private int products_product_id;
 	private int order_product_price;
-	
-	
 	private String product_title;
+	
+	private int order_state;
+	
 	public int getOrder_product_id() {
 		return order_product_id;
 	}
@@ -60,4 +61,11 @@ public class OrderProduct {
 	public void setProduct_title(String products_product_title) {
 		this.product_title = products_product_title;
 	}
+	public int getOrder_state() {
+		return order_state;
+	}
+	public void setOrder_state(int order_state) {
+		this.order_state = order_state;
+	}
+
 }

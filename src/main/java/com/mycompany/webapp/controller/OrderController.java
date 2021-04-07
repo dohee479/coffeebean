@@ -189,6 +189,7 @@ public class OrderController {
 		
 		for(String itemNo : arr) {
 			BasketItem basketitem =basketsService.getBasketItem(Integer.parseInt(itemNo));
+			logger.info(basketitem.getOrder_product_price()+"");
 			BasketItemList.add(basketitem);
 		}
 		for(int i=0;i<BasketItemList.size();i++) {

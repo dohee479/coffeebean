@@ -72,4 +72,10 @@ public class OrdersService {
 		ordersDao.updateOrderState(order_id);
 	}
 	
+	public void updateConfirmation(int order_id) {
+		ordersDao.updateConfirmation(order_id);
+	}
+	
+	
+	
 }

@@ -366,6 +366,12 @@ public class MypageController {
 		return "redirect:/mypage/orderlist";
 	}
 	
+	@PostMapping("/confirmation-order")
+	public String confirmationOrder(Order order) {
+		ordersService.updateConfirmation(order.getOrder_id());
+		return "redirect:/mypage/orderlist";
+	}
+	
 	@GetMapping("/delete-account")
 	public String DeleteAccount() {
 		return "mypage/delete-account";
