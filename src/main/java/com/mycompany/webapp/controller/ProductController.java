@@ -125,7 +125,7 @@ public class ProductController {
 			BasketItem basketItem = basketsService.getBasketItem(Integer.parseInt(basket_item_id));
 			HashMap<String, String> basket = new HashMap<>();
 			basket.put("product_title", basketItem.getProduct_title());
-			basket.put("product_price", Integer.toString(basketItem.getProduct_price()));
+			basket.put("product_price", Integer.toString(basketItem.getOrder_product_price()));
 			basket.put("product_taste", basketItem.getProduct_taste());
 			basket.put("product_country", basketItem.getProduct_country());
 			basket.put("product_grade", Integer.toString(basketItem.getProduct_grade()));

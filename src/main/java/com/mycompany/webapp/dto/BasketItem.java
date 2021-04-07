@@ -98,12 +98,14 @@ public class BasketItem {
 	}
 	public void setProduct_grade(int product_grade) {
 		this.product_grade = product_grade;
-    
+	}
+	
 	public int getOrder_product_price() {
 		return order_product_price;
 	}
+	
 	public void setOrder_product_price(int order_product_price) {
-
+		this.order_product_price = order_product_price;
 	}
 
 	

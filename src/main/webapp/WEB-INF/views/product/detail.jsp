@@ -115,7 +115,7 @@
 	            
               <div class="btn_choice_box">
                   <button type="button" class="btn btn-light button" data-toggle="modal" data-target="#compare" onclick="compareBasket()">비교하기</button>
-                  <input type="button" name="cart" value="장바구니" class="btn btn-light button" data-toggle="modal" data-target="#cart"/>
+                  <input type="button" onclick="checkOption()" id="cart" name="cart" value="장바구니" class="btn btn-light button" data-toggle="modal" data-target="#" />
                   <input type="button" name="zzim" value="찜하기" class="btn btn-light button" formaction="#" data-toggle="modal" data-target="#zzim"/>
                   <input type="submit" onclick="checkOption()" name="purchase" value="구매하기" class="btn btn-info button" formaction="<%=application.getContextPath() %>/order/fill_out_order"/>
                   <!-- formaction 으로 하나의 form 안에 여러 submit을 작성하기 위함 action을 따로 작성하지 않아도 됨 -->
