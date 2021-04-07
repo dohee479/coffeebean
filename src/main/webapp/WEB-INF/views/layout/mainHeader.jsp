@@ -32,10 +32,10 @@
           <a class="taste" href="product/flavor?f=달콤쌉싸름">맛/향</a>
           <div class="hidden-menu">
             <a href="product/flavor?f=달콤쌉싸름">달콤쌉싸름</a>
-            <a href="product/flavor?f=고소함">고소함</a>
+            <a href="product/flavor?f=고소함/구수함">고소함/구수함</a>
             <a href="product/flavor?f=묵직하고 달콤한 여운">묵직하고 달콤한 여운</a>
             <a href="product/flavor?f=은은하고 편안함">은은하고 편안함</a>
-            <a href="product/flavor?f=상큼한 산미">상큼한 산미</a>
+            <a href="product/flavor?f=상큼한 산미와 향">상큼한 산미와 향</a>
           </div>
         </li>
       </ul>

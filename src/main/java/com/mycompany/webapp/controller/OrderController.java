@@ -91,7 +91,6 @@ public class OrderController {
 			List<Integer> arr2 = (ArrayList) session.getAttribute("productId");
 			
 			for(int productId : arr2) {
-				logger.info(productId+"");
 				productsService.updateSaleCount(productId);
 			}
 			

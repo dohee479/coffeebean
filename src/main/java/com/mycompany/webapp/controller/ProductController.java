@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.BasketItem;
@@ -113,10 +114,15 @@ public class ProductController {
 	@GetMapping(value="/basket", produces="application/json;charset=UTF-8") 
 	@ResponseBody
 	public String basket(Principal principal) {
-			List<BasketItem> basketList = basketsService.getBasketItemListByUserId(principal.getName());
+		if (principal == null) {
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("basketList", basketList);
+			jsonObject.put("failure", "failure");
 			return jsonObject.toString();	
+		} 
+		List<BasketItem> basketList = basketsService.getBasketItemListByUserId(principal.getName());
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("basketList", basketList);
+		return jsonObject.toString();	
 	}
 	
 	@GetMapping(value="/basketitem", produces="application/json;charset=UTF-8") 
