@@ -1,40 +1,5 @@
 $(document).ready(function(){
-    
-    $("#compare_all").click(function(){
-                        
-        $("#compare_cart").removeClass('btn-primary');
-            $(this).addClass('btn-primary');
-
-            $('#compare_item option').remove();
-            $('#compare_item').append('<option selected disabled>전체 상품중에서 비교상품을 선택하세요.</option>');
-            $('#compare_item').append(`<option value="${'1'}"> ${'(전체)원두1'} </option>`); 
-            $('#compare_item').append(`<option value="${'2'}"> ${'(전체)원두2'} </option>`); 
-            $('#compare_item').append(`<option value="${'3'}"> ${'(전체)원두3'} </option>`); 
-            $('#compare_item').append(`<option value="${'4'}"> ${'(전체)원두4'} </option>`); 
-        });
-
-        $("#compare_cart").click(function(){
-            $("#compare_all").removeClass('btn-primary');
-            $(this).addClass('btn-primary');
-
-            $('#compare_item option').remove();
-            $('#compare_item').append('<option selected disabled>장바구니 상품중에서 비교상품을 선택하세요.</option>');
-            $('#compare_item').append(`<option value="${'1'}"> ${'(장바구니)원두1'} </option>`);
-            $('#compare_item').append(`<option value="${'2'}"> ${'(장바구니)원두2'} </option>`);
-            $('#compare_item').append(`<option value="${'3'}"> ${'(장바구니)원두3'} </option>`);
-            $('#compare_item').append(`<option value="${'4'}"> ${'(장바구니)원두4'} </option>`);
-        });
-
-        $('#compare_item').change(function(){
-            var seletedItem = $("#compare_item option:selected").text();
-            document.querySelector('.compare_atribute_name').innerHTML = seletedItem;
-            document.querySelector('.compare_atribute_price').innerHTML = seletedItem+ "가격";
-            document.querySelector('.compare_atribute_taste').innerHTML = seletedItem+" 맛";
-            document.querySelector('.compare_atribute_origin').innerHTML = seletedItem+" 원산지";
-            document.querySelector('.compare_atribute_rate').innerHTML = seletedItem+" 평점";
-        });
-
-		
+    		
 		/*수량옵션시작*/
 
 		$('.minus').click(function (){
@@ -137,5 +102,41 @@ $(document).ready(function(){
         }
 
         const numberWithCommas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+const compareBasket = () => {
+	$.ajax({
+		url: "/kong/product/basket",
+		method: "get"
+	})
+	.then(data => {
+		console.log(data);
+		$("#compare_all").addClass('btn-primary');
+		$('#compare_item option').remove();
+		$('#compare_item').append('<option selected disabled value="초기값">전체 상품중에서 비교상품을 선택하세요.</option>');
+		for (i = 0; i < data.basketList.length; i++) {
+			$('#compare_item').append(`<option id="option" value="${data.basketList[i].basket_item_id}">${data.basketList[i].product_title}</option>`); 
+		}
+	})
+	.then(() => {
+		$('#compare_item').change(function() {
+			let basket_item_id = $(this).val();
+			$.ajax({
+				url: "/kong/product/basketitem",
+				data: {basket_item_id}, 
+				method: 'get'
+			})
+			.then(data => {
+				document.querySelector('.compare_attribute_name').innerHTML = data.product_title;
+	            document.querySelector('.compare_attribute_price').innerHTML = data.product_price;
+	            document.querySelector('.compare_attribute_taste').innerHTML = data.product_taste;
+	            document.querySelector('.compare_attribute_origin').innerHTML = data.product_country;
+	            document.querySelector('.compare_attribute_rate').innerHTML = data.product_grade;
+			})
+		})
+	})
+}
+
+
+
 
         

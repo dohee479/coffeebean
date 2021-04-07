@@ -3,9 +3,9 @@
 
 <mapper namespace="com.mycompany.webapp.dao.BasketItemsDao">
 
-	<!-- 사용자 자신의 장바구니 목록 불러오기-->
-	<!-- 사용자에게 표시되는 화면을 위한 SQL로 사진, 가격이 모두 표시되어야 함 -->
-	<!-- 장바구니 테이블의 item_id와 상품테이블의 item_id를 기준으로 조인하여 상품의 이름과, 가격, 사진이름을 불러옴 -->
+	<!-- �ъ�⑹�� ������ �λ�援щ�� 紐⑸� 遺��ъ�ㅺ린-->
+	<!-- �ъ�⑹����寃� �������� ��硫댁�� ���� SQL濡� �ъ�, 媛�寃⑹�� 紐⑤�� �������댁�� �� -->
+	<!-- �λ�援щ�� ���대��� item_id�� �������대��� item_id瑜� 湲곗��쇰� 議곗�명���� ������ �대�怨�, 媛�寃�, �ъ��대��� 遺��ъ�� -->
 
 	<select id="selectAll" resultType="basketItem"> 
 		select 
@@ -24,14 +24,25 @@
 		where users_user_id = #{users_user_id} and basket_items.products_product_id = products.product_id
 	</select>
 	
-	<!-- 장바구니에 담긴 상품 하나를 가져오는 SQL  -->
-	<!-- 장바구니 담긴 이미지 가져올때 사용함 -->
-	<!-- 현재 첨부 이미지 가져오는 용도로 사용 -->
+	<!-- �λ�援щ���� �닿릿 ���� ����瑜� 媛��몄�ㅻ�� SQL  -->
+	<!-- �λ�援щ�� �닿릿 �대�몄� 媛��몄�щ�� �ъ�⑺�� -->
+	<!-- ���� 泥⑤� �대�몄� 媛��몄�ㅻ�� �⑸��濡� �ъ�� -->
 	<select id="selectByBasketItemId" parameterType="int" resultType="basketItem">
 		select
-			product_attachoname
+			basket_item_id
+			,users_user_id 
+			,product_id 
+			,basket_volume
+			,basket_grind 
+			,basket_product_count 
+			,product_title 
+			,product_price 
+			,product_attachoname 
 			,product_attachsname 
 			,product_attachtype
+			,product_taste
+			,product_country
+			,product_grade
 		from basket_items, products
 		where basket_item_id = #{basket_item_id} and basket_items.products_product_id = products.product_id
 	</select>
@@ -70,7 +81,7 @@
 			,where basket_item_id = #{basket_item_id}
 	</update>
 	
-	<!-- 장바구니에서 하나의 아이템을 삭제함 -->
+	<!-- �λ�援щ������ ������ ���댄���� ������ -->
 	<delete id="deleteByBasketItemId" parameterType="int" > 
 			delete from basket_items
 			where basket_item_id = #{basket_item_id}

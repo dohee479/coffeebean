@@ -38,4 +38,15 @@
 		#{product_detail_attachoname}, #{product_detail_attachoname}, #{product_detail_attachoname},
 		#{product_attachoname}, #{product_attachoname}, #{product_attachoname}, #{product_sale_count}, null)
 	</insert>
+	
+	<select id="selectAll" resultType="product">
+		select product_id, product_title
+		from products
+	</select>
+	
+	<select id="search" parameterType="string" resultType="product">
+		select *
+		from products
+		where product_title like '%' || #{keyword} || '%'
+	</select>
 </mapper>

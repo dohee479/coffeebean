@@ -15,6 +15,9 @@ public class BasketItem {
 	private String product_attachoname; 
 	private String product_attachsname;
 	private String product_attachtype;
+	private String product_taste;
+	private String product_country;
+	private int product_grade;
 	
 	
 	public int getBasket_item_id() {
@@ -83,6 +86,25 @@ public class BasketItem {
 	public void setProduct_attachtype(String product_attachtype) {
 		this.product_attachtype = product_attachtype;
 	}
+	public String getProduct_taste() {
+		return product_taste;
+	}
+	public void setProduct_taste(String product_taste) {
+		this.product_taste = product_taste;
+	}
+	public String getProduct_country() {
+		return product_country;
+	}
+	public void setProduct_country(String product_country) {
+		this.product_country = product_country;
+	}
+	public int getProduct_grade() {
+		return product_grade;
+	}
+	public void setProduct_grade(int product_grade) {
+		this.product_grade = product_grade;
+	}
 
+	
 	
 }

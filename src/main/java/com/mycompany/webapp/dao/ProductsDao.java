@@ -11,6 +11,8 @@ public interface ProductsDao {
 	public List<Product> selectTaste(HashMap<String, String> parmas);
 	public Product selectByProductId(int product_id);
 	public void insertProduct(Product product);
+	public List<Product> selectAll();
+	public List<Product> search(String keyword);
 	
 	/* 상품 QnA 작성 
 	public List<Question> selectProduct(int products_product_id);
