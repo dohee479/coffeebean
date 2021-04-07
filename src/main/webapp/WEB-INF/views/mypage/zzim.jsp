@@ -55,7 +55,7 @@
 								              <span class="message1" style="margin: 0 0 0 130px;">상품을 장바구니에 추가합니다.</span>
 								              <span class="message2"></span>
 <%-- 								              <form method="post" action="<%=application.getContextPath()%>/mypage/addBasket">
- --%>								              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+ --%>								              
 								              <input type="hidden" name="product_id" value="${zzimList.product_id}" /> <%-- value="${product_id}" --%>
 								              <div class=select_option>
 								                  <dl class="option">             
