@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +59,8 @@ public class OrderController {
 								String order_msg,
 								String order_account_name,
 								String order_account,
-								Model model) {
+								Model model,
+								HttpServletRequest request) {
 		
 		Order order=new Order();
 		order.setOrder_id(order_id);
@@ -70,7 +72,31 @@ public class OrderController {
 		order.setOrder_msg(order_msg);
 		order.setOrder_account_name(order_account_name);
 		order.setOrder_account(order_account);
+		
 		ordersService.updateOrder(order);
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("basketArr")!=null) {
+			String[] arr = (String[]) session.getAttribute("basketArr");
+			
+			for(String itemNo : arr) {
+				basketsService.deleteBasketItem(Integer.parseInt(itemNo));
+			}
+			
+			session.removeAttribute("basketArr");
+		}
+		
+		if(session.getAttribute("productId")!=null) {
+			List<Integer> arr2 = (ArrayList) session.getAttribute("productId");
+			
+			for(int productId : arr2) {
+				logger.info(productId+"");
+				productsService.updateSaleCount(productId);
+			}
+			
+			session.removeAttribute("productId");
+		}
 		
 		Order completeorder=ordersService.getOrder(order_id);
 		model.addAttribute("completeorder",completeorder);
@@ -79,7 +105,7 @@ public class OrderController {
 	}
 	
 	@PostMapping("/fill_out_order")
-	public String fill_out_order_process(int product_id,String volume,String grind,int count,Principal principal,Model model){
+	public String fill_out_order_process(HttpServletRequest request, int product_id,String volume,String grind,int count,Principal principal,Model model){
 		String user_id=principal.getName();
 		
 		Product product=productsService.selectByProductId(product_id);
@@ -92,17 +118,12 @@ public class OrderController {
 			total_price=product_price*count;
 		}else if(volume.equals("500")) {
 			total_price=product_price*2*count;
-			product_price=product_price*2;			
+			product_price=product_price*2*count;			
 		}else {
 			total_price=product_price*4*count;
-			product_price=product_price*4;			
-		}
-		
-		logger.info(product_price+"");
-		
-		
-		
-		
+			product_price=product_price*4*count;			
+		}		
+
 		ordersService.createOrder(user,total_price); //order						
 		int order_id= ordersService.getSeqOrderId();
 		Order order= ordersService.getOrder(order_id);
@@ -141,8 +162,17 @@ public class OrderController {
 		
 		List<Orderinfo> orderinfoList = new ArrayList<Orderinfo>();
 		orderinfoList.add(orderinfo);
+		
+		List<Integer> productId = new ArrayList<>();
+		productId.add(product.getProduct_id()); // 세션에 item_id를 저장하기 위함, order complete에서 같은 세션key로 접근하기 위함
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("productId", productId);
+		
 		model.addAttribute("orderinfoList",orderinfoList);
 		return "order/fill_out_order";
+		
+		
 	}
 	
 	
@@ -156,11 +186,10 @@ public class OrderController {
 		List<BasketItem> BasketItemList = new ArrayList<>(); 
 		
 		int total_price=0;
+		
 		for(String itemNo : arr) {
 			BasketItem basketitem =basketsService.getBasketItem(Integer.parseInt(itemNo));
 			BasketItemList.add(basketitem);
-			
-			
 		}
 		for(int i=0;i<BasketItemList.size();i++) {
 			int sumprice=BasketItemList.get(i).getOrder_product_price();
@@ -172,8 +201,8 @@ public class OrderController {
 		int order_id= ordersService.getSeqOrderId();
 		Order order= ordersService.getOrder(order_id);
 		
-		
 		List<OrderProduct> orderProductList = new ArrayList<>();
+		List<Integer> productId = new ArrayList<>(); // 세션에 item_id를 저장하기 위함
 		
 		for(BasketItem item : BasketItemList) {
 	
@@ -188,18 +217,10 @@ public class OrderController {
 				
 				orderProductsService.createOrderProduct(orderProduct);
 				orderProductList.add(orderProduct);
+				
+				productId.add(item.getProduct_id()); // 세션에 item_id를 저장하기 위함
 		}
 		
-		
-		
-		
-		/*		OrderProduct orderProduct=new OrderProduct();
-				orderProduct.setOrder_product_volume(Integer.parseInt(volume));
-				orderProduct.setOrder_product_grind(Integer.parseInt(grind));
-				orderProduct.setOrder_product_count(count);
-				orderProduct.setProducts_product_id(product_id);
-				orderProduct.setOrders_order_id(order_id);
-				orderProduct.setOrder_product_price(product_price);*/
 		List<Orderinfo> orderinfoList = new ArrayList<Orderinfo>();
 		for(OrderProduct orderproduct:orderProductList) {
 			Product product=productsService.getProduct(orderproduct.getProducts_product_id());
@@ -227,11 +248,12 @@ public class OrderController {
 		}
 		
 
-
-				
-				
-				model.addAttribute("orderinfoList",orderinfoList);
-				return "order/fill_out_order";
+		 HttpSession session = request.getSession();
+		 session.setAttribute("basketArr", arr);
+		 session.setAttribute("productId", productId);
+	
+		 model.addAttribute("orderinfoList",orderinfoList);
+		 return "order/fill_out_order";
 	}
 
 	

@@ -46,7 +46,8 @@
                     <td><div>${completeorder.order_msg}</div></td>
                 </tr>
             </table> 
-            <div class="o_c_lastbutton"><button class="o_c_button1" onclick=location.href="${pageContext.request.contextPath}/mypage/orderlist">주문내역확인</button><button class="o_c_button2" onclick=location.href="${pageContext.request.contextPath}/product/country">쇼핑계속하기</button></div>   
+            <div class="o_c_lastbutton"><button class="o_c_button1" onclick=location.href="${pageContext.request.contextPath}/mypage/orderlist">주문내역확인</button>
+            <button class="o_c_button2" onclick=location.href="${pageContext.request.contextPath}/">쇼핑계속하기</button></div>   
         </div>           
      </div>
 </body>

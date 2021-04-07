@@ -102,5 +102,10 @@ public class ProductsService {
 	  return dbProduct;
   }
 
+	public void updateSaleCount(int productId) {
+		
+		productsDao.updateSaleCountByProductId(productId);
+	}
+
 }
 

@@ -209,24 +209,38 @@ public class MypageController {
 		basketItem.setBasket_grind(Integer.parseInt(request.getParameterValues("grind")[0]));
 		basketItem.setBasket_product_count(Integer.parseInt(request.getParameterValues("count")[0]));
 		basketItem.setUsers_user_id(principal.getName());
-		basketItem.setOrder_product_price(Integer.parseInt(request.getParameterValues("price")[0]));
 		
-		if(request.getParameterValues("volume")[0].equals("200")){
-			basketItem.setOrder_product_price(basketItem.getOrder_product_price() * basketItem.getBasket_product_count());
-		}
-		
-		else if(request.getParameterValues("volume")[0].equals("500")){
-			basketItem.setOrder_product_price( basketItem.getOrder_product_price() *2 * basketItem.getBasket_product_count());
-		}
-		
-		else if(request.getParameterValues("volume")[0].equals("1000")){
-			basketItem.setOrder_product_price( basketItem.getOrder_product_price() *4 * basketItem.getBasket_product_count());
-		}
-		
+		if( request.getParameter("price") != null ) {
+			basketItem.setOrder_product_price(Integer.parseInt(request.getParameterValues("price")[0]));
+			
+			if(request.getParameterValues("volume")[0].equals("200")){
+				basketItem.setOrder_product_price(basketItem.getOrder_product_price() * basketItem.getBasket_product_count());
+			}
+			
+			else if(request.getParameterValues("volume")[0].equals("500")){
+				basketItem.setOrder_product_price( basketItem.getOrder_product_price() *2 * basketItem.getBasket_product_count());
+			}
+			
+			else if(request.getParameterValues("volume")[0].equals("1000")){
+				basketItem.setOrder_product_price( basketItem.getOrder_product_price() *4 * basketItem.getBasket_product_count());
+			}
+		} else {
+			
+			int productId=Integer.parseInt(request.getParameterValues("product_id")[0]);
+			Product product =productsSerivce.getProduct(productId);
+			int productPrice = product.getProduct_price();
+			
+			if(request.getParameterValues("volume")[0].equals("200"))
+				basketItem.setOrder_product_price( productPrice * Integer.parseInt(request.getParameterValues("count")[0]));
+			
+			else if(request.getParameterValues("volume")[0].equals("500"))
+				basketItem.setOrder_product_price( productPrice * 2 *Integer.parseInt(request.getParameterValues("count")[0]));
+			
+			else if(request.getParameterValues("volume")[0].equals("1000"))
+				basketItem.setOrder_product_price( productPrice * 4 *Integer.parseInt(request.getParameterValues("count")[0]));
+		}	
 		
 		basketsService.createBasketItem(basketItem);
-		
-		
 
 		return "redirect:/mypage/basket";	
 	}
