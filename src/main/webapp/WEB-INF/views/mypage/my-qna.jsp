@@ -26,7 +26,7 @@
 		      	<a href="${pageContext.request.contextPath}/product/detail/${question.products_product_id}">상품바로가기</a>
 		        <strong>Q : </strong><span class="title">${question.question_content}</span>
 		        <div class="answer">
-		          <strong>A :</strong> 네. 감사합니다.
+		          <strong>A :</strong> 답변 대기중.....
 		        </div>
 		        <div class="buttons">
 		          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal${status.count}">수정</button>
@@ -52,8 +52,8 @@
 		      <form method="post" action="my-qna-update">
 		      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			      <div class="modal-body">
-			        <input type="text" class="input-title" name="question_title" value="" placeholder="수정할 제목을 입력하세요." maxlength="30">
-			        <textarea class="input-content" name="question_content" value="" wrap="physical"  placeholder="수정할 내용을 입력하세요." maxlength="300"></textarea>
+			        <input type="text" class="input-title" name="question_title" value="${question.question_title}" placeholder="수정할 제목을 입력하세요.(최대 30자)" maxlength="30">
+			        <textarea class="input-content" name="question_content" wrap="physical"  placeholder="수정할 내용을 입력하세요.(최대 300자)" maxlength="300">${question.question_content}</textarea>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>

@@ -29,6 +29,7 @@
 		
 		<!--    탈퇴 모달    -->
 		<form class="modal fade update-modal"  data-backdrop="static" method="post" action="${pageContext.request.contextPath}/mypage/delete-account">
+		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -42,7 +43,7 @@
 		      </div>
 		      <div class="modal-footer" >
 		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">아니오</button>
-		        <button type="submit" class="btn btn-danger">예</button>
+		        <button type="submit" onclick="alert('삭제되었습니다.');" class="btn btn-danger">예</button>
 		      </div>
 		    </div>
 		  </div>
