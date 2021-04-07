@@ -383,5 +383,5 @@ public class MypageController {
 		 * usersService.delete(user_id); logger.info("딜리트에 들어옴");
 		 */
 	}
-	
+		
 }

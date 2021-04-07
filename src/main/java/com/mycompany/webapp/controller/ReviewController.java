@@ -29,7 +29,6 @@ public class ReviewController {
 	@PostMapping("/delete")
 	public String Delete(int review_id, int product_id) {
 		reviewsService.delete(review_id);
-		System.out.println(product_id);
 		if (product_id != 0) {
 			String view = "redirect:/product/detail/" + product_id;
 			return view;			
@@ -40,7 +39,6 @@ public class ReviewController {
 	
 	@PostMapping("/update")
 	public String Update(Review review, int product_id) {
-		System.out.println(review.getProducts_product_id());
 		reviewsService.update(review);
 		if (product_id != 0) {
 			String view = "redirect:/product/detail/" + product_id;

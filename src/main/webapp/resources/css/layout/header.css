@@ -120,6 +120,11 @@ header nav ul li {
   left: 35%;
 }
 
+.search-modal div:nth-child(2) form {
+	display: flex;
+	width: 100%;
+}
+
 .search-modal input {
   background: none;
   border: 0;

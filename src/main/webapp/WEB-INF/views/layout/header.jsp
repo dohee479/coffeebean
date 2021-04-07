@@ -83,8 +83,10 @@
   <div class="search-modal">
     <div class="close">X</div>
     <div>
-      <input type="text" placeholder="검색어를 입력하세요">
-      <span><a href="${pageContext.request.contextPath}/search"><img src="${pageContext.request.contextPath}/resources/images/header/search.png"></a></span>
+      <form action="${pageContext.request.contextPath}/product/search">
+        <input type="text" placeholder="상품명을 입력하세요" name="keyword" autocomplete="off""/>
+        <button type="submit"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/search.png"></button>
+      </form>
     </div>
   </div>
   <script src="${pageContext.request.contextPath}/resources/js/layout/header.js"></script>

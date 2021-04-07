@@ -34,7 +34,7 @@
             </div> 
             <form method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-            <input type="hidden" name="product_id" value="${product.product_id}" id="product_id"/> <%-- value="${product_id}" --%>
+            <input type="hidden" name="product_id" value="${product.product_id}" id="product_id"/> 
             <input type="hidden" name="price" value="${product.product_price}"/>
               <div class=select_option>
                   <dl class="option">
@@ -114,7 +114,7 @@
 		        </div>
 	            
               <div class="btn_choice_box">
-                  <button type="button" class="btn btn-light button" data-toggle="modal" data-target="#compare">비교하기</button>
+                  <button type="button" class="btn btn-light button" data-toggle="modal" data-target="#compare" onclick="compareBasket()">비교하기</button>
                   <input type="button" onclick="checkOption()" id="cart" name="cart" value="장바구니" class="btn btn-light button" data-toggle="modal" data-target="#" />
                   <input type="button" name="zzim" value="찜하기" class="btn btn-light button" formaction="#" data-toggle="modal" data-target="#zzim"/>
                   <input type="submit" onclick="checkOption()" name="purchase" value="구매하기" class="btn btn-info button" formaction="<%=application.getContextPath() %>/order/fill_out_order"/>
@@ -132,14 +132,14 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">상품 비교하기</h5>
+              <h5 class="modal-title" id="exampleModalLabel" >상품 비교하기</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <div class="btn-group">
-                <button type="button" id="compare_all" class="btn" checked>전체상품</button>
+                <button type="button" id="compare_all" class="btn" onclick="compareBasket()" checked>전체상품</button>
                 <button type="button" id="compare_cart" class="btn">장바구니</button>
               </div>
 
@@ -152,30 +152,30 @@
                 <thead>
                   <tr>
                     <th scope="col"></th>
-                    <th scope="col">케냐 A 키암부</th>
-                    <th scope="col" class="compare_atribute_name">비교상품</th>
+                    <th scope="col">${product.product_title}</th>
+                    <th scope="col" class="compare_attribute_name">비교상품</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">가격</th>
-                    <td>3000</td>
-                    <td class="compare_atribute_price"></td>
+                    <td>${product.product_price}</td>
+                    <td class="compare_attribute_price"></td>
                   </tr>
                   <tr>
                     <th scope="row">맛</th>
-                    <td>신맛</td>
-                    <td class="compare_atribute_taste"></td>
+                    <td>${product.product_taste}</td>
+                    <td class="compare_attribute_taste"></td>
                   </tr>
                   <tr>
                     <th scope="row">원산지</th>
-                    <td>에티오피아</td>
-                    <td class="compare_atribute_origin"></td>
+                    <td>${product.product_country}</td>
+                    <td class="compare_attribute_origin"></td>
                   </tr>
                   <tr>
                     <th scope="row">평점</th>
-                    <td>4</td>
-                    <td class="compare_atribute_rate"></td>
+                    <td>5</td>
+                    <td class="compare_attribute_rate"></td>
                   </tr>
                   <tr>
                 </tbody>
@@ -321,9 +321,14 @@
 			  <!--    수정, 삭제 모달 묶음  종료  -->
               </c:forEach>
             </div>
-	       	<button id="review-button"type="button" class="btn btn-light" data-toggle="modal" data-target=".create-review-modal">
-	            상품후기 글쓰기
-	        </button>
+            <sec:authorize access="isAnonymous()">
+            	<div>글 쓰기는 로그인이 필요합니다</div>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+		       	<button id="review-button"type="button" class="btn btn-light" data-toggle="modal" data-target=".create-review-modal">
+		            상품후기 글쓰기
+		        </button>
+		    </sec:authorize>
         </div>
 
 		<!-- 상품문의 탭 -->
