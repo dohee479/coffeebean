@@ -15,6 +15,7 @@ public interface OrdersDao {
 	public Order selectByOrderId(int order_id);
 	public int insert(@Param(value = "user")User user,@Param(value="total_price")int total_price);
 	public void update(Order order);
+	public void updatekakao(Order order);
 	public void deleteByOrderId(int order_id);
 	public int selectSeqOrderId();
 	public List<Order> selectCompleteOrder(String users_user_id);

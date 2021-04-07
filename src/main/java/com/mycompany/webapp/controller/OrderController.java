@@ -77,6 +77,7 @@ public class OrderController {
 
 		if(method_payment.equals("카카오페이 결제")) {
 			order.setOrder_total_price(order_total_price);
+			ordersService.updatekakaoOrder(order);
 			model.addAttribute("order",order);
 			return "order/payment";
 		}
@@ -112,10 +113,39 @@ public class OrderController {
 		return "order/order_complete";
 	}
 	
-	@GetMapping("/order_complete")
-	public String korder_complete(Order order) {
+	@PostMapping("/kakao_complete")
+	public String korder_complete(int order_id,HttpServletRequest request,Model model) {
 		
-		logger.info("가격"+order.getOrder_total_price()+"");
+		logger.info("가격"+order_id);
+		Order order=ordersService.getOrder(order_id);
+		ordersService.updateOrder(order);
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("basketArr")!=null) {
+			String[] arr = (String[]) session.getAttribute("basketArr");
+			
+			for(String itemNo : arr) {
+				basketsService.deleteBasketItem(Integer.parseInt(itemNo));
+			}
+			
+			session.removeAttribute("basketArr");
+		}
+		
+		if(session.getAttribute("productId")!=null) {
+			List<Integer> arr2 = (ArrayList) session.getAttribute("productId");
+			
+			for(int productId : arr2) {
+				logger.info(productId+"");
+				productsService.updateSaleCount(productId);
+			}
+			
+			session.removeAttribute("productId");
+		}
+		
+		Order completeorder=ordersService.getOrder(order_id);
+		model.addAttribute("completeorder",completeorder);
+		
 		return "order/order_complete";
 	}
 	
