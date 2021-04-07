@@ -59,6 +59,8 @@ public class OrderController {
 								String order_msg,
 								String order_account_name,
 								String order_account,
+								int order_total_price,
+								String method_payment,
 								Model model,
 								HttpServletRequest request) {
 		
@@ -72,6 +74,12 @@ public class OrderController {
 		order.setOrder_msg(order_msg);
 		order.setOrder_account_name(order_account_name);
 		order.setOrder_account(order_account);
+
+		if(method_payment.equals("카카오페이 결제")) {
+			order.setOrder_total_price(order_total_price);
+			model.addAttribute("order",order);
+			return "order/payment";
+		}
 		
 		ordersService.updateOrder(order);
 		
@@ -101,6 +109,13 @@ public class OrderController {
 		Order completeorder=ordersService.getOrder(order_id);
 		model.addAttribute("completeorder",completeorder);
 		
+		return "order/order_complete";
+	}
+	
+	@GetMapping("/order_complete")
+	public String korder_complete(Order order) {
+		
+		logger.info("가격"+order.getOrder_total_price()+"");
 		return "order/order_complete";
 	}
 	

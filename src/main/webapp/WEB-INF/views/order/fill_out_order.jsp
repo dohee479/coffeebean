@@ -8,7 +8,7 @@
 <c:set var="num" value="0"/>
 <c:set var="total_price" value="0"/>
 
-    <form name="order" class="f_o_content" method="post" action="${pageContext.request.contextPath}/order/order_complete" onsubmit="validate()" novalidate>
+    <form name="order" class="f_o_content" method="post" action="${pageContext.request.contextPath}/order/order_complete" novalidate>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
     <input type="hidden" name="order_id" value="${orderinfoList[0].order_id}" />
     <input type="hidden" name="orderinfo" value="${orderinfoList[0]}"/>
@@ -75,6 +75,7 @@
                     <div class="d-inline-block align-self-center mr-3"><div>배송비</div><div>2,500원</div></div>
                     <img class="mr-3 align-self-center" height="30px" src="<%=application.getContextPath()%>/resources/images/order/=.PNG"/>
                     <div class="d-inline-block align-self-center mr-3"><div>합계</div><div class="text-danger"><fmt:formatNumber value="${total_price+2500}" type="number" maxFractionDigits="3"/></div></div>
+                    <input type="hidden" name="order_total_price" value="${total_price+2500}">
                 </div>
                 
               
@@ -150,20 +151,25 @@
                 <tr>
                     <th>일반결제</th>
                     <td>
-                        <div class="f_o_account_form">
-                            <div>무통장 입금</div><hr/>
+                        <div class="f_o_account_form" id="muadd">
+                         
+                            <div><input type="radio" name="method_payment" id="method_payment" value="카카오페이 결제" checked style="width:30px;" onclick="paycheck()">카카오페이 결제
+    							<input type="radio" name="method_payment"  id="method_payment" value="무통장 입금"  style="width:30px;" onclick="mucheck()">무통장 입금</div><hr/>
                             <div class="f_o_font_gray">(무통장 입금의 경우 입금확인 후부터 배송단계가 진행됩니다.)</div>
-                            <div><span>입금자명</span>
-                            <input id="accountName" type="text" name="order_account_name" style="margin-left: 2em;">
+                          
+                            <div id="inname" style="display:none" id="inname"><span>입금자명</span> 
+                            <input id="accountName" type="text" name="order_account_name" value="kakao" style="margin-left: 2em;">
                             <span class="accountNameEmpty" style="color:red"></span>
                             </div>
-                            <div><span>입금은행</span><select name="order_account" id="order_account">
-                                <option value="" disabled="true">입금은행을 선택하세요</option>
-                                <option value="기업은행 118-529312-01-014">기업은행 118-529312-01-014 (주)콩콩콩</option>
-                                <option value="농협 321--0241-3124-11">농협 321--0241-3124-11 (주)콩콩콩</option>
-                                <option value="신한은행 421-43243-21-022">신한은행 421-43243-21-022 (주)콩콩콩</option>
-                              </select>
-                              <span class="accountEmpty" style="color:red"></span></div>
+							<div id="inbank" style="display:none" id="inbank">
+							<span>입금은행</span>
+								<select name="order_account" id="order_account" value="kakao">
+								<option value="" disabled="true">입금은행을 선택하세요</option>
+								<option value="기업은행 118-529312-01-014">기업은행 118-529312-01-014 (주)콩콩콩</option>
+								</select><span class="accountEmpty" style="color:red"></span></div>
+                            
+                            
+                            
                         </div>
                     </td>
                 </tr>
@@ -189,7 +195,20 @@
 	const productClick=(product_id)=>{
 		location.href="${pageContext.request.contextPath}/product/detail/"+product_id;		
 	}
-
+	
+	function paycheck(){
+		$('#inname').remove();
+		$('#inbank').remove();
+		$('#muadd').append('<div id="inname" style="display:none" id="inname"><span>입금자명</span> <input id="accountName" type="text" name="order_account_name" value="kakao" style="margin-left: 2em;"><span class="accountNameEmpty" style="color:red"></span></div>');
+        $('#muadd').append('<div id="inbank" style="display:none" id="inbank"><span>입금은행</span><select name="order_account" id="order_account" value="kakao"><option value="" disabled="true">입금은행을 선택하세요</option><option value="기업은행 118-529312-01-014">기업은행 118-529312-01-014 (주)콩콩콩</option><option value="농협 321--0241-3124-11">농협 321--0241-3124-11 (주)콩콩콩</option><option value="신한은행 421-43243-21-022">신한은행 421-43243-21-022 (주)콩콩콩</option></select><span class="accountEmpty" style="color:red"></span></div>');
+	}
+	function mucheck(){
+		$('#inname').remove();
+		$('#inbank').remove();
+		$('#muadd').append('<div id="inname"><span>입금자명</span> <input id="accountName" type="text" name="order_account_name" value="" style="margin-left: 2em;"><span class="accountNameEmpty" style="color:red"></span></div>');
+        $('#muadd').append('<div id="inbank"><span>입금은행</span><select name="order_account" id="order_account" value=""><option value="" disabled="true">입금은행을 선택하세요</option><option value="기업은행 118-529312-01-014">기업은행 118-529312-01-014 (주)콩콩콩</option><option value="농협 321--0241-3124-11">농협 321--0241-3124-11 (주)콩콩콩</option><option value="신한은행 421-43243-21-022">신한은행 421-43243-21-022 (주)콩콩콩</option></select><span class="accountEmpty" style="color:red"></span></div>');
+		
+	}
 	
 	function validate(){
 		event.preventDefault();

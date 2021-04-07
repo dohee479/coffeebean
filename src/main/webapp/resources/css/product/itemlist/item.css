@@ -38,9 +38,6 @@
   margin: 16px 0;
 }
 
-input[type='radio'] {
-  display: none;
-}
 
 .recommend-list {
   margin-top: 4rem;
