@@ -63,6 +63,11 @@ public class OrdersService {
 		return completeorderlist;
 	}
 	
+	public List<Order> getRefundOrderlist(String users_user_id){
+		List<Order> completeorderlist=ordersDao.selectRefundOrder(users_user_id);
+		return completeorderlist;
+	}
+	
 	public void updateOrderState(int order_id) {
 		ordersDao.updateOrderState(order_id);
 	}

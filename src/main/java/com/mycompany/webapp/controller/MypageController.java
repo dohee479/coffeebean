@@ -100,7 +100,20 @@ public class MypageController {
 	}
 	
 	@GetMapping("/refund")
-	public String RefundList() {
+	public String RefundList(Principal principal,Model model) {
+		List<Order> completeOrderList=ordersService.getRefundOrderlist(principal.getName());
+
+		List<List<OrderProduct>> totalOrderProductList=new ArrayList<>();
+		List<List<String>> totalProductTitle=new ArrayList<>();
+		
+		for(Order order: completeOrderList) {
+			int order_id=order.getOrder_id();
+			List<OrderProduct> orderProductList=orderproductsService.getListByOrderId(order_id);			
+			totalOrderProductList.add(orderProductList);
+		}
+
+		model.addAttribute("totalOrderProductList",totalOrderProductList);
+		
 		return "mypage/refund";
 	}
 

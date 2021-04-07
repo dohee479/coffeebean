@@ -21,7 +21,14 @@
 		select *
 		from orders
 		where users_user_id = #{users_user_id} AND order_state!=0 AND order_state!=9
-		order by order_id
+		order by order_id desc
+	</select>
+	
+	<select id="selectRefundOrder" parameterType="String" resultType="order">
+		select *
+		from orders
+		where users_user_id = #{users_user_id} AND order_state=9
+		order by order_id desc
 	</select>
 	
 	<!-- 주문 생성 -->
