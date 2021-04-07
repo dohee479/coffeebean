@@ -109,6 +109,11 @@
                 <tr>
                     <th>받으실 곳</th>
                     <td>
+                        <input type="text" name="order_zipcode" value="${orderinfoList[0].user_zipcode}" id="user_zipcode" placeholder="우편번호" readonly> <button type="button" onclick="sample6_execDaumPostcode()" class="s_select_font">우편번호 찾기</button><br>
+                        <input type="text" name="order_address" value="${orderinfoList[0].order_address}"style="width: 40em" id="user_address" placeholder="주소" readonly>
+                        <input type="text" name="order_detail_address" value="${orderinfoList[0].order_detail_address}"style="width: 40em" id="user_detail_address" placeholder="상세주소">
+                        <input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+
                         <input type="text" id="zipCode" name="order_zipcode" value="${orderinfoList[0].user_zipcode}"> 
                         <button type="button">우편번호검색</button>
                         <span class="zipCodeEmpty" style="color:red"></span>
@@ -179,6 +184,9 @@
             <div class="f_o_lastbutton"><button type="button" onclick="validate()">결제하기</button></div>
         </div>
         </form>
+        
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/user/address.js"></script>
 </body>
 
 <script>

@@ -42,7 +42,15 @@
 		    <version>1.7.30</version>
 		</dependency>
 		
-
+		
+		<!-- 부가적인 기능 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>5.2.3.RELEASE</version>
+		</dependency>
+		
 		<!-- servlet/jsp와 관련된 라이브러리 -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
@@ -123,5 +131,13 @@
 		    <version>5.3.4.RELEASE</version>
 		</dependency>
 		
+		<!-- email 전송 -->
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+		
+
 	</dependencies>
 </project>
