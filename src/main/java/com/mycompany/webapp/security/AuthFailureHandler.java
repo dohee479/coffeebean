@@ -32,8 +32,9 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 		//super.onAuthenticationFailure(request, response, exception);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();	 
-		out.println("<script>alert('아이디와 비밀번호를 확인해주세요.'); location.href='user/login';</script>");
+		out.println("<script>alert('아이디와 비밀번호를 확인해주세요.'); </script>");
 		 
 		out.flush();
+		out.println("<script>location.href='user/login';</script>");
 	}
 }

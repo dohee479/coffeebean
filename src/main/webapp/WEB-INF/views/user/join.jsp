@@ -11,7 +11,8 @@
                     <tr>
                         <th style="border-top: solid 1px #343a40;">아이디</th>
                         <td style="border-top: solid 1px #343a40;">
-                            <input type="text" id="user_id" name="user_id"><br>
+                            <input type="text" id="user_id" name="user_id" style="width:26em">
+                            <button class="s_select_font" type="button" id="duplicate">중복체크</button><br>
                             <span id="error_user_id"class="text-danger small"></span>
                             
                         </td>
@@ -56,7 +57,7 @@
                         
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th>주소</th>
                         <td>
                             <input type="text" style="width:26em" name="user_zipcode" id="user_zipcode"  placeholder="'-'없이 입력해주세요."> <button class="s_select_font">우편번호검색</button><br>
@@ -64,8 +65,19 @@
                             <input type="text" name="user_address" id="user_address"/><br>
                             <input type="text" name="user_detail_address" id="user_detail_address"/>
                         </td>
+                    </tr> -->
+                    
+					<tr>
+                        <th>주소</th>
+                        <td>
+                            <input type="text" style="width:26em" name="user_zipcode" id="user_zipcode" placeholder="우편번호" readonly>
+							<button type="button" onclick="sample6_execDaumPostcode()" class="s_select_font">우편번호 찾기</button><br>           
+                            <input type="text" name="user_address" id="user_address" placeholder="주소" readonly><br>
+							<input type="text" name="user_detail_address" id="user_detail_address" placeholder="상세주소"><br>
+							<span id="error_user_address" class="text-danger small mb-2"></span> 
+							<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+                        </td>
                     </tr>
-
 
                 </table>
                 <button type="button" id="signIn_mv" onclick=location.href="${pageContext.request.contextPath}/user/login">취소</button>
@@ -159,14 +171,11 @@
 			 }
 			 
 			}
-		if(user_zipcode!==""){
-			var regzipcode=/^\d{5}$/;
-			if(!regzipcode.test(user_zipcode)){
-				$("#error_user_zipcode").html("우편번호 형식이 아닙니다.");
-				return false;
-			}else{
-				$("#error_user_zipcode").html("");
-			}
+		if(user_zipcode===""||user_address===""||user_detail_address===""){
+			result=false;
+			$("#error_user_address").html("필수사항 입니다.");
+		}else{
+			$("#error_user_address").html("");
 		}
 		
 		if(result){
@@ -188,7 +197,7 @@
 				contentType:false
 			}).then(data=>{
 				if(data.alreadyId==="alreadyId"){
-					alert("이미 존재하는 아이디입니다.");
+					alert("아이디 중복 체크를 해주세요.");
 				}
 				else if(data.alreadyEmail==="alreadyEmail"){
 					alert("이미 존재하는 이메일입니다.");
@@ -201,7 +210,42 @@
 			})
 	}
 	});
+	
+	$('#duplicate').on("click",function(){
+		const user_id=$('#user_id').val();
+		var result=true;
+		if(user_id===""){
+			result=false;
+			$("#error_user_id").html("필수사항 입니다.");
+			}else if(user_id.length<8){
+				result=false;
+				$("#error_user_id").html("최소 8자 이상 입력해야 합니다..");
+			}else if(user_id.length>15){
+				result=false;
+				$("#error_user_id").html("최대 15자 까지만 입력해야 합니다.");
+			}else{
+				$("#error_user_id").html("");
+			}
+		if(result){
+			$.ajax({
+				url:"/kong/user/idconfirm?${_csrf.parameterName}=${_csrf.token}",
+				data:{user_id},
+				method:"post"
+			}).then(data=>{
+				if(data==="success"){
+					alert("사용 가능한 아이디입니다.");
+				}
+				else{
+					alert("이미 존재하는 아이디입니다.");
+				}
+			})
+		}
+		
+		
+	})
 		</script>
 		
-	<%-- <script src="${pageContext.request.contextPath}/resources/js/user/join.js"></script> --%>
+		
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/user/address.js"></script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
