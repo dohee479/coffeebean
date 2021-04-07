@@ -170,19 +170,22 @@
             margin: 20px;
         }
         
-        .modal-body .message1{
-            text-align: center;
+        #cancelModal{
+        	text-align: center;
+        }
+        
+        #cancelModal .message1{
             margin: 5px;
             font-weight: 600;
             font-size: 15px;
-            margin-bottom: 20px;
+           	margin-bottom: 20px;
+           	
         }
         
-        .modal-body .message2{
-            text-align: center;
-            margin: 5px;
-            margin-bottom: 20px;
-        }
+        #cancelModal .button-group{
+        	margin-top: 20px;
+        	}
+    
   
         .button-group .cancel{
             border: 1px solid #DCDCDC;
