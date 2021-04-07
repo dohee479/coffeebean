@@ -109,19 +109,14 @@
                 <tr>
                     <th>받으실 곳</th>
                     <td>
-                        <input type="text" name="order_zipcode" value="${orderinfoList[0].user_zipcode}" id="user_zipcode" placeholder="우편번호" readonly> <button type="button" onclick="sample6_execDaumPostcode()" class="s_select_font">우편번호 찾기</button><br>
+                        <input type="text" name="order_zipcode" value="${orderinfoList[0].user_zipcode}" id="user_zipcode" placeholder="우편번호" readonly> 
+                        <button type="button" onclick="sample6_execDaumPostcode()" class="s_select_font">우편번호 찾기</button><br>
+                         <span class="zipCodeEmpty" style="color:red"></span>
                         <input type="text" name="order_address" value="${orderinfoList[0].order_address}"style="width: 40em" id="user_address" placeholder="주소" readonly>
-                        <input type="text" name="order_detail_address" value="${orderinfoList[0].order_detail_address}"style="width: 40em" id="user_detail_address" placeholder="상세주소">
-                        <input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
-
-                        <input type="text" id="zipCode" name="order_zipcode" value="${orderinfoList[0].user_zipcode}"> 
-                        <button type="button">우편번호검색</button>
-                        <span class="zipCodeEmpty" style="color:red"></span>
-                        <br>
-                        <input type="text" id="address" name="order_address" value="${orderinfoList[0].order_address}"style="width: 40em">
                         <span  class="addressEmpty" style="color:red"></span>
-                        <input type="text" id="detailAddress" name="order_detail_address" value="${orderinfoList[0].order_detail_address}"style="width: 40em">
+                        <input type="text" name="order_detail_address" value="${orderinfoList[0].order_detail_address}"style="width: 40em" id="user_detail_address" placeholder="상세주소">
                         <span  class="detailAddressEmpty" style="color:red"></span>
+                        <input type="hidden" id="sample6_extraAddress" placeholder="참고항목">              
                     </td>
                 </tr>
                 <tr>
@@ -201,9 +196,9 @@
 		var result = true;
 		
 		const receiverName = $("#receiverName").val();
-		const zipCode = $("#zipCode").val();
-		const address = $("#address").val();
-		const detailAddress = $("#detailAddress").val();
+		const user_zipcode = $("#user_zipcode").val();
+		const user_address = $("#user_address").val();
+		const user_detail_address = $("#user_detail_address").val();
 		const tel = $("#tel").val();
 		const accountName = $("#accountName").val();
 		
@@ -214,7 +209,7 @@
 			$(".receiverNameEmpty").html("");
 		}
 		
-		if(zipCode === ""){
+		if(user_zipcode === ""){
 			result = false;
 			$(".zipCodeEmpty").html("받는분의 우편번호를 입력해주세요.");
 		} else{
@@ -222,14 +217,14 @@
 		}
 		
 		
-		if(address === ""){
+		if(user_address === ""){
 			result = false;
 			$(".addressEmpty").html("받는분의 주소를 입력해주세요.");
 		} else{
 			$(".addressEmpty").html("");
 		}
 
-		if(detailAddress === ""){
+		if(user_detail_address === ""){
 			result = false;
 			$(".detailAddressEmpty").html("받는분의 상세주소 입력해주세요.");
 		} else{
