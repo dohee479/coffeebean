@@ -21,7 +21,7 @@
                 </dl>
                 <dl class="price">
                     <dt>판매가</dt>
-                    <dd class="price">${product.product_price}</dd>
+                    <dd class="price" id="price" name="price">${product.product_price}</dd>
                 </dl>
                 <dl class=origin>
                     <dt>원산지</dt>
@@ -35,21 +35,22 @@
             <form method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
             <input type="hidden" name="product_id" value="${product.product_id}" id="product_id"/> <%-- value="${product_id}" --%>
+            <input type="hidden" name="price" value="${product.product_price}"/>
               <div class=select_option>
                   <dl class="option">
                       <dt>용량선택</dt>                
                       <dd>
                           <select id = "volume" name="volume" class="custom-select" onchange="change_price()" style="width: 15em;">
-                              <option selected value="0">용량을 선택하세요.</option>
+                              <option selected value="0" disabled="true">용량을 선택하세요.</option>
                               <option value="200">200g</option>
-                              <option value="500">500g</option>
-                              <option value="1000">1000g</option>
+                              <option value="500">500g + ${product.product_price}원 </option>
+                              <option value="1000">1000g + ${product.product_price *3}원 </option>
                           </select>
                       </dd>
                       <dt>분쇄선택</dt>                
                       <dd>
                           <select id = "mesh" name="grind" class="custom-select" onchange="change_mash()" style="width: 15em;">
-                              <option selected value="0" >분쇄유형을 선택하세요.</option>
+                              <option selected value="0" disabled="true">분쇄유형을 선택하세요.</option>
                               <option value="1">홀빈(분쇄안함)</option>
                               <option value="2">프렌치프레스 분쇄</option>
                               <option value="3">핸드드립 분쇄</option>
@@ -74,7 +75,7 @@
 	              <!-- <input class="sale_count" type="number" min="1" max="99" name="count"> -->
                 <div class="count_box">
                   <div class="minus">-</div>
-                    <input type="text" name = "count" class="count_value" readonly/>
+                    <input type="text" name = "count" class="count_value" value=1 readonly/>
                   <div class="plus">+</div>
                 </div>
 	
@@ -114,9 +115,9 @@
 	            
               <div class="btn_choice_box">
                   <button type="button" class="btn btn-light button" data-toggle="modal" data-target="#compare">비교하기</button>
-                  <input type="button" name="cart" value="장바구니" class="btn btn-light button" data-toggle="modal" data-target="#cart"/>
+                  <input type="button" onclick="checkOption()" id="cart" name="cart" value="장바구니" class="btn btn-light button" data-toggle="modal" data-target="#" />
                   <input type="button" name="zzim" value="찜하기" class="btn btn-light button" formaction="#" data-toggle="modal" data-target="#zzim"/>
-                  <input type="submit" name="purchase" value="구매하기" class="btn btn-info button" formaction="<%=application.getContextPath() %>/order/fill_out_order" data-toggle="modal" data-target="# #"/>
+                  <input type="submit" onclick="checkOption()" name="purchase" value="구매하기" class="btn btn-info button" formaction="<%=application.getContextPath() %>/order/fill_out_order"/>
                   <!-- formaction 으로 하나의 form 안에 여러 submit을 작성하기 위함 action을 따로 작성하지 않아도 됨 -->
               </div>
           </form>

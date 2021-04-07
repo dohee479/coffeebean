@@ -6,6 +6,13 @@
     align-items: center;
     flex-direction: column;
 }
+
+.bsk_td_main .basket_title{
+	display:table-cel;
+	height:inherit;
+	vertical-align: middle;
+}
+
 .bsk_content > .bsk_containe > .bsk_title{
     display: flex;
 }
@@ -19,7 +26,7 @@
 }
 .bsk_content .bsk_containe{
     width: 65%;
-    height: 20em;
+   
     margin-bottom: 3em;
 }
 .bsk_content .bsk_detail{
@@ -61,9 +68,10 @@
 
 #bsk_td_main{
     text-align:left;
-    vertical-align: middle;
-
+    display: flex;
+    align-items: center;
 }
+
 .bsk_table_1 td{
     background-color: white;
     border-bottom: #dee2e6 1px solid;
@@ -73,8 +81,6 @@
     font-size: 0.8em;
     left:0;
     padding:1.3em;
-
-    
 }
 .bsk_sumbox{
     border:#dee2e6 2px solid;
@@ -84,6 +90,12 @@
     display: flex;
     justify-content: flex-end;
     align-content: center;
+    align-items: center;
+}
+
+.bsk_sumbox .total_price, .bsk_sumbox .order_price{
+	font-weight: 700;
+	font-size: 20px;
 }
 
 #bsk_td_main .basket_title{
@@ -91,13 +103,13 @@
 	font-weight: 600;
 	margin-left: 3em;
 	
-	
 }
 
 #bsk_td_main .basket_option{
 	font-size: 1em;
 	color: #808080;
 	margin-left: 3em;
+	
 }
 
 .bsk_button_div{

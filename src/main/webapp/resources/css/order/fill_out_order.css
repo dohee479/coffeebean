@@ -67,10 +67,29 @@
     padding:1.3em;
 }
 
-#td_main{
+.orderItem{
+	
     text-align:left;
-    vertical-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
+}
+
+#td_main .itemInfo{
+	 display: flex;
+}
+
+.itemInfo #product_title{
+	font-size: 1em;
+	font-weight: 600;
+	margin-left: 3em;
+	margin-right: 3em;
+}
+
+.itemInfo .itemOption{
+	margin-left: 3em;
+	color: #808080;
 }
 
 
@@ -162,4 +181,9 @@
     color: tomato;
     font-size: 0.7em;
     margin-top: 2em;
+}
+
+.checkBoxMessage{
+	text-align: center;
+	margin-top: 20px;
 }

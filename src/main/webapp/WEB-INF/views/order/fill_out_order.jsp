@@ -8,7 +8,7 @@
 <c:set var="num" value="0"/>
 <c:set var="total_price" value="0"/>
 
-    <form class="f_o_content" method="post" action="${pageContext.request.contextPath}/order/order_complete">
+    <form name="order" class="f_o_content" method="post" action="${pageContext.request.contextPath}/order/order_complete" onsubmit="validate()" novalidate>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
     <input type="hidden" name="order_id" value="${orderinfoList[0].order_id}" />
     <input type="hidden" name="orderinfo" value="${orderinfoList[0]}"/>
@@ -22,16 +22,26 @@
                         <th width="138em"> 수량</th>
                         <th width="138em">상품금액</th> 
                         <th width="138em">합계금액</th>
-                        <th width="138em">배송비</th>
+                        
                     </tr>
                  
                  <c:forEach var="orderinfo" items="${orderinfoList}">   
                  <c:set var="num" value="${num+1}"/>
-                 <c:set var="total_price" value="${total_price+orderinfo.order_product_price}" />
+                 <c:set var="total_price" value="${orderinfo.order_product_price}" />
                  
 	                    <tr>
 	                    	               
-	                        <td id="td_main"><img width="100px" src="${pageContext.request.contextPath}/mypage/zzimdownloadAttach?product_id=${orderinfo.product_id}"/><div class="d-inline-block"><div>${ orderinfo.product_title}</div><div><span>선택 용량:${ orderinfo.order_product_volume}</span><span><div>
+	                        <td id="td_main">
+	                        <div class="orderItem">
+	                        <div>
+	                        <img width="100px" src="${pageContext.request.contextPath}/mypage/zzimdownloadAttach?product_id=${orderinfo.product_id}"
+	                        style="cursor: pointer" onclick="productClick(${orderinfo.product_id})">
+	                        </div>
+	                        <div class="itemInfo">
+	                        <span id="product_title" class="d-inline-block"
+	                        style="cursor: pointer" onclick="productClick(${orderinfo.product_id})">
+	                        ${ orderinfo.product_title}</span>
+	                        <span class="itemOption">선택 용량:${ orderinfo.order_product_volume}g / 
 	                        	분쇄 타입:
 	                        	<c:if test="${orderinfo.order_product_grind eq '1'}">
 									홀빈(분쇄안함)
@@ -45,11 +55,16 @@
 								<c:if test="${orderinfo.order_product_grind eq '4'}">
 									더치용분쇄
 								</c:if>
-	                        	</div></span></div></div></td>
+	                        	</span></div>
+	                        	</div>
+	                        	</td>
 	                        <td >${orderinfo.order_product_count}</td>
-	                        <td >${orderinfo.product_price }</td>
-	                        <td>${orderinfo.order_product_price}</td>
-	                        <td>2500원</td>
+	                        <fmt:parseNumber var= "product_price" integerOnly= "true" value= "${orderinfo.product_price/orderinfo.order_product_count }"/>
+	                        <td>${product_price}원</td>
+	                        <td>${orderinfo.product_price}원</td>
+	                        
+	                        
+	                       
 	                    </tr>
 					</c:forEach>
                 </table>
@@ -62,10 +77,7 @@
                     <div class="d-inline-block align-self-center mr-3"><div>합계</div><div class="text-danger"><fmt:formatNumber value="${total_price+2500}" type="number" maxFractionDigits="3"/></div></div>
                 </div>
                 
-                <script>
-                	numberWithCommas(${total_price+2500});
-                	
-                </script>
+              
                 
             </div>
         </div>
@@ -88,20 +100,29 @@
             <table class="f_o_table_2">
                 <h6 class="f_o_m_h_font">배송 정보</h6>
                 <tr>
-                    <th style="border-top: solid 1px #343a40;">받으실분</th>
-                    <td style="border-top: solid 1px #343a40;"><input type="text" name="order_receiver" value="${orderinfoList[0].order_receiver}"></td>
+                    <th style="border-top: solid 1px #343a40;">받으실분</th> 
+                    <td style="border-top: solid 1px #343a40;">
+                    <input id="receiverName" type="text" name="order_receiver" value="${orderinfoList[0].order_receiver}">
+                    <span class="receiverNameEmpty" style="color:red"></span>
+                    </td>
                 </tr>
                 <tr>
                     <th>받으실 곳</th>
                     <td>
-                        <input type="text" name="order_zipcode" value="${orderinfoList[0].user_zipcode}"> <button>우편번호검색</button><br>
-                        <input type="text" name="order_address" value="${orderinfoList[0].order_address}"style="width: 40em">
-                        <input type="text" name="order_detail_address" value="${orderinfoList[0].order_detail_address}"style="width: 40em">
+                        <input type="text" name="order_zipcode" value="${orderinfoList[0].user_zipcode}" id="user_zipcode" placeholder="우편번호" readonly> 
+                        <button type="button" onclick="sample6_execDaumPostcode()" class="s_select_font">우편번호 찾기</button><br>
+                         <span class="zipCodeEmpty" style="color:red"></span>
+                        <input type="text" name="order_address" value="${orderinfoList[0].order_address}"style="width: 40em" id="user_address" placeholder="주소" readonly>
+                        <span  class="addressEmpty" style="color:red"></span>
+                        <input type="text" name="order_detail_address" value="${orderinfoList[0].order_detail_address}"style="width: 40em" id="user_detail_address" placeholder="상세주소">
+                        <span  class="detailAddressEmpty" style="color:red"></span>
+                        <input type="hidden" id="sample6_extraAddress" placeholder="참고항목">              
                     </td>
                 </tr>
                 <tr>
                     <th>휴대폰 번호</th>
-                    <td><input type="text" name="order_tel" value="${orderinfoList[0].order_tel }"></td>
+                    <td><input id="tel" type="text" name="order_tel" value="${orderinfoList[0].order_tel }">
+                    <span class="telEmpty" style="color:red"></span></td>
                 </tr>
                 
                 <tr>
@@ -132,13 +153,17 @@
                         <div class="f_o_account_form">
                             <div>무통장 입금</div><hr/>
                             <div class="f_o_font_gray">(무통장 입금의 경우 입금확인 후부터 배송단계가 진행됩니다.)</div>
-                            <div><span>입금자명</span><input type="text" name="order_account_name" style="margin-left: 2em;"></div>
+                            <div><span>입금자명</span>
+                            <input id="accountName" type="text" name="order_account_name" style="margin-left: 2em;">
+                            <span class="accountNameEmpty" style="color:red"></span>
+                            </div>
                             <div><span>입금은행</span><select name="order_account" id="order_account">
-                                <option value="">선택하세요</option>
+                                <option value="" disabled="true">입금은행을 선택하세요</option>
                                 <option value="기업은행 118-529312-01-014">기업은행 118-529312-01-014 (주)콩콩콩</option>
                                 <option value="농협 321--0241-3124-11">농협 321--0241-3124-11 (주)콩콩콩</option>
                                 <option value="신한은행 421-43243-21-022">신한은행 421-43243-21-022 (주)콩콩콩</option>
-                              </select></div>
+                              </select>
+                              <span class="accountEmpty" style="color:red"></span></div>
                         </div>
                     </td>
                 </tr>
@@ -148,9 +173,91 @@
                 
                 <div class="align-self-center mr-3"><span class="mr-3 font-weight-bold">최종 결제 금액</span><span style="font-size: 1.7em; font-weight:bold;color:red"><fmt:formatNumber value="${total_price+2500}" type="number" maxFractionDigits="3"/></span></div>
             </div>
-            <label class="f_o_checkfont"><input type="checkbox" name="chk" value="chk" class="mr-1" >(필수) <label style="color: black;">구매하신 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</label></label>
-            <div class="f_o_lastbutton"><button type="submit">결제하기</button></div>
+            <label class="f_o_checkfont"><input type="checkbox" class="chk" name="chk" value="chk" class="mr-1">(필수)
+            <label style="color: black;">구매하신 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</label></label>
+            <div class="checkBoxMessage" style="color:red;">&nbsp</div>
+            <div class="f_o_lastbutton"><button type="button" onclick="validate()">결제하기</button></div>
         </div>
         </form>
+        
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/user/address.js"></script>
 </body>
+
+<script>
+
+	const productClick=(product_id)=>{
+		location.href="${pageContext.request.contextPath}/product/detail/"+product_id;		
+	}
+
+	
+	function validate(){
+		event.preventDefault();
+		var result = true;
+		
+		const receiverName = $("#receiverName").val();
+		const user_zipcode = $("#user_zipcode").val();
+		const user_address = $("#user_address").val();
+		const user_detail_address = $("#user_detail_address").val();
+		const tel = $("#tel").val();
+		const accountName = $("#accountName").val();
+		
+		if(receiverName === ""){
+			result = false;
+			$(".receiverNameEmpty").html("받는분의 성함을 입력해주세요.");
+		} else{
+			$(".receiverNameEmpty").html("");
+		}
+		
+		if(user_zipcode === ""){
+			result = false;
+			$(".zipCodeEmpty").html("받는분의 우편번호를 입력해주세요.");
+		} else{
+			$(".zipCodeEmpty").html("");
+		}
+		
+		
+		if(user_address === ""){
+			result = false;
+			$(".addressEmpty").html("받는분의 주소를 입력해주세요.");
+		} else{
+			$(".addressEmpty").html("");
+		}
+
+		if(user_detail_address === ""){
+			result = false;
+			$(".detailAddressEmpty").html("받는분의 상세주소 입력해주세요.");
+		} else{
+			$(".detailAddressEmpty").html("");
+		}
+		
+		if(tel === ""){
+			result = false;
+			$(".telEmpty").html("받는분의 연락처 입력해주세요.");
+		} else{
+			$(".telEmpty").html("");
+		}
+		
+		if(accountName === ""){
+			result = false;
+			$(".accountNameEmpty").html("입금하시는 분의 성함을 입력해주세요.");
+		} else{
+			$(".accountNameEmpty").html("");
+		}
+		
+		
+		if($("input:checkbox[name=chk]").is(":checked") == true) {
+			if(result){
+				document.order.submit();
+			}
+		}
+		else{
+			$(".checkBoxMessage").html("구매진행에 동의하셔야 주문하실 수 있습니다.");
+			
+		}
+		
+		
+	}
+</script>
+
 </html>

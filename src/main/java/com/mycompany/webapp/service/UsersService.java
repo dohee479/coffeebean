@@ -90,7 +90,13 @@ public class UsersService {
 		}
 		
 	}
-
+	
+	public void mailupdatePassword(User user,String new_password) {
+		BCryptPasswordEncoder bpe=new BCryptPasswordEncoder();
+		user.setUser_password(bpe.encode(new_password));
+		usersDao.updatePassword(user);
+	}
+	
 	public void delete(String user_id) {
 		logger.info("여기까진 옴");
 		usersDao.delete(user_id);

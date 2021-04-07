@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <th>총 결제 금액</th>
-                    <td><span style="color: tomato; font-size: 1.5em;"> ${completeorder.order_total_price}</span>원</td>
+                    <td><span style="color: tomato; font-size: 1.5em;"> ${completeorder.order_total_price+2500}</span>원</td>
                 </tr>
             </table>
         </div>
@@ -46,7 +46,8 @@
                     <td><div>${completeorder.order_msg}</div></td>
                 </tr>
             </table> 
-            <div class="o_c_lastbutton"><button class="o_c_button1" onclick=location.href="${pageContext.request.contextPath}/mypage/orderlist">주문내역확인</button><button class="o_c_button2" onclick=location.href="${pageContext.request.contextPath}/product/country">쇼핑계속하기</button></div>   
+            <div class="o_c_lastbutton"><button class="o_c_button1" onclick=location.href="${pageContext.request.contextPath}/mypage/orderlist">주문내역확인</button>
+            <button class="o_c_button2" onclick=location.href="${pageContext.request.contextPath}/">쇼핑계속하기</button></div>   
         </div>           
      </div>
 </body>
