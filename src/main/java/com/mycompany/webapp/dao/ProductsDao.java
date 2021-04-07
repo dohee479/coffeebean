@@ -13,6 +13,7 @@ public interface ProductsDao {
 	public void insertProduct(Product product);
 	public List<Product> selectAll();
 	public List<Product> search(String keyword);
+	public void updateSaleCountByProductId(int productId);
 	
 	/* 상품 QnA 작성 
 	public List<Question> selectProduct(int products_product_id);

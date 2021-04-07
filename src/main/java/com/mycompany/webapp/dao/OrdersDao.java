@@ -18,5 +18,7 @@ public interface OrdersDao {
 	public void deleteByOrderId(int order_id);
 	public int selectSeqOrderId();
 	public List<Order> selectCompleteOrder(String users_user_id);
+	public List<Order> selectRefundOrder(String users_user_id);
+	public void updateOrderState(int order_id);
 }
 

@@ -99,4 +99,5 @@
 
 
 <!--    수정, 삭제 모달 묶음  종료  -->
+</div>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

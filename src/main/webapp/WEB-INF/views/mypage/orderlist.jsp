@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 <%@ include file="/WEB-INF/views/layout/sidebar.jsp" %>
     <div>
@@ -26,9 +27,12 @@
 		                                <div class="orderProducts">
 			                                <div class="item_wrap">
 			                                    <div class="item_img">
-			                                    	<img class="item_img" src="${pageContext.request.contextPath}/mypage/zzimdownloadAttach?product_id=${list_orderproduct.products_product_id}"></div>
+			                                    	<img class="item_img" 
+			                                    	src="${pageContext.request.contextPath}/mypage/zzimdownloadAttach?product_id=${list_orderproduct.products_product_id}"
+			                                    	onclick="productClick(${list_orderproduct.products_product_id})" style="cursor:pointer;">
+			                                    	</div>
 			                                    <div class="item_title">
-			                                    	<span>${list_orderproduct.product_title}</span>
+			                                    	<span onclick="productClick(${list_orderproduct.products_product_id})" style="cursor:pointer;">${list_orderproduct.product_title}</span>
 			                                    	<span>${list_orderproduct.order_product_volume}g
 			                                    				/<c:if test="${list_orderproduct.order_product_grind eq '1'}">
 																	홀빈(분쇄안함)
@@ -46,7 +50,8 @@
 			                                    </div>
 			                                </div>                                                   
 											<div class="price">
-			                                    <span class="productPriceAndCount">${list_orderproduct.order_product_price}원/${list_orderproduct.order_product_count}개</span>
+											<fmt:parseNumber var= "product_price" integerOnly= "true" value= "${list_orderproduct.order_product_price/list_orderproduct.order_product_count}" />
+			                                    <span class="productPriceAndCount">${product_price}원/${list_orderproduct.order_product_count}개</span>
 			                                </div>   
 			                            </div>
 			                            </c:forEach>	             
@@ -68,16 +73,23 @@
 					                        <span aria-hidden="true">&times;</span>
 					                      </button>
 					                    </div>
-					                    <div class="modal-body">
+					                    <div class="modal-body" id="cancelModal">
 					                      <div class="cancel_img"><img src="<%=application.getContextPath()%>/resources/images/mypage/orderlist/cancel.png"></div>
+
 					                      <span class="message1 mb-3">${ orderlist[0].orders_order_id} 번의 주문을 취소합니다.</span>
-					                      <form action="" method="">
+					                      <form action="cancel-order" method="post">
+					                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					                        <!-- <div class="form-group">
 					                          <input type="text" class="form-control" id="cancel_reason">
 					                        </div> -->
+
+					                      <span class="message1">주문을 취소합니다.</span>
+					                      <form action="" method="">
+					                     
+
 					                        <div class="button-group">
 					                            <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
-					                            <button type="submit" class="gocart">확인</button>
+					                            <button type="submit" class="gocart" name="order_id" value="${ orderlist[0].orders_order_id}">확인</button>
 					                          </div>
 					                    </form>
 					                    </div>
@@ -190,5 +202,18 @@
               </div>
     </div>
 </div> --%>
+
+   </div>
+   </div>     
+
+
+<script>
+const productClick=(product_id)=>{
+		console.log(product_id);
+		
+		location.href="${pageContext.request.contextPath}/product/detail/"+product_id;		
+	}
+</script>
          
+
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

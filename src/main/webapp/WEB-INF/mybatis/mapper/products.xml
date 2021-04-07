@@ -39,6 +39,7 @@
 		#{product_attachoname}, #{product_attachoname}, #{product_attachoname}, #{product_sale_count}, null)
 	</insert>
 	
+
 	<select id="selectAll" resultType="product">
 		select product_id, product_title
 		from products
@@ -49,4 +50,10 @@
 		from products
 		where product_title like '%' || #{keyword} || '%'
 	</select>
+
+	<update id="updateSaleCountByProductId" parameterType="int">
+		update products set product_sale_count = product_sale_count+1
+		where product_id=#{product_id}
+	</update>
+
 </mapper>

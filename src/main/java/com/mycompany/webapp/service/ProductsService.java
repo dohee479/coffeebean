@@ -110,5 +110,10 @@ public class ProductsService {
 	  return productsDao.search(keyword);
   }
 
+	public void updateSaleCount(int productId) {
+		
+		productsDao.updateSaleCountByProductId(productId);
+	}
+
 }
 

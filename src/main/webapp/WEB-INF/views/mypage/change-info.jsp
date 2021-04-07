@@ -26,12 +26,14 @@
                     </div>
                     <div class="input-location">주소</div>
                     <div class="change-location">
-                        <input type="text" name="user_zipcode" id="user_zipcode" id="user_zipcode" value="${user_zipcode}" placeholder="'-'없이 입력해주세요.">
-                        <button id="change-location-button" type="button">우편번호 검색</button><br>
-                        <span id="error_user_zipcode" class="text-danger small"></span>
-                        <div class="location-info mt-2 "><input type="text" name="user_address" id="user_address" value="${user_address }"></div>
-                        <div class="location-info mt-2 "><input type="text" name="user_detail_address" id="user_detail_address" value="${user_detail_address}"></div>
+                        <input type="text" name="user_zipcode" id="user_zipcode" id="user_zipcode" value="${user_zipcode}" placeholder="우편번호" readonly>
+                        <button type="button" id="change-location-button" onclick="sample6_execDaumPostcode()" class="s_select_font">우편번호 찾기</button>
+                        <div class="location-info mt-2 "><input type="text" name="user_address" id="user_address" value="${user_address }" placeholder="주소" readonly></div>
+                        <div class="location-info mt-2 "><input type="text" name="user_detail_address" id="user_detail_address" value="${user_detail_address}" placeholder="상세주소"></div><br>
+                        <span id="error_user_address" class="text-danger small"></span>
+                        <input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
                     </div>
+                    
                 </div>    
                 <div class="button-input">
                     <button id="change-info-button" class="change-info-buttons" type="submit">정보수정</button>
@@ -98,14 +100,11 @@
     			 }
     			 
     			}
-    		if(user_zipcode!==""){
-    			var regzipcode=/^\d{5}$/;
-    			if(!regzipcode.test(user_zipcode)){
-    				$("#error_user_zipcode").html("우편번호 형식이 아닙니다.");
-    				return false;
-    			}else{
-    				$("#error_user_zipcode").html("");
-    			}
+    		if(user_zipcode===""||user_address===""||user_detail_address===""){
+    			result=false;
+    			$("#error_user_address").html("필수사항 입니다.");
+    		}else{
+    			$("#error_user_address").html("");
     		}
     		
     		if(result){
@@ -145,4 +144,6 @@
 			}
     	}
     </script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/user/address.js"></script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

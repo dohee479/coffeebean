@@ -2,11 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.BasketItemsDao">
-
-	<!-- �ъ�⑹�� ������ �λ�援щ�� 紐⑸� 遺��ъ�ㅺ린-->
-	<!-- �ъ�⑹����寃� �������� ��硫댁�� ���� SQL濡� �ъ�, 媛�寃⑹�� 紐⑤�� �������댁�� �� -->
-	<!-- �λ�援щ�� ���대��� item_id�� �������대��� item_id瑜� 湲곗��쇰� 議곗�명���� ������ �대�怨�, 媛�寃�, �ъ��대��� 遺��ъ�� -->
-
 	<select id="selectAll" resultType="basketItem"> 
 		select 
 			basket_item_id
@@ -15,8 +10,8 @@
 			,basket_volume
 			,basket_grind 
 			,basket_product_count 
-			,product_title 
-			,product_price 
+			,product_title
+			,order_product_price  
 			,product_attachoname 
 			,product_attachsname 
 			,product_attachtype
@@ -24,9 +19,6 @@
 		where users_user_id = #{users_user_id} and basket_items.products_product_id = products.product_id
 	</select>
 	
-	<!-- �λ�援щ���� �닿릿 ���� ����瑜� 媛��몄�ㅻ�� SQL  -->
-	<!-- �λ�援щ�� �닿릿 �대�몄� 媛��몄�щ�� �ъ�⑺�� -->
-	<!-- ���� 泥⑤� �대�몄� 媛��몄�ㅻ�� �⑸��濡� �ъ�� -->
 	<select id="selectByBasketItemId" parameterType="int" resultType="basketItem">
 		select
 			basket_item_id
@@ -61,6 +53,7 @@
 				,basket_volume
 				,basket_grind 
 				,basket_product_count
+				,order_product_price
 			)
 			values
 			(
@@ -70,6 +63,7 @@
 				,#{basket_volume}
 				,#{basket_grind}
 				,#{basket_product_count}
+				,#{order_product_price}
 			)
 	</insert>
 	
@@ -81,7 +75,6 @@
 			,where basket_item_id = #{basket_item_id}
 	</update>
 	
-	<!-- �λ�援щ������ ������ ���댄���� ������ -->
 	<delete id="deleteByBasketItemId" parameterType="int" > 
 			delete from basket_items
 			where basket_item_id = #{basket_item_id}
