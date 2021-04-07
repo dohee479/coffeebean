@@ -20,10 +20,12 @@ public class ReviewController {
 	@PostMapping("/create")
 	public String Review(Review review, Authentication auth) {
 		review.setUsers_user_id(auth.getName());
-		review.setOrder_product_id(1);
+		System.out.println(review.getOrder_product_id());
 		reviewsService.createReview(review);
-		String view = "redirect:/product/detail/" + review.getProducts_product_id();
-		return view;
+		/*
+		 * String view = "redirect:/product/detail/" + review.getProducts_product_id();
+		 */
+		return "redirect:/mypage/my-review";
 	}
 	
 	@PostMapping("/delete")

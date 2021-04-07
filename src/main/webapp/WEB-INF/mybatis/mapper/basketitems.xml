@@ -35,6 +35,7 @@
 			,product_taste
 			,product_country
 			,product_grade
+			,order_product_price
 		from basket_items, products
 		where basket_item_id = #{basket_item_id} and basket_items.products_product_id = products.product_id
 	</select>

@@ -20,7 +20,7 @@
                          <c:forEach var="orderlist" items="${totalOrderProductList}"> 
 	                        <tr class="items">
 	                                <td class="order_no">  <!-- 한주문에 몇개의 상품이 들어있는지 알아아 햠 -->
-	                                	${ orderlist[0].orders_order_id}
+	                                	${ orderlist[0].orders_order_id} 
 		                            </td>  
 		                                <td class="orderItemBox">
 		                                <c:forEach var="list_orderproduct" items="${orderlist}">
@@ -32,7 +32,7 @@
 			                                    	onclick="productClick(${list_orderproduct.products_product_id})" style="cursor:pointer;">
 			                                    	</div>
 			                                    <div class="item_title">
-			                                    	<span onclick="productClick(${list_orderproduct.products_product_id})" style="cursor:pointer;">${list_orderproduct.product_title}</span>
+			                                    	<span onclick="productClick(${list_orderproduct.products_product_id})" style="cursor:pointer;">${list_orderproduct.product_title}</span><br>
 			                                    	<span>${list_orderproduct.order_product_volume}g
 			                                    				/<c:if test="${list_orderproduct.order_product_grind eq '1'}">
 																	홀빈(분쇄안함)
@@ -48,18 +48,83 @@
 																</c:if>
 			                                    	</span>
 			                                    </div>
+			                                   <%-- ${list_orderproduct.products_product_id} --%>
+			                                   <c:if test="${ orderlist[0].order_state eq 5}">	
+											      <span class="cancel" data-toggle="modal" data-target="#create-review-modal${list_orderproduct.products_product_id}">리뷰2</span>
+			                                   	</c:if>	
 			                                </div>                                                   
 											<div class="price">
 											<fmt:parseNumber var= "product_price" integerOnly= "true" value= "${list_orderproduct.order_product_price/list_orderproduct.order_product_count}" />
 			                                    <span class="productPriceAndCount">${product_price}원/${list_orderproduct.order_product_count}개</span>
 			                                </div>   
 			                            </div>
+			                       		<!-- 상품 리뷰 쓰기 -->
+						                 <div class="modal fade" id="create-review-modal${list_orderproduct.products_product_id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							                <div class="modal-dialog modal-dialog-centered" role="document">
+							                  <div class="modal-content">
+							                    <div class="modal-header">
+							                      <span class="modal-title" id="exampleModalLabel">구매확정</span>
+							                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                        <span aria-hidden="true">&times;</span>
+							                      </button>
+							                    </div>
+							                    <div class="modal-body">
+										        <form method="post" action="${pageContext.request.contextPath}/review/create?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
+										        	<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> -->
+										        	<input type="hidden" name="products_product_id" value="${list_orderproduct.products_product_id}">
+											        <input type="hidden" name="order_product_id" value="${list_orderproduct.order_product_id}">
+											        <div class="modal-body">
+											          <div id="star-radio">
+											            <span>평점: </span>
+											            <span class="radio-inline">
+											              <input type="radio" name="review_grade" class="select-stars ml-2" id="star1" value=1 checked>
+											              <label for="star1" class="shape-stars">1</label>
+											            </span>
+											            <span class="radio-inline">
+											              <input type="radio" name="review_grade" class="select-stars ml-2" id="star2" value=2>
+											              <label for="star2" class="shape-stars">2</label>
+											            </span>
+											            <span class="radio-inline">
+											              <input type="radio" name="review_grade" class="select-stars ml-2" id="star3" value=3>
+											              <label for="star3" class="shape-stars">3</label>
+											            </span>
+											            <span class="radio-inline">
+											              <input type="radio" name="review_grade" class="select-stars ml-2" id="star4" value=4>
+											              <label for="star4" class="shape-stars">4</label>
+											            </span>
+											            <span class="radio-inline">
+											              <input type="radio" name="review_grade" class="select-stars ml-2" id="star5" value=5>
+											              <label for="star5" class="shape-stars">5</label>
+											            </span>
+											          </div>
+											          <input type="text" class="input-title" placeholder="제목을 입력하세요." name="review_title">
+											          <textarea class="input-content" wrap="physical" placeholder="내용을 입력하세요." name="review_content"></textarea>
+											          <div class="file-upload mt-4">
+											            <label for="selete-file">사진 첨부: </label>
+											            <input type="file" id="selete-file" name="review_attach">
+											          </div>
+											        </div>
+											        <div class="modal-footer">
+											          <button type="button" class="btn btn-outline-secondary" id="asdasfas" data-dismiss="modal">취소</button>
+											          <button type="submit" class="btn btn-danger" value="등록">등록</button>
+											        </div>
+											   </form>
+											   </div>
+											   </div>
+							                </div>
+							              </div>
 			                            </c:forEach>	             
 										</td>													
 	                                <td class="state">
+	                                <c:if test="${ orderlist[0].order_state eq 1}">
 		                               <span>주문완료</span><br/>
 		                             <%--   <button type="button" class="delivery_tracking" data-toggle="modal" data-target="#tracking${ orderlist[0].orders_order_id}">배송조회</button><br> --%>
-		                               <span class="cancel" data-toggle="modal" data-target="#cancel${ orderlist[0].orders_order_id}">취소하기</span>
+		                               <span class="cancel" data-toggle="modal" data-target="#cancel${ orderlist[0].orders_order_id}">취소하기</span><br>
+		                               <span class="cancel" data-toggle="modal" data-target="#confirmation${ orderlist[0].orders_order_id}">구매확정</span>
+		                           	</c:if>
+		                           	<c:if test="${ orderlist[0].order_state eq 5}">
+		                           		<span>구매확정</span><br/>
+		                           	</c:if>
 		                           </td>
 	                           </tr>
 					  
@@ -84,9 +149,7 @@
 					                        </div> -->
 
 					                      <span class="message1">주문을 취소합니다.</span>
-					                      <form action="" method="">
-					                     
-
+					                      
 					                        <div class="button-group">
 					                            <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
 					                            <button type="submit" class="gocart" name="order_id" value="${ orderlist[0].orders_order_id}">확인</button>
@@ -96,8 +159,31 @@
 					                  </div>
 					                </div>
 					              </div>
-						                           
-	                           
+					              
+					              <!-- 구매 확정 모달-->
+					            <div class="modal fade" id="confirmation${ orderlist[0].orders_order_id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					                <div class="modal-dialog modal-dialog-centered" role="document">
+					                  <div class="modal-content">
+					                    <div class="modal-header">
+					                      <span class="modal-title" id="exampleModalLabel">구매확정</span>
+					                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                        <span aria-hidden="true">&times;</span>
+					                      </button>
+					                    </div>
+					                    <div class="modal-body">
+					                      <div class="confirmation_img"><img src="<%=application.getContextPath()%>/resources/images/mypage/orderlist/confirmation.png"></div>
+					                      <span class="message1">확인버튼을 누르면 구매가 확정됩니다.</span>
+					                      <form action="confirmation-order" method="post">
+					                       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					                        <div class="button-group">
+					                            <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
+					                            <button type="submit" class="gocart" name="order_id" value="${ orderlist[0].orders_order_id}">확인</button>
+					                          </div>
+					                    </form>
+					                    </div>
+					                  </div>
+					                </div>
+					              </div>
                            </c:forEach>
 							
                            

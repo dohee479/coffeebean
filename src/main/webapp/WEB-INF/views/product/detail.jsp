@@ -394,57 +394,7 @@
 	</div>
 
   <!-- 상품 후기 글쓰기 모달 -->
-  <div class="modal fade create-review-modal" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">상품후기 쓰기</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form method="post" action="${pageContext.request.contextPath}/review/create?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
-        	<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> -->
-        	<input type="hidden" name="products_product_id" value="${product.product_id}">
-	        <div class="modal-body">
-	          <div id="star-radio">
-	            <span>평점: </span>
-	            <span class="radio-inline">
-	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star1" value=1 checked>
-	              <label for="star1" class="shape-stars">1</label>
-	            </span>
-	            <span class="radio-inline">
-	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star2" value=2>
-	              <label for="star2" class="shape-stars">2</label>
-	            </span>
-	            <span class="radio-inline">
-	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star3" value=3>
-	              <label for="star3" class="shape-stars">3</label>
-	            </span>
-	            <span class="radio-inline">
-	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star4" value=4>
-	              <label for="star4" class="shape-stars">4</label>
-	            </span>
-	            <span class="radio-inline">
-	              <input type="radio" name="review_grade" class="select-stars ml-2" id="star5" value=5>
-	              <label for="star5" class="shape-stars">5</label>
-	            </span>
-	          </div>
-	          <input type="text" class="input-title" placeholder="제목을 입력하세요." name="review_title">
-	          <textarea class="input-content" wrap="physical" placeholder="내용을 입력하세요." name="review_content"></textarea>
-	          <div class="file-upload mt-4">
-	            <label for="selete-file">사진 첨부: </label>
-	            <input type="file" id="selete-file" name="review_attach">
-	          </div>
-	        </div>
-	        <div class="modal-footer">
-	          <button type="button" class="btn btn-outline-secondary" id="asdasfas" data-dismiss="modal">취소</button>
-	          <button type="submit" class="btn btn-danger" value="등록">등록</button>
-	        </div>
-	   </form>
-	  </div>
-    </div>
-  </div>
+
   <!-- 상품 후기 글쓰기 모달 종료 -->
 <!--Modal 끝-->
   </div>
