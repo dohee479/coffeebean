@@ -32,6 +32,9 @@ public class Product {
 	// 판매 개수
 	private int product_sale_count;
 	
+	//찜여부
+	private String zzimboolean;
+	
 	private List<Review> reviews;
 	
 	/*	private MultipartFile attach;
@@ -119,5 +122,11 @@ public class Product {
 	}
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
+	}
+	public String getZzimboolean() {
+		return zzimboolean;
+	}
+	public void setZzimboolean(String zzimboolean) {
+		this.zzimboolean = zzimboolean;
 	}
 }

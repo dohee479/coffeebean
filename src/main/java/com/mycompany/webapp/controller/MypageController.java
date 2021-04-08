@@ -138,6 +138,20 @@ public class MypageController {
 		return jsonObject.toString();
 	}
 	
+	@PostMapping("/nowdelete")
+	@ResponseBody
+	public String nowdelete(int product_id, Principal principal) {
+		String user_id=principal.getName();
+		
+		Zzim zzim=new Zzim();
+		zzim.setProducts_product_id(product_id);
+		zzim.setUsers_user_id(user_id);
+		
+		zzimsService.deleteZzim(zzim);
+		
+		return "success";
+	}
+	
 	@PostMapping("/deletezzim")
 	public String DeleteZzim(int product_id,Principal principal) {
 		String user_id=principal.getName();

@@ -36,7 +36,12 @@
 	              <div id="overlay">
 	              	<div>
 					  <img id="cart" src="${pageContext.request.contextPath}/resources/images/header/cart.png" width="24px" data-toggle="modal" data-target="#cart${product.product_id}"/>
-					  <img id="wish" src="${pageContext.request.contextPath}/resources/images/product/item/wish.png" width="24px" onclick="wish(${product.product_id})"/>
+					  <c:if test="${product.zzimboolean eq 'exist' }">
+						 	 <img id="wish${product.product_id}" src="${pageContext.request.contextPath}/resources/images/product/item/wishfill.png" width="24px" onclick="wish(${product.product_id})"/>
+						  </c:if>
+						  <c:if test="${empty product.zzimboolean}">
+						  	<img id="wish${product.product_id}" src="${pageContext.request.contextPath}/resources/images/product/item/wish.png" width="24px" onclick="wish(${product.product_id})"/>
+						  </c:if>
 	              	</div>
 				  </div>
 	          </div>
@@ -111,21 +116,28 @@
 
 <script>
 const wish= (product_id)=>{
-	
+	 
 	$.ajax({
 		url:"/kong/mypage/zzim_insert?${_csrf.parameterName}=${_csrf.token}",
 		data:{product_id},
 		method:"post",
 	}).then(data=>{
-		console.log(data.result);
 		if(data.result==="success"){
-			alert("찜리스트에 추가하였습니다.")
-			location.reload();
+			/* $('#wish').attr("src", "${pageContext.request.contextPath}/resources/images/product/item/wishfill.png"); */
+			document.getElementById('wish'+product_id).src="${pageContext.request.contextPath}/resources/images/product/item/wishfill.png";
 			//location.replace("${pageContext.request.contextPath}/product/detail");				
 		}else{
-			alert("이미 찜한 상품입니다.");
-			location.reload();
-			//location.replace("${pageContext.request.contextPath}/product/detail");				
+			$.ajax({
+				url:"/kong/mypage/nowdelete?${_csrf.parameterName}=${_csrf.token}",
+				data:{product_id},
+				method:"post",
+			}).then(data=>{
+				if(data==="success"){
+					document.getElementById('wish'+product_id).src="${pageContext.request.contextPath}/resources/images/product/item/wish.png";
+				}
+			})
+			
+			
 		}
 		
 	})
