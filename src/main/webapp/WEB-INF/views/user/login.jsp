@@ -12,9 +12,9 @@
                     </div>
                     
                    
-                    <input type="text" name="user_id" placeholder="아이디">
+                    <input type="text" name="user_id" placeholder="아이디" style="color:black;">
                     <button type="submit" id="login">로그인</button> <br>
-                    <input type="text" name="user_password" placeholder="비밀번호">
+                    <input type="password" name="user_password" placeholder="비밀번호" style="color:black;">
                     <button type="button" style="background-color: rgb(102,102,102);" id="signUp_mv" onclick="location.href='${pageContext.request.contextPath}/user/join'">회원가입</button>
             </div>
         </div>
