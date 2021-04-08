@@ -105,7 +105,13 @@ public class OrderController {
 	}
 	
 	@PostMapping("/fill_out_order")
-	public String fill_out_order_process(HttpServletRequest request, int product_id,String volume,String grind,int count,Principal principal,Model model){
+	public String fill_out_order_process(HttpServletRequest request, 
+										 int product_id,
+										 String volume,
+										 String grind,
+										 int count,
+										 Principal principal,
+										 Model model){
 		String user_id=principal.getName();
 		
 		Product product=productsService.selectByProductId(product_id);
@@ -138,10 +144,10 @@ public class OrderController {
 		orderProduct.setOrder_product_price(product_price);
 		
 		orderProductsService.createOrderProduct(orderProduct);
-		//토탈 넣어줘야지ㅣ
+		
 		Orderinfo orderinfo=new Orderinfo(order_id,
 										order.getUsers_user_id(),
-										user_id,
+										user.getUser_name(),
 										order.getOrder_tel(),
 										order.getOrder_address(),
 										order.getOrder_detail_address(),
@@ -163,6 +169,7 @@ public class OrderController {
 		
 		List<Orderinfo> orderinfoList = new ArrayList<Orderinfo>();
 		orderinfoList.add(orderinfo);
+		model.addAttribute("orderinfoList",orderinfoList);
 		
 		List<Integer> productId = new ArrayList<>();
 		productId.add(product.getProduct_id()); // 세션에 item_id를 저장하기 위함, order complete에서 같은 세션key로 접근하기 위함
@@ -170,7 +177,6 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		session.setAttribute("productId", productId);
 		
-		model.addAttribute("orderinfoList",orderinfoList);
 		return "order/fill_out_order";
 		
 		
@@ -190,7 +196,6 @@ public class OrderController {
 		
 		for(String itemNo : arr) {
 			BasketItem basketitem =basketsService.getBasketItem(Integer.parseInt(itemNo));
-			logger.info(basketitem.getOrder_product_price()+"");
 			BasketItemList.add(basketitem);
 		}
 		for(int i=0;i<BasketItemList.size();i++) {
@@ -228,7 +233,7 @@ public class OrderController {
 			Product product=productsService.getProduct(orderproduct.getProducts_product_id());
 			Orderinfo orderinfo=new Orderinfo(order_id,
 											order.getUsers_user_id(),
-											user_id,
+											user.getUser_name(),
 											order.getOrder_tel(),
 											order.getOrder_address(),
 											order.getOrder_detail_address(),

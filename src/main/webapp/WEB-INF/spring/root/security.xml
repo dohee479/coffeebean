@@ -5,6 +5,7 @@
    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+
    <!-- 보안을 체크할 필요가 없는 경로 설정 -->
    <security:http pattern="/resources/**" security="none"/>
    
@@ -27,7 +28,8 @@
       <!-- <security:csrf disabled="true"/> -->
       
       <!-- 로그아웃도 POST 방식으로 요청해야함 -->
-      <security:logout logout-url="/logout"/>
+      <security:logout logout-url="/logout"
+      success-handler-ref="authLogoutSuccessHandler" invalidate-session="false"/>
       
       <!-- 로그인 중복 처리 설정 -->
       <security:session-management>
@@ -86,6 +88,8 @@
       class="com.mycompany.webapp.security.AuthFailureHandler">
       <property name="defaultFailureUrl" value="/user/login"></property>
    </bean>
+   <bean id="authLogoutSuccessHandler" 
+   		class="com.mycompany.webapp.security.AuthLogoutSuccessHandler"></bean>
 </beans>
 
 

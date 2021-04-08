@@ -85,7 +85,6 @@ public class MypageController {
 		List<Order> completeOrderList=ordersService.getCompleteOrderlist(principal.getName());
 
 		List<List<OrderProduct>> totalOrderProductList=new ArrayList<>();
-		List<List<String>> totalProductTitle=new ArrayList<>();
 		
 		for(Order order: completeOrderList) {
 			int order_id=order.getOrder_id();
