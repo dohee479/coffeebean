@@ -72,6 +72,20 @@
 		where order_id = #{order_id} 
 	</update>
 	
+	<update id="updatekakao" parameterType="order">
+		update orders set
+			order_receiver=#{order_receiver},
+			order_zipcode=#{order_zipcode},
+			order_address=#{order_address},
+			order_detail_address=#{order_detail_address},
+			order_tel=#{order_tel},
+			order_msg=#{order_msg},
+			order_account_name=#{order_account_name},
+			order_account=#{order_account}
+			
+		where order_id = #{order_id} 
+	</update>
+	
 	<update id="updateOrderState" parameterType="int">
 		update orders set
 			order_state=9

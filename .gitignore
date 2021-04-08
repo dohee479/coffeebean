@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,eclipse,java,java-web
 email.xml
 datasource.xml
+payment.jsp
 ### Eclipse ###
 .metadata
 bin/

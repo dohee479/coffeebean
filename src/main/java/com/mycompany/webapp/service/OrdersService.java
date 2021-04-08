@@ -41,7 +41,9 @@ public class OrdersService {
 	public void updateOrder(Order order) {
 		ordersDao.update(order);
 	}
-	
+	public void updatekakaoOrder(Order order) {
+		ordersDao.updatekakao(order);
+	}
 	/* 
 	 주문취소, 환불의 경우 따로 테이블이 없기 때문에 
 	 order table의 order_state에 따라 구분해야 함
