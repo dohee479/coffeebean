@@ -12,14 +12,28 @@
         <div class="o_c_containe o_c_customer_info">
             <table class="o_c_table_2">
                 <h6 class="o_c_m_h_font">결제 정보</h6>
+                <c:if test="${kakao eq 'kakao'}">
                 <tr>
                     <th style="border-top: solid 1px #343a40;">결제방법</th>
+                    <td style="border-top: solid 1px #343a40;"><div> 카카오페이</div></td>
+                </tr>
+                <tr>
+                    <th>결제상태</th>
+                    <td><div> 결제완료</div></td>
+                </tr>
+                </c:if>
+ 
+                <c:if test="${empty kakao}">
+                <tr>
+                    <th style="border-top: solid 1px #343a40;">결제방법 ${kakao}</th>
                     <td style="border-top: solid 1px #343a40;"><div> 무통장 입금</div></td>
                 </tr>
                 <tr>
                     <th>결제상태</th>
                     <td><div> 입금요청</div></td>
                 </tr>
+                </c:if>
+                
                 <tr>
                     <th>총 결제 금액</th>
                     <td><span style="color: tomato; font-size: 1.5em;"> ${completeorder.order_total_price+2500}</span>원</td>

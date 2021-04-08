@@ -116,10 +116,13 @@ public class OrderController {
 	@PostMapping("/kakao_complete")
 	public String korder_complete(int order_id,HttpServletRequest request,Model model) {
 		
-		logger.info("가격"+order_id);
-		Order order=ordersService.getOrder(order_id);
-		ordersService.updateOrder(order);
 		
+		Order order=ordersService.getOrder(order_id);
+
+		if(order.getOrder_msg()==null) {
+			order.setOrder_msg(" ");
+		}
+		ordersService.updateOrder(order);
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("basketArr")!=null) {
@@ -145,7 +148,7 @@ public class OrderController {
 		
 		Order completeorder=ordersService.getOrder(order_id);
 		model.addAttribute("completeorder",completeorder);
-		
+		model.addAttribute("kakao","kakao");
 		return "order/order_complete";
 	}
 	

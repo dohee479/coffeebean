@@ -125,7 +125,7 @@
                 
                 <tr>
                     <th>남기실 말씀</th>
-                    <td><input name="order_msg" type="text"></td>
+                    <td><input name="order_msg" type="text" value=""></td>
                 </tr>
             </table>    
         </div>

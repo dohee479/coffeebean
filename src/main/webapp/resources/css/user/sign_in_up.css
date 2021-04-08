@@ -26,8 +26,8 @@
 }
 .s_content .s_container .s_sign_in_container{
     z-index: 1;
-    display: inline-flexbox;
-    left:10%;
+   	position:relative;
+   	left:10%;
 }
 
 
