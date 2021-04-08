@@ -87,9 +87,9 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("basketArr")!=null) {
-			String[] arr = (String[]) session.getAttribute("basketArr");
+			String[] basketArr = (String[]) session.getAttribute("basketArr");
 			
-			for(String itemNo : arr) {
+			for(String itemNo : basketArr) {
 				basketsService.deleteBasketItem(Integer.parseInt(itemNo));
 			}
 			
@@ -97,9 +97,9 @@ public class OrderController {
 		}
 		
 		if(session.getAttribute("productId")!=null) {
-			List<Integer> arr2 = (ArrayList) session.getAttribute("productId");
+			List<Integer> productIdArr = (ArrayList) session.getAttribute("productId");
 			
-			for(int productId : arr2) {
+			for(int productId : productIdArr) {
 				logger.info(productId+"");
 				productsService.updateSaleCount(productId);
 			}
@@ -176,7 +176,7 @@ public class OrderController {
 			product_price=product_price*4*count;			
 		}		
 
-		ordersService.createOrder(user,total_price); //order						
+		ordersService.createOrder(user,total_price); 						
 		int order_id= ordersService.getSeqOrderId();
 		Order order= ordersService.getOrder(order_id);
 		
