@@ -4,38 +4,13 @@
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 <%@ include file="/WEB-INF/views/layout/sidebar.jsp" %>
 
-<style>
-	.error{
-		font-size:0.8em;
-	}
-</style>
-<script>
-	function validate(){
-		const utitle=$("#update-title").val();
-		const ucontent=$("#update-content").val();
-		if(utitle===""){
-			$("#errorTitle").html("필수사항 입니다.");
-			event.preventDefault();
-		}
-		else{
-			$("#errorTitle").html("");
-		}
-		if(ucontent===""){
-			$("#errorContent").html("필수사항 입니다.");
-			event.preventDefault();
-		}
-		else{
-			$("#errorContent").html("");
-		}
-	}
-</script>
-
 <div id="mypage-qna">
 	<div class="accordion" id="qna-accordion">
 	  <h3>나의 상품문의</h3>
 	  <hr/>
 	  
 	<c:forEach var="question" items="${list}" varStatus="status">
+	<div>
 	  	<div class="card">
 		    <div class="card-header" id="heading${status.count}">
 		      <h2 class="mb-0">
@@ -44,7 +19,7 @@
 					    <span id="qna-index">${status.count}</span>
 						<span id="qna-title">${question.question_title}</span>
 						<br>
-				        <span id="product-title">- ${question.product_title}</span>
+				        <span id="product-title">${question.product_title}</span>
 				        <span id="qna-date">${question.str_date}</span>
 			        </div>
 		        </button>
@@ -53,9 +28,9 @@
 		    <div id="collapse${status.count}" class="collapse" aria-labelledby="heading${status.count}" data-parent="#qna-accordion">
 		      <div class="card-body">
 		      	<a id="goProduct" href="${pageContext.request.contextPath}/product/detail/${question.products_product_id}">상품바로가기</a>
-		        <strong id="card-question" style="text-align: left;">Q : </strong><span class="title">${question.question_content}</span>
+		        <span class="title"><span class="QQQ">Q</span> : ${question.question_content}</span>
 		        <div class="answer">
-		          <strong>A :</strong> 답변 대기중.....
+		          <strong><span class="AAA">A</span> :</strong> 답변 대기중.....
 		        </div>
 		        <div class="buttons">
 		          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal${status.count}">수정</button>
@@ -81,11 +56,11 @@
 		      <form name="update-form" method="post" action="my-qna-update" onsubmit="validate()">
 		      	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			      <div class="modal-body">
-			        <input id="update-title" type="text" class="input-title" name="question_title" value="${question.question_title}" placeholder="수정할 제목을 입력하세요.(최대 30자)" maxlength="30">
-			        <span id="errorTitle" class="text-danger error"></span>
+			        <input id="input-title" type="text" class="input-title" name="question_title" value="${question.question_title}" placeholder="수정할 제목을 입력하세요.(최대 30자)" maxlength="30">
+			        <span id="errorTitle" class="text-danger error errorTitles"></span>
 			        <br>
-			        <textarea id="update-content" class="input-content" name="question_content" wrap="physical"  placeholder="수정할 내용을 입력하세요.(최대 300자)" maxlength="300">${question.question_content}</textarea>
-			        <span id="errorContent" class="text-danger error"></span>
+			        <textarea id="input-content" class="input-content" name="question_content" wrap="physical"  placeholder="수정할 내용을 입력하세요.(최대 300자)" maxlength="300">${question.question_content}</textarea>
+			        <span id="errorContent" class="text-danger error errorContents"></span>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
@@ -122,10 +97,38 @@
 		</div>
 		<!--    수정, 삭제 모달 묶음  종료  -->
 	</div>
+	</div>
 	</c:forEach>
 	</div>
 	
-	
 </div>
 </div>
+
+
+<style>
+	.error{
+		font-size:0.8em;
+	}
+</style>
+
+<script>
+	function validate(){
+		const utitle=$("#inputtitle").val();
+		const ucontent=$("#inputcontent").val();
+		if(utitle===""){
+			$("#errorTitle").html("필수사항 입니다.");
+			event.preventDefault();
+		}
+		else{
+			$("#errorTitle").html("");
+		}
+		if(ucontent===""){
+			$("#errorContent").html("필수사항 입니다.");
+			event.preventDefault();
+		}
+		else{
+			$("#errorContent").html("");
+		}
+	}
+</script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
