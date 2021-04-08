@@ -30,7 +30,7 @@
 	}
 </script>
 
-<div id="mydetail-qna">
+<div id="mypage-qna">
 	<div class="accordion" id="qna-accordion">
 	  <h3>나의 상품문의</h3>
 	  <hr/>
@@ -40,17 +40,20 @@
 		    <div class="card-header" id="heading${status.count}">
 		      <h2 class="mb-0">
 		        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse${status.count}" aria-expanded="true" aria-controls="collapse${status.count}">
-			        <span id="qna-index">${status.count}</span>
-				    <span id="qna-title">${question.question_title}</span>
-			        <span id="product-number">상품번호: ${question.products_product_id}</span>
-			        <span id="qna-date">${question.question_date}</span>
+		        	<div>
+					    <span id="qna-index">${status.count}</span>
+						<span id="qna-title">${question.question_title}</span>
+						<br>
+				        <span id="product-title">- ${question.product_title}</span>
+				        <span id="qna-date">${question.str_date}</span>
+			        </div>
 		        </button>
 		      </h2>
 		    </div>
 		    <div id="collapse${status.count}" class="collapse" aria-labelledby="heading${status.count}" data-parent="#qna-accordion">
 		      <div class="card-body">
-		      	<a href="${pageContext.request.contextPath}/product/detail/${question.products_product_id}">상품바로가기</a>
-		        <strong>Q : </strong><span class="title">${question.question_content}</span>
+		      	<a id="goProduct" href="${pageContext.request.contextPath}/product/detail/${question.products_product_id}">상품바로가기</a>
+		        <strong id="card-question" style="text-align: left;">Q : </strong><span class="title">${question.question_content}</span>
 		        <div class="answer">
 		          <strong>A :</strong> 답변 대기중.....
 		        </div>
@@ -61,7 +64,7 @@
 		        
 		      </div>
 		    </div>
-	  	</div>
+	  	
 	  	
 		 <!--    수정, 삭제 모달 묶음    -->
 		<div class ="update-delete-modal">
@@ -118,6 +121,7 @@
 		</div>
 		</div>
 		<!--    수정, 삭제 모달 묶음  종료  -->
+	</div>
 	</c:forEach>
 	</div>
 	

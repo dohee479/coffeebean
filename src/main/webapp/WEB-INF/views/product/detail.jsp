@@ -239,6 +239,7 @@
             <!--후기 Accordion UI-->
             <div class="accordion" id="accordionExample">
 			  <c:forEach var="review" items="${reviewList}">
+			  <div>
                 <div class="card">
                   <div class="card-header" id="heading${review.review_id}">
                     <h2 class="mb-0">
@@ -319,6 +320,7 @@
 			    </div>
 			  </div>
 			  <!--    수정, 삭제 모달 묶음  종료  -->
+			  </div>
               </c:forEach>
             </div>
             <sec:authorize access="isAnonymous()">
@@ -342,7 +344,7 @@
 			         <span id="qna-index">${status.count}</span>
 			         <span id="qna-title">${question.question_title}</span>
 			         <span id="qna-writer">작성자: ${question.users_user_id}</span>
-			         <span id="qna-date">${question.question_date}</span>
+			         <span id="qna-date">${question.str_date}</span>
 			        </button>
 			      </h2>
 			    </div>

@@ -4,19 +4,20 @@
 
 	<!-- 상품 정보에 대한 전체 문의 --> 
 	<select id="selectProduct" parameterType="int" resultType="question">
-		select * 
+		select question_id, question_title, question_content,
+				question_date, users_user_id, products_product_id 
 		from questions
 		where products_product_id = #{products_product_id}
 		order by question_id desc
 	</select>
 	
 	<!-- 사용자 my 문의 
-		유저의 id(문자열)에 해당하는 question 목록들을 찾아 내림차순으로 정리
-	-->
+		유저의 id(문자열)에 해당하는 question 목록들을 찾아 내림차순으로 정리-->
 	<select id="selectUser" parameterType="string" resultType="question">
-		select *
-		from questions
-		where users_user_id=#{users_user_id}
+		select question_id, question_title, question_content,
+				question_date, users_user_id, products_product_id, product_title
+		from questions, products
+		where users_user_id=#{users_user_id} and questions.products_product_id=products.product_id
 		order by question_id desc
 	</select>
 	
@@ -41,7 +42,8 @@
 	<update id="update" parameterType="question">
 		update questions set
 			question_title=#{question_title},
-			question_content=#{question_content}
+			question_content=#{question_content},
+			question_date=SYSDATE
 		where question_id = #{question_id}
 	</update>
 	
