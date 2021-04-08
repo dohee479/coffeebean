@@ -11,7 +11,7 @@
                     <tr>
                         <th style="border-top: solid 1px #343a40;">아이디</th>
                         <td style="border-top: solid 1px #343a40;">
-                            <input type="text" id="user_id" name="user_id" style="width:26em">
+                            <input type="text" id="user_id" name="user_id" style="width:23.5em">
                             <button class="s_select_font" type="button" id="duplicate">중복체크</button><br>
                             <span id="error_user_id"class="text-danger small"></span>
                             
@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <th>이메일</td>
-                        <td><input type="email" style="width:26em" name="user_email" id="user_email">
+                        <td><input type="email" style="width:23.5em" name="user_email" id="user_email">
                         <select class="s_select_font" name="mail" id="mail">
                             <option value="">직접입력</option>
                             <option value="@naver.com">@naver.com</option>
@@ -70,7 +70,7 @@
 					<tr>
                         <th>주소</th>
                         <td>
-                            <input type="text" style="width:26em" name="user_zipcode" id="user_zipcode" placeholder="우편번호" readonly>
+                            <input type="text" style="width:23.5em" name="user_zipcode" id="user_zipcode" placeholder="우편번호" readonly>
 							<button type="button" onclick="sample6_execDaumPostcode()" class="s_select_font">우편번호 찾기</button><br>           
                             <input type="text" name="user_address" id="user_address" placeholder="주소" readonly><br>
 							<input type="text" name="user_detail_address" id="user_detail_address" placeholder="상세주소"><br>

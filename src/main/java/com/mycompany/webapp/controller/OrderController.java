@@ -59,6 +59,8 @@ public class OrderController {
 								String order_msg,
 								String order_account_name,
 								String order_account,
+								int order_total_price,
+								String method_payment,
 								Model model,
 								HttpServletRequest request) {
 		
@@ -72,6 +74,13 @@ public class OrderController {
 		order.setOrder_msg(order_msg);
 		order.setOrder_account_name(order_account_name);
 		order.setOrder_account(order_account);
+
+		if(method_payment.equals("카카오페이 결제")) {
+			order.setOrder_total_price(order_total_price);
+			ordersService.updatekakaoOrder(order);
+			model.addAttribute("order",order);
+			return "order/payment";
+		}
 		
 		ordersService.updateOrder(order);
 		
@@ -104,8 +113,50 @@ public class OrderController {
 		return "order/order_complete";
 	}
 	
+	@PostMapping("/kakao_complete")
+	public String korder_complete(int order_id,HttpServletRequest request,Model model) {
+		
+		logger.info("가격"+order_id);
+		Order order=ordersService.getOrder(order_id);
+		ordersService.updateOrder(order);
+		
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("basketArr")!=null) {
+			String[] arr = (String[]) session.getAttribute("basketArr");
+			
+			for(String itemNo : arr) {
+				basketsService.deleteBasketItem(Integer.parseInt(itemNo));
+			}
+			
+			session.removeAttribute("basketArr");
+		}
+		
+		if(session.getAttribute("productId")!=null) {
+			List<Integer> arr2 = (ArrayList) session.getAttribute("productId");
+			
+			for(int productId : arr2) {
+				logger.info(productId+"");
+				productsService.updateSaleCount(productId);
+			}
+			
+			session.removeAttribute("productId");
+		}
+		
+		Order completeorder=ordersService.getOrder(order_id);
+		model.addAttribute("completeorder",completeorder);
+		
+		return "order/order_complete";
+	}
+	
 	@PostMapping("/fill_out_order")
-	public String fill_out_order_process(HttpServletRequest request, int product_id,String volume,String grind,int count,Principal principal,Model model){
+	public String fill_out_order_process(HttpServletRequest request, 
+										 int product_id,
+										 String volume,
+										 String grind,
+										 int count,
+										 Principal principal,
+										 Model model){
 		String user_id=principal.getName();
 		
 		Product product=productsService.selectByProductId(product_id);
@@ -116,6 +167,7 @@ public class OrderController {
 		
 		if(volume.equals("200")) {
 			total_price=product_price*count;
+			product_price=product_price*count;
 		}else if(volume.equals("500")) {
 			total_price=product_price*2*count;
 			product_price=product_price*2*count;			
@@ -137,10 +189,10 @@ public class OrderController {
 		orderProduct.setOrder_product_price(product_price);
 		
 		orderProductsService.createOrderProduct(orderProduct);
-		//토탈 넣어줘야지ㅣ
+		
 		Orderinfo orderinfo=new Orderinfo(order_id,
 										order.getUsers_user_id(),
-										user_id,
+										user.getUser_name(),
 										order.getOrder_tel(),
 										order.getOrder_address(),
 										order.getOrder_detail_address(),
@@ -162,6 +214,7 @@ public class OrderController {
 		
 		List<Orderinfo> orderinfoList = new ArrayList<Orderinfo>();
 		orderinfoList.add(orderinfo);
+		model.addAttribute("orderinfoList",orderinfoList);
 		
 		List<Integer> productId = new ArrayList<>();
 		productId.add(product.getProduct_id()); // 세션에 item_id를 저장하기 위함, order complete에서 같은 세션key로 접근하기 위함
@@ -169,7 +222,6 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		session.setAttribute("productId", productId);
 		
-		model.addAttribute("orderinfoList",orderinfoList);
 		return "order/fill_out_order";
 		
 		
@@ -226,7 +278,7 @@ public class OrderController {
 			Product product=productsService.getProduct(orderproduct.getProducts_product_id());
 			Orderinfo orderinfo=new Orderinfo(order_id,
 											order.getUsers_user_id(),
-											user_id,
+											user.getUser_name(),
 											order.getOrder_tel(),
 											order.getOrder_address(),
 											order.getOrder_detail_address(),

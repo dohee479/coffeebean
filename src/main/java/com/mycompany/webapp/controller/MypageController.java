@@ -85,7 +85,6 @@ public class MypageController {
 		List<Order> completeOrderList=ordersService.getCompleteOrderlist(principal.getName());
 
 		List<List<OrderProduct>> totalOrderProductList=new ArrayList<>();
-		List<List<String>> totalProductTitle=new ArrayList<>();
 		
 		for(Order order: completeOrderList) {
 			int order_id=order.getOrder_id();
@@ -366,6 +365,12 @@ public class MypageController {
 		return "redirect:/mypage/orderlist";
 	}
 	
+	@PostMapping("/confirmation-order")
+	public String confirmationOrder(Order order) {
+		ordersService.updateConfirmation(order.getOrder_id());
+		return "redirect:/mypage/orderlist";
+	}
+	
 	@GetMapping("/delete-account")
 	public String DeleteAccount() {
 		return "mypage/delete-account";
@@ -383,5 +388,5 @@ public class MypageController {
 		 * usersService.delete(user_id); logger.info("딜리트에 들어옴");
 		 */
 	}
-	
+		
 }

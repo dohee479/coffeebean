@@ -20,16 +20,17 @@ public class ReviewController {
 	@PostMapping("/create")
 	public String Review(Review review, Authentication auth) {
 		review.setUsers_user_id(auth.getName());
-		review.setOrder_product_id(1);
+		System.out.println(review.getOrder_product_id());
 		reviewsService.createReview(review);
-		String view = "redirect:/product/detail/" + review.getProducts_product_id();
-		return view;
+		/*
+		 * String view = "redirect:/product/detail/" + review.getProducts_product_id();
+		 */
+		return "redirect:/mypage/my-review";
 	}
 	
 	@PostMapping("/delete")
 	public String Delete(int review_id, int product_id) {
 		reviewsService.delete(review_id);
-		System.out.println(product_id);
 		if (product_id != 0) {
 			String view = "redirect:/product/detail/" + product_id;
 			return view;			
@@ -40,7 +41,6 @@ public class ReviewController {
 	
 	@PostMapping("/update")
 	public String Update(Review review, int product_id) {
-		System.out.println(review.getProducts_product_id());
 		reviewsService.update(review);
 		if (product_id != 0) {
 			String view = "redirect:/product/detail/" + product_id;

@@ -117,6 +117,14 @@ header nav ul li {
   left: 35%;
 }
 
+.search-modal div:nth-child(2) form {
+	display: flex;
+	width: 100%;
+}
+
+.search-modal div:nth-child(2) button {
+}
+
 .search-modal input {
   background: none;
   border: 0;
@@ -126,7 +134,7 @@ header nav ul li {
   margin-bottom: 0.5rem;;
 }
 
-.search-modal input:focus {
+.search-modal div:nth-child(2) input:focus {
   outline: none;
 }
 

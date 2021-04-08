@@ -101,6 +101,14 @@ public class ProductsService {
 	  Product dbProduct=productsDao.selectByProductId(product_id);
 	  return dbProduct;
   }
+  
+  public List<Product> getProductAll() {
+	  return productsDao.selectAll();
+  }
+  
+  public List<Product> search(String keyword) {
+	  return productsDao.search(keyword);
+  }
 
 	public void updateSaleCount(int productId) {
 		
