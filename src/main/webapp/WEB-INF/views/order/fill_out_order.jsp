@@ -19,10 +19,10 @@
                 <table class="f_o_table_1">
                     <tr style="border-top: solid 1px #343a40;">
                         <th width="700em">상품/옵션 정보</th>
-                        <th width="138em"> 수량</th>
-                        <th width="138em">상품금액</th> 
-                        <th width="138em">합계금액</th>
-                        
+                        <th width="178m"> 수량</th>
+                        <th width="178em">상품금액</th> 
+                        <th width="178em">합계금액</th>
+
                     </tr>
                  
                  <c:forEach var="orderinfo" items="${orderinfoList}">   
@@ -61,10 +61,7 @@
 	                        <td >${orderinfo.order_product_count}</td>
 	                        <fmt:parseNumber var= "product_price" integerOnly= "true" value= "${orderinfo.product_price/orderinfo.order_product_count }"/>
 	                        <td>${product_price}원</td>
-	                        <td>${orderinfo.product_price}원</td>
-	                        
-	                        
-	                       
+	                        <td>${orderinfo.product_price}원</td>  
 	                    </tr>
 					</c:forEach>
                 </table>

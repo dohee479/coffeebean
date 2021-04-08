@@ -116,6 +116,7 @@ public class OrderController {
 		
 		if(volume.equals("200")) {
 			total_price=product_price*count;
+			product_price=product_price*count;
 		}else if(volume.equals("500")) {
 			total_price=product_price*2*count;
 			product_price=product_price*2*count;			
