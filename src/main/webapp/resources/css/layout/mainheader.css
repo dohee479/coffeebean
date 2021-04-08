@@ -26,6 +26,7 @@ header li {
 
 header a {
   color: white;
+  font-size: 18px;
 }
 
 .header-background {
@@ -54,10 +55,6 @@ header nav ul li {
   position: relative;
 }
 
-.country, .taste {
-  font-size: 18px;
-}
-
 .country::after, .taste::after {
   content: "";
   display: block;
@@ -82,10 +79,24 @@ header nav ul li {
 
 .user-menu {
   display: flex;
+ 
 }
 
 .user-item {
   margin: 0 2rem;
+}
+
+.user-item input[type="submit"] {
+	border-style: none;
+	background-color: transparent;
+	color: #ffffff;
+	font-size: 18px;
+	padding: 0;
+	cursor: pointer;
+}
+
+.user-item input[type="submit"]:focus {
+	outline: none;
 }
 
 .search-modal {
@@ -122,8 +133,6 @@ header nav ul li {
 	width: 100%;
 }
 
-.search-modal div:nth-child(2) button {
-}
 
 .search-modal input {
   background: none;

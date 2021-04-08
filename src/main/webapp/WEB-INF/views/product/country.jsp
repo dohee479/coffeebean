@@ -18,17 +18,21 @@
       </div>
       <div class="recommend-list">
         <span>상품 ${fn:length(productList)}개</span>
-        <ul>
-          <li><a href="country?c=${productList.get(0).product_country}">추천순</a></li>
-          <li><a href="country?c=${productList.get(0).product_country}&s=count">판매량순</a></li>
-          <li><a href="country?c=${productList.get(0).product_country}&s=price_dsc">높은 가격순</a></li>
-          <li><a href="country?c=${productList.get(0).product_country}&s=price_asc">낮은 가격순</a></li>
-        </ul>
-        <hr/>
+        <div>
+	        <ul>
+	          <li><a href="country?c=${productList.get(0).product_country}">추천순</a></li>
+	          <li><a href="country?c=${productList.get(0).product_country}&s=count">판매량순</a></li>
+	          <li><a href="country?c=${productList.get(0).product_country}&s=price_dsc">높은 가격순</a></li>
+	          <li><a href="country?c=${productList.get(0).product_country}&s=price_asc">낮은 가격순</a></li>
+	        </ul>
+        </div>
       </div>
       <div>
-        <div class="search-list">
+        <div class="product-list">
 	        <c:forEach var="product" items="${productList}">
+	          <div id="overlay" onclick="off()">
+				<div id="text">Overlay Text</div>
+			  </div>	
 	          <div class="card border-0">
 	            <a href="${pageContext.request.contextPath}/product/detail/${product.product_id}">
 	              <img src="downloadImg?product_id=${product.product_id}" class="card-img-top" alt="...">
@@ -44,5 +48,4 @@
       </div>
     </div>
   </div>
- </div>
  <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

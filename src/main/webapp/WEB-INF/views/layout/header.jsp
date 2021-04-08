@@ -65,18 +65,16 @@
     </div>
     <div class="user-menu">
     	<sec:authorize access="isAnonymous()">
-    		<div class="user-item"><a href="<%=application.getContextPath()%>/user/login">로그인</a></div>
+    		<div class="user-item"><a href="<%=application.getContextPath()%>/user/login">LogIn</a></div>
     	</sec:authorize>
       	<sec:authorize access="isAuthenticated()">
-              <span class="text-dark">User: <sec:authentication property="name"/> </span>
               <form method="post" class="user-item" action="${pageContext.request.contextPath}/logout">
                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" class="user-item"/>
-                <button type="submit">로그아웃</button>
+                <input type="submit" value="LogOut"/>
               </form>
-                
         </sec:authorize>
       
-      <div class="user-item"><a href="<%=application.getContextPath()%>/mypage/orderlist">마이페이지</a></div>
+      <div class="user-item"><a href="<%=application.getContextPath()%>/mypage/orderlist">MyPage</a></div>
       <div class="user-item"><a href="<%=application.getContextPath()%>/mypage/basket"><img src="${pageContext.request.contextPath}/resources/images/header/shopping-cart.png" style="height:24px"></a></div>
       <div class="user-item"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/loupe.png"></div>
     </div>
@@ -85,7 +83,7 @@
     <div class="close">X</div>
     <div>
       <form action="${pageContext.request.contextPath}/product/search">
-        <input type="text" placeholder="상품명을 입력하세요" name="keyword" autocomplete="off""/>
+        <input type="text" placeholder="상품명을 입력하세요" name="keyword" autocomplete="off"/>
         <button type="submit"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/search.png"></button>
       </form>
     </div>

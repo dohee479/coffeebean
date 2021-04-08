@@ -130,13 +130,15 @@ const compareBasket = () => {
 	})
 	.then(data => {
 		if (data.failure === "failure") {
+			$('#compare .modal-content').css("display", "none");
 			Swal.fire({
 			  icon: 'error',
 			  title: 'Oops...',
-			  text: '로그인이 필요합니다!',
-			  footer: '<a href="/kong/user/login>Why do I have this issue?</a>'
+			  text: '로그인이 필요합니다!'
 			})
-			// location.href = "/kong/user/login";
+			.then(function() {
+				location.href = "/kong/user/login";				
+			})
 		} else {
 			$("#compare_all").addClass('btn-primary');
 			$('#compare_item option').remove();

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.BasketItem;
@@ -86,12 +85,12 @@ public class ProductController {
 	}
 	
 	@GetMapping("/detail/{product_id}")
-	public String Detail(@PathVariable("product_id") int product_id, Model model,Principal principal,Question question) {
+	public String Detail(@PathVariable("product_id") int product_id, String review_pageNo, Model model,Principal principal,Question question) {
 		Product product = productsService.selectByProductId(product_id);
-		List<Question> list=
-				questionsService.getListByProductQuestion(product_id);
+		List<Question> list = questionsService.getListByProductQuestion(product_id);
 		question.setProducts_product_id(product_id);
 		model.addAttribute("list",list);
+		
 		List<Review> reviewList = reviewsService.reviewList(product_id);
 		model.addAttribute("product", product);
 		model.addAttribute("reviewList", reviewList);
