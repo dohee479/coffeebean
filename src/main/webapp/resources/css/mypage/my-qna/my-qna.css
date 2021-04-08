@@ -17,6 +17,18 @@
 	font-weight:bold;
 }
 
+#qna-title{
+	margin-right:20px;
+}
+
+#product-number{
+	margin-right:20px;
+}
+
 #qna-date{
 	float:right;
+}
+
+#qna-accordian .card{
+	margin:0px;
 }
