@@ -68,7 +68,6 @@ public class MypageController {
 	@Autowired
 	private OrderProductsService orderproductsService;
 
-	
 	@Autowired
 	private UsersService usersService;
 	
@@ -77,13 +76,11 @@ public class MypageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
-	
-	
+
 	@GetMapping("/orderlist")
 	public String OrderList(Principal principal,Model model) {
 		
 		List<Order> completeOrderList=ordersService.getCompleteOrderlist(principal.getName());
-
 		List<List<OrderProduct>> totalOrderProductList=new ArrayList<>();
 		
 		for(Order order: completeOrderList) {
@@ -94,7 +91,6 @@ public class MypageController {
 
 		model.addAttribute("totalOrderProductList",totalOrderProductList);
 		 
-		
 		return "mypage/orderlist";
 	}
 	
@@ -103,7 +99,6 @@ public class MypageController {
 		List<Order> completeOrderList=ordersService.getRefundOrderlist(principal.getName());
 
 		List<List<OrderProduct>> totalOrderProductList=new ArrayList<>();
-		List<List<String>> totalProductTitle=new ArrayList<>();
 		
 		for(Order order: completeOrderList) {
 			int order_id=order.getOrder_id();
@@ -197,7 +192,6 @@ public class MypageController {
 		}else {				 
 			out.println("<script>alert('현재 비밀번호가 틀렸습니다.'); location.replace('change-info'); </script>");
 		}
-		
 	}
 	
 
@@ -206,8 +200,8 @@ public class MypageController {
 			Principal principal, 
 			Model model, 
 			HttpServletResponse response) {
-				List<BasketItem> list = basketsService.getBasketItemListByUserId(principal.getName());
 				
+				List<BasketItem> list = basketsService.getBasketItemListByUserId(principal.getName());
 				model.addAttribute("list", list);
 
 		return "mypage/basket";
@@ -216,44 +210,42 @@ public class MypageController {
 	@PostMapping("/addBasket")
 	public String addBasket(BasketItem basketItem, HttpServletRequest request, Principal principal) {
 		
-		basketItem.setProduct_id(Integer.parseInt(request.getParameterValues("product_id")[0]));
-		basketItem.setBasket_volume(Integer.parseInt(request.getParameterValues("volume")[0]));
-		basketItem.setBasket_grind(Integer.parseInt(request.getParameterValues("grind")[0]));
-		basketItem.setBasket_product_count(Integer.parseInt(request.getParameterValues("count")[0]));
+		basketItem.setProduct_id(Integer.parseInt(request.getParameter("product_id")));
+		basketItem.setBasket_volume(Integer.parseInt(request.getParameter("volume")));
+		basketItem.setBasket_grind(Integer.parseInt(request.getParameter("grind")));
+		basketItem.setBasket_product_count(Integer.parseInt(request.getParameter("count")));
 		basketItem.setUsers_user_id(principal.getName());
 		
 		if( request.getParameter("price") != null ) {
-			basketItem.setOrder_product_price(Integer.parseInt(request.getParameterValues("price")[0]));
+			int productPrice = Integer.parseInt(request.getParameter("price"));
+			int count = basketItem.getBasket_product_count();
 			
-			if(request.getParameterValues("volume")[0].equals("200")){
-				basketItem.setOrder_product_price(basketItem.getOrder_product_price() * basketItem.getBasket_product_count());
-			}
+			if(request.getParameter("volume").equals("200"))
+				basketItem.setOrder_product_price(productPrice * count);
+
+			else if(request.getParameter("volume").equals("500"))
+				basketItem.setOrder_product_price(productPrice *2 * count);
 			
-			else if(request.getParameterValues("volume")[0].equals("500")){
-				basketItem.setOrder_product_price( basketItem.getOrder_product_price() *2 * basketItem.getBasket_product_count());
-			}
+			else if(request.getParameter("volume").equals("1000"))
+				basketItem.setOrder_product_price(productPrice *4 * count);
 			
-			else if(request.getParameterValues("volume")[0].equals("1000")){
-				basketItem.setOrder_product_price( basketItem.getOrder_product_price() *4 * basketItem.getBasket_product_count());
-			}
 		} else {
-			
-			int productId=Integer.parseInt(request.getParameterValues("product_id")[0]);
+			int productId=Integer.parseInt(request.getParameter("product_id"));
 			Product product =productsSerivce.getProduct(productId);
 			int productPrice = product.getProduct_price();
+			int count = Integer.parseInt(request.getParameter("count"));
 			
-			if(request.getParameterValues("volume")[0].equals("200"))
-				basketItem.setOrder_product_price( productPrice * Integer.parseInt(request.getParameterValues("count")[0]));
+			if(request.getParameter("volume").equals("200"))
+				basketItem.setOrder_product_price( productPrice * count );
 			
-			else if(request.getParameterValues("volume")[0].equals("500"))
-				basketItem.setOrder_product_price( productPrice * 2 *Integer.parseInt(request.getParameterValues("count")[0]));
+			else if(request.getParameter("volume").equals("500"))
+				basketItem.setOrder_product_price( productPrice * 2 *count );
 			
-			else if(request.getParameterValues("volume")[0].equals("1000"))
-				basketItem.setOrder_product_price( productPrice * 4 *Integer.parseInt(request.getParameterValues("count")[0]));
+			else if(request.getParameter("volume").equals("1000"))
+				basketItem.setOrder_product_price( productPrice * 4 * count );
 		}	
 		
 		basketsService.createBasketItem(basketItem);
-
 		return "redirect:/mypage/basket";	
 	}
 	
