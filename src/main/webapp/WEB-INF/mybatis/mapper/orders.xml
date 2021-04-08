@@ -89,4 +89,9 @@
 		where order_id = #{order_id}
 	</delete>
 	
+	<delete id="deleteTempOrder" parameterType="String">
+		delete from orders
+		where users_user_id = #{users_user_id} AND order_state = 0
+	</delete>
+	
 </mapper>

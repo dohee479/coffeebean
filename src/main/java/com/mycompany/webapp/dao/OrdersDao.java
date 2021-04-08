@@ -21,5 +21,6 @@ public interface OrdersDao {
 	public List<Order> selectRefundOrder(String users_user_id);
 	public void updateOrderState(int order_id);
 	public void updateConfirmation(int order_id);
+	public void deleteTempOrder(String users_user_id);
 }
 

@@ -76,6 +76,9 @@ public class OrdersService {
 		ordersDao.updateConfirmation(order_id);
 	}
 	
+	public void deleteTempOrder(String users_user_id) {
+		ordersDao.deleteTempOrder(users_user_id);
+	}
 	
 	
 }

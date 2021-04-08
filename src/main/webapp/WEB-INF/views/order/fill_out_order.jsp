@@ -99,7 +99,7 @@
                 <tr>
                     <th style="border-top: solid 1px #343a40;">받으실분</th> 
                     <td style="border-top: solid 1px #343a40;">
-                    <input id="receiverName" type="text" name="order_receiver" value="${orderinfoList[0].order_receiver}">
+                    <input id="receiverName" type="text" name="order_receiver" value="${orderinfoList[0]. order_account_name}">
                     <span class="receiverNameEmpty" style="color:red"></span>
                     </td>
                 </tr>
