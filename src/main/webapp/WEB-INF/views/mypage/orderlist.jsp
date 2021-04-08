@@ -84,9 +84,6 @@
 					                        </div> -->
 
 					                      <span class="message1">주문을 취소합니다.</span>
-					                      <form action="" method="">
-					                     
-
 					                        <div class="button-group">
 					                            <button class="cancel" data-dismiss="modal" aria-label="Close">취소</button>
 					                            <button type="submit" class="gocart" name="order_id" value="${ orderlist[0].orders_order_id}">확인</button>

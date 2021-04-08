@@ -429,3 +429,18 @@
     margin-bottom: 20px;
     margin-right: 20px;
 }
+
+#toTop {
+	color:white;
+	font-weight: bold;
+}
+
+#toTopBorder{
+	position: fixed;
+	bottom: 60px;
+	right: 30px;
+	border: 1px solid #ffa94d;
+	background-color: #ffa94d;
+	border-radius: 2em;
+	padding: 5px 5px;
+}

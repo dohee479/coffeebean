@@ -443,6 +443,10 @@
   <!-- 상품 후기 글쓰기 모달 종료 -->
 <!--Modal 끝-->
   </div>
+  <a id="toTopBorder" href="#">
+  	<div id="toTop">TOP</div>
+  </a>
+  
 </div>
 
 <script>
@@ -467,5 +471,13 @@
 			
 		})
 	});
+	
+	$(function() {
+		$("#toTopBorder").click(function() {
+			$('html, body').animate({ scrollTop : 0	}, 400); // 속도 400 
+			return false; 
+		}); 
+	});
+	
 </script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

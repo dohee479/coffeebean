@@ -4,8 +4,34 @@
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 <%@ include file="/WEB-INF/views/layout/sidebar.jsp" %>
 
+<style>
+	.error{
+		font-size:0.8em;
+	}
+</style>
+<script>
+	function validate(){
+		const utitle=$("#update-title").val();
+		const ucontent=$("#update-content").val();
+		if(utitle===""){
+			$("#errorTitle").html("필수사항 입니다.");
+			event.preventDefault();
+		}
+		else{
+			$("#errorTitle").html("");
+		}
+		if(ucontent===""){
+			$("#errorContent").html("필수사항 입니다.");
+			event.preventDefault();
+		}
+		else{
+			$("#errorContent").html("");
+		}
+	}
+</script>
+
 <div id="mydetail-qna">
-	<div class="accordion" id="myqnaaccordionExample">
+	<div class="accordion" id="qna-accordion">
 	  <h3>나의 상품문의</h3>
 	  <hr/>
 	  
@@ -21,7 +47,7 @@
 		        </button>
 		      </h2>
 		    </div>
-		    <div id="collapse${status.count}" class="collapse" aria-labelledby="heading${status.count}" data-parent="#myqnaaccordionExample">
+		    <div id="collapse${status.count}" class="collapse" aria-labelledby="heading${status.count}" data-parent="#qna-accordion">
 		      <div class="card-body">
 		      	<a href="${pageContext.request.contextPath}/product/detail/${question.products_product_id}">상품바로가기</a>
 		        <strong>Q : </strong><span class="title">${question.question_content}</span>
@@ -49,11 +75,14 @@
 		            <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <form method="post" action="my-qna-update">
-		      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		      <form name="update-form" method="post" action="my-qna-update" onsubmit="validate()">
+		      	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			      <div class="modal-body">
-			        <input type="text" class="input-title" name="question_title" value="${question.question_title}" placeholder="수정할 제목을 입력하세요.(최대 30자)" maxlength="30">
-			        <textarea class="input-content" name="question_content" wrap="physical"  placeholder="수정할 내용을 입력하세요.(최대 300자)" maxlength="300">${question.question_content}</textarea>
+			        <input id="update-title" type="text" class="input-title" name="question_title" value="${question.question_title}" placeholder="수정할 제목을 입력하세요.(최대 30자)" maxlength="30">
+			        <span id="errorTitle" class="text-danger error"></span>
+			        <br>
+			        <textarea id="update-content" class="input-content" name="question_content" wrap="physical"  placeholder="수정할 내용을 입력하세요.(최대 300자)" maxlength="300">${question.question_content}</textarea>
+			        <span id="errorContent" class="text-danger error"></span>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
@@ -90,7 +119,6 @@
 		</div>
 		<!--    수정, 삭제 모달 묶음  종료  -->
 	</c:forEach>
-	  
 	</div>
 	
 	
