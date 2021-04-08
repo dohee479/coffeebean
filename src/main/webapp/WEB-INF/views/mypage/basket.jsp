@@ -85,7 +85,13 @@
 					<div class="d-inline-block align-self-center mr-3">
 						<div>배송비</div>
 						<div>
-							<span class="delevery_price mt-2">2500</span>원
+							<c:if test="${sum_price eq 0}">
+								<c:set var="delevery_price" value="0"/> 
+							</c:if>
+							<c:if test="${sum_price ne 0}"> 
+								<c:set var="delevery_price" value="2500"/> 
+							</c:if>
+							<span class="delevery_price mt-2">${delevery_price}</span>원
 						</div>
 					</div>
 					<img class="mr-3 align-self-center" height="30px"
@@ -93,7 +99,7 @@
 					<div class="d-inline-block align-self-center mr-3">
 						<div>합계</div>
 						<div class="text-danger">
-							<span class="order_price mt-2"><fmt:formatNumber value="${ sum_price + 2500 }" pattern="#,###"/></span>원
+							<span class="order_price mt-2"><fmt:formatNumber value="${ sum_price + delevery_price }" pattern="#,###"/></span>원
 						</div>
 					</div>
 				</div>
