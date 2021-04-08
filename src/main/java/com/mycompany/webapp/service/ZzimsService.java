@@ -24,7 +24,10 @@ public class ZzimsService {
 			return "success";
 		}
 		
-		
+	}
+	public Zzim getzzim(Zzim zzim) {
+		Zzim dbzzim=zzimsDao.alreadyProduct(zzim);
+		return dbzzim;
 	}
 	
 	public List<Product> getzzimList(String user_id){
