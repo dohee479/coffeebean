@@ -323,6 +323,7 @@
 			  </div>
               </c:forEach>
             </div>
+            </div>
 <%--        		<div>
 				<div class="text-center">
 					<a class="btn btn-outline-primary btn-sm" href="${pageContext.request.contextPath}/product/detail/${product.product_id}?pageNo=1">처음</a>
@@ -360,16 +361,21 @@
 			    </div>
 			    <div id="collapse${status.count}" class="collapse" aria-labelledby="heading${status.count}" data-parent="#detail-qna">
 			      <div class="card-body">
-			        <strong>Q : </strong><span class="title">${question.question_content}</span>
+			        <span class="title"><span class="QQQ">Q</span> : ${question.question_content}</span>
+			        <br>
 			        <div class="answer">
-			          <strong>A :</strong> 답변 대기중.....
+			          <strong><span class="AAA">A</span> :</strong> 답변 대기중.....
 			        </div>
 			      </div>
 			    </div>
 		  	</div>
-		  	
+		  	 
 		</c:forEach> 
-
+			<sec:authorize access="isAuthenticated()">
+          		<button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#product-qna-modal">
+            		상품문의 글쓰기
+          		</button> 
+       		</sec:authorize>
      </div>
    </div>
     
@@ -384,11 +390,13 @@
 	            <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <form method="post" action="${pageContext.request.contextPath}/product/detail-qna-create">
+	      <form method="post" action="${pageContext.request.contextPath}/product/detail-qna-create" onsubmit="validate()">
 	      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		      <div class="modal-body">
-		        <input type="text" class="input-title" name="question_title" placeholder="제목을 입력하세요." maxlength="30">
-		        <textarea class="input-content" name="question_content" wrap="physical" placeholder="내용을 입력하세요." maxlength="300"></textarea>
+		        <input id="update-title" type="text" class="input-title" name="question_title" placeholder="제목을 입력하세요." maxlength="30">
+		        <span id="errorTitle" class="text-danger error"></span>
+		        <textarea id="update-content" class="input-content" name="question_content" wrap="physical" placeholder="내용을 입력하세요." maxlength="300"></textarea>
+		        <span id="errorContent" class="text-danger error"></span>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
@@ -400,9 +408,6 @@
 	  </div>
 	</div>
 
-  <!-- 상품 후기 글쓰기 모달 -->
-
-  <!-- 상품 후기 글쓰기 모달 종료 -->
 <!--Modal 끝-->
   </div>
   <a id="toTopBorder" href="#">
@@ -440,6 +445,25 @@
 			return false; 
 		}); 
 	});
+	
+	function validate(){
+		const utitle=$("#update-title").val();
+		const ucontent=$("#update-content").val();
+		if(utitle===""){
+			$("#errorTitle").html("필수사항 입니다.");
+			event.preventDefault();
+		}
+		else{
+			$("#errorTitle").html("");
+		}
+		if(ucontent===""){
+			$("#errorContent").html("필수사항 입니다.");
+			event.preventDefault();
+		}
+		else{
+			$("#errorContent").html("");
+		}
+	}
 	
 </script>
 <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

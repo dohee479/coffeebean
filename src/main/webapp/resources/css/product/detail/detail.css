@@ -383,29 +383,13 @@
     background-color: #f8f8f8;
 }
 
-.modal-buttons{
-    display: flex;
-}
-
-.modal-buttons > span{
-    width:80%;
-}
-
-.modal-buttons > button{
-    width:20%;
-}
-
-.modal-buttons > .button-to-modal{
-    margin-left: auto;
-    margin-bottom: auto;
-}
-
 .radio-inline label{
     color:orange;
     margin-right: 1rem;	
 }
 
 .update-delete-buttons {
+	margin-bottom:10px;
     float: right;
 }
 
@@ -444,3 +428,12 @@
 	border-radius: 2em;
 	padding: 5px 5px;
 }
+
+#detail-qna .card{
+	margin: 10px;
+}
+
+#accordionExample .card{
+	margin: 10px;
+}
+
