@@ -32,10 +32,10 @@
           <a class="taste" href="product/flavor?f=달콤쌉싸름">맛/향</a>
           <div class="hidden-menu">
             <a href="product/flavor?f=달콤쌉싸름">달콤쌉싸름</a>
-            <a href="product/flavor?f=고소함">고소함</a>
+            <a href="product/flavor?f=고소함/구수함">고소함/구수함</a>
             <a href="product/flavor?f=묵직하고 달콤한 여운">묵직하고 달콤한 여운</a>
             <a href="product/flavor?f=은은하고 편안함">은은하고 편안함</a>
-            <a href="product/flavor?f=상큼한 산미">상큼한 산미</a>
+            <a href="product/flavor?f=상큼한 산미와 향">상큼한 산미와 향</a>
           </div>
         </li>
       </ul>
@@ -45,17 +45,15 @@
     </div>
     <div class="user-menu">
       <sec:authorize access="isAnonymous()">
-    		<div class="user-item"><a href="<%=application.getContextPath()%>/user/login">로그인</a></div>
-    	</sec:authorize>
-      	<sec:authorize access="isAuthenticated()">
-               <span class="text-dark">User: <sec:authentication property="name"/> </span>
-               <form method="post" class="user-item" action="${pageContext.request.contextPath}/logout">
-	               	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" class="user-item"/>
-	                <button type="submit">로그아웃</button>
-               </form>
-                 
-          </sec:authorize>
-      <div class="user-item"><a href="${pageContext.request.contextPath}/mypage/orderlist">마이페이지</a></div>
+    		<div class="user-item"><a href="<%=application.getContextPath()%>/user/login">LogIn</a></div>
+   	  </sec:authorize>
+   	  <sec:authorize access="isAuthenticated()">
+        <form method="post" class="user-item" action="${pageContext.request.contextPath}/logout">
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" class="user-item"/>
+          <input type="submit" value="LogOut"/>
+        </form>
+      </sec:authorize>
+      <div class="user-item"><a href="${pageContext.request.contextPath}/mypage/orderlist">MyPage</a></div>
       <div class="user-item"><a href="${pageContext.request.contextPath}/mypage/basket"><img src="${pageContext.request.contextPath}/resources/images/header/cart.png" style="height:24px"></a></div>
       <div class="user-item"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/search.png"></div>
     </div>

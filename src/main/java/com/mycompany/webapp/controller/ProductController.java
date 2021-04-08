@@ -85,12 +85,12 @@ public class ProductController {
 	}
 	
 	@GetMapping("/detail/{product_id}")
-	public String Detail(@PathVariable("product_id") int product_id, Model model,Principal principal,Question question) {
+	public String Detail(@PathVariable("product_id") int product_id, String review_pageNo, Model model,Principal principal,Question question) {
 		Product product = productsService.selectByProductId(product_id);
-		List<Question> list=
-				questionsService.getListByProductQuestion(product_id);
+		List<Question> list = questionsService.getListByProductQuestion(product_id);
 		question.setProducts_product_id(product_id);
 		model.addAttribute("list",list);
+		
 		List<Review> reviewList = reviewsService.reviewList(product_id);
 		model.addAttribute("product", product);
 		model.addAttribute("reviewList", reviewList);
@@ -113,10 +113,15 @@ public class ProductController {
 	@GetMapping(value="/basket", produces="application/json;charset=UTF-8") 
 	@ResponseBody
 	public String basket(Principal principal) {
-			List<BasketItem> basketList = basketsService.getBasketItemListByUserId(principal.getName());
+		if (principal == null) {
 			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("basketList", basketList);
+			jsonObject.put("failure", "failure");
 			return jsonObject.toString();	
+		} 
+		List<BasketItem> basketList = basketsService.getBasketItemListByUserId(principal.getName());
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("basketList", basketList);
+		return jsonObject.toString();	
 	}
 	
 	@GetMapping(value="/basketitem", produces="application/json;charset=UTF-8") 

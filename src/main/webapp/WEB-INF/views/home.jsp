@@ -77,11 +77,11 @@
         </div> 
       </div>
       <div class="backimg" id="img3">
-        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor">달콤 쌉싸름</a></h1>
-        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor">고소함</a></h1>
-        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor">묵직하고 달콤한 여운</a></h1>
-        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor">은은하고 편안함</a></h1>
-        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor">상큼한 산미</a></h1>
+        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor?f=달콤쌉싸름">달콤 쌉싸름</a></h1>
+        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor?f=고소함/구수함">고소함/구수함</a></h1>
+        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor?f=묵직하고 달콤한 여운">묵직하고 달콤한 여운</a></h1>
+        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor?f=은은하고 편안함">은은하고 편안함</a></h1>
+        <h1 class="textup"><a href="${pageContext.request.contextPath}/product/flavor?f=상큼한 산미와 향">상큼한 산미</a></h1>
       </div>
       <div class="backimg" id="img4">
         <h1 class="textup">원두이야기</h1>

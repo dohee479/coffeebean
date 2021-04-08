@@ -321,15 +321,25 @@
 			  <!--    수정, 삭제 모달 묶음  종료  -->
               </c:forEach>
             </div>
-            <sec:authorize access="isAnonymous()">
-            	<div>글 쓰기는 로그인이 필요합니다</div>
-            </sec:authorize>
-            <sec:authorize access="isAuthenticated()">
-		       	<button id="review-button"type="button" class="btn btn-light" data-toggle="modal" data-target=".create-review-modal">
-		            상품후기 글쓰기
-		        </button>
-		    </sec:authorize>
-        </div>
+<%--        		<div>
+				<div class="text-center">
+					<a class="btn btn-outline-primary btn-sm" href="${pageContext.request.contextPath}/product/detail/${product.product_id}?pageNo=1">처음</a>
+					<c:if test="${pager.groupNo > 1 }">
+						<a class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/product/detail/${product.product_id}?pageNo=${pager.startPageNo - 1}">이전</a>
+					</c:if>
+					<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo }">
+						<a class="btn 
+						<c:if test='${pager.pageNo == i}'>btn-danger</c:if>
+						<c:if test='${pager.pageNo != i}'>btn-success</c:if>
+						" href="${pageContext.request.contextPath}/product/detail/${product.product_id}?review-pageNo=${i}">${i}</a>
+					</c:forEach>
+					<c:if test="${pager.groupNo < pager.totalGroupNo }">
+						<a class="btn btn-outline-info btn-sm" href="${pageContext.request.contextPath}/product/detail/${product.product_id}?review-pageNo=${pager.endPageNo + 1}">다음</a>
+					</c:if>
+					<a class="btn btn-outline-primary btn-sm" href="${pageContext.request.contextPath}/product/detail/${product.product_id}?review-pageNo=${pager.totalPageNo}">맨끝</a>
+				</div>
+			</div>
+        </div> --%>
 
 		<!-- 상품문의 탭 -->
         <div class="tab-pane fade" id="detail-qna" role="tabpanel" aria-labelledby="contact-tab">
@@ -356,13 +366,8 @@
 			    </div>
 		  	</div>
 		  	
-		</c:forEach>
-          
-        <sec:authorize access="isAuthenticated()">
-          <button id="regbutton"type="button" class="btn btn-light" data-toggle="modal" data-target="#product-qna-modal">
-            상품문의 글쓰기
-          </button> 
-        </sec:authorize>
+		</c:forEach> 
+
      </div>
    </div>
     

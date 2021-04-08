@@ -43,9 +43,13 @@
   margin-right: 2rem;
 }
 
-.item_list{
-  display: flex;
-  justify-content: space-between;
+.searchitem_list{
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-column-gap: 32px;
+	grid-row-gap: 32px;
+	margin-top: 64px;
 }
 
 .card {
@@ -54,7 +58,6 @@
 }
 
 .card-body {
-  margin: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,13 +68,14 @@
 }
 
 .card-title {
-  font-size: 1rem;
-  color: #adb5bd;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
 }
 
 .card-text {
   color: #adb5bd;
-  font-size: 0.5rem;;
+  font-size: 13px;
 }
 
 a {

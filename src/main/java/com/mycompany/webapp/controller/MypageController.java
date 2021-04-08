@@ -263,7 +263,6 @@ public class MypageController {
 	
 	@GetMapping("/zzimdownloadAttach")
 	public void zzimdownloadAttach(int product_id, HttpServletResponse response) {
-		logger.info("실행");
 		try {
 			Product product = productsSerivce.getProduct(product_id);
 			// 응답 HTTP 헤더에 저장될 바디의 타product_id입
@@ -289,7 +288,6 @@ public class MypageController {
 	
 	@GetMapping("/downloadAttach")
 	public void downloadAttach(int basket_item_id, HttpServletResponse response) {
-		logger.info("실행");
 		try {
 			BasketItem basketItem = basketsService.getBasketItem(basket_item_id);
 			// 응답 HTTP 헤더에 저장될 바디의 타product_id입
@@ -372,7 +370,6 @@ public class MypageController {
 	public String DeleteAccount_process(Authentication authentication,HttpSession session) {
 		UserDetails userDetails =(UserDetails)authentication.getPrincipal();
 		String user_id=userDetails.getUsername();
-		logger.info(user_id);
 		session.invalidate();
 		usersService.delete(user_id);
 		return "redirect:home";

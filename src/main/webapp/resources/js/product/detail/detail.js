@@ -129,16 +129,28 @@ const compareBasket = () => {
 		method: "get"
 	})
 	.then(data => {
-		$("#compare_all").addClass('btn-primary');
-		$('#compare_item option').remove();
-		$('#compare_item').append('<option selected disabled value="초기값">전체 상품중에서 비교상품을 선택하세요.</option>');
-		for (i = 0; i < data.basketList.length; i++) {
-			$('#compare_item').append(`<option id="option" value="${data.basketList[i].basket_item_id}">${data.basketList[i].product_title}</option>`); 
+		if (data.failure === "failure") {
+			$('#compare .modal-content').css("display", "none");
+			Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: '로그인이 필요합니다!'
+			})
+			.then(function() {
+				location.href = "/kong/user/login";				
+			})
+		} else {
+			$("#compare_all").addClass('btn-primary');
+			$('#compare_item option').remove();
+			$('#compare_item').append('<option selected disabled value="초기값">전체 상품중에서 비교상품을 선택하세요.</option>');
+			for (i = 0; i < data.basketList.length; i++) {
+				$('#compare_item').append(`<option id="option" value="${data.basketList[i].basket_item_id}">${data.basketList[i].product_title}</option>`); 
+			}			
 		}
 	})
 	.then(() => {
 		$('#compare_item').change(function() {
-			let basket_item_id = $(this).val();
+			const basket_item_id = $(this).val();
 			$.ajax({
 				url: "/kong/product/basketitem",
 				data: {basket_item_id}, 

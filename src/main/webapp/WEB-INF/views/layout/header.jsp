@@ -31,6 +31,7 @@
 	<script src="<%=application.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
 	<script src="<%=application.getContextPath() %>/resources/bootstrap-4.6.0/js/bootstrap.bundle.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/bootstrap-4.6.0/js/bootstrap.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
  <header>
@@ -51,10 +52,10 @@
           <a class="taste" href="<%=application.getContextPath()%>/product/flavor?f=달콤쌉싸름">맛/향</a>
           <div class="hidden-menu">
             <a href="<%=application.getContextPath()%>/product/flavor?f=달콤쌉싸름">달콤쌉싸름</a>
-            <a href="<%=application.getContextPath()%>/product/flavor?f=고소함">고소함</a>
+            <a href="<%=application.getContextPath()%>/product/flavor?f=고소함/구수함">고소함</a>
             <a href="<%=application.getContextPath()%>/product/flavor?f=묵직하고 달콤한 여운">묵직하고 달콤한 여운</a>
             <a href="<%=application.getContextPath()%>/product/flavor?f=은은하고 편안함">은은하고 편안함</a>
-            <a href="<%=application.getContextPath()%>/product/flavor?f=상큼한 산미">상큼한 산미</a>
+            <a href="<%=application.getContextPath()%>/product/flavor?f=상큼한 산미와 향">상큼한 산미</a>
           </div>
         </li>
       </ul>
@@ -64,18 +65,16 @@
     </div>
     <div class="user-menu">
     	<sec:authorize access="isAnonymous()">
-    		<div class="user-item"><a href="<%=application.getContextPath()%>/user/login">로그인</a></div>
+    		<div class="user-item"><a href="<%=application.getContextPath()%>/user/login">LogIn</a></div>
     	</sec:authorize>
       	<sec:authorize access="isAuthenticated()">
-              <span class="text-dark">User: <sec:authentication property="name"/> </span>
               <form method="post" class="user-item" action="${pageContext.request.contextPath}/logout">
                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" class="user-item"/>
-                <button type="submit">로그아웃</button>
+                <input type="submit" value="LogOut"/>
               </form>
-                
         </sec:authorize>
       
-      <div class="user-item"><a href="<%=application.getContextPath()%>/mypage/orderlist">마이페이지</a></div>
+      <div class="user-item"><a href="<%=application.getContextPath()%>/mypage/orderlist">MyPage</a></div>
       <div class="user-item"><a href="<%=application.getContextPath()%>/mypage/basket"><img src="${pageContext.request.contextPath}/resources/images/header/shopping-cart.png" style="height:24px"></a></div>
       <div class="user-item"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/loupe.png"></div>
     </div>
@@ -84,7 +83,7 @@
     <div class="close">X</div>
     <div>
       <form action="${pageContext.request.contextPath}/product/search">
-        <input type="text" placeholder="상품명을 입력하세요" name="keyword" autocomplete="off""/>
+        <input type="text" placeholder="상품명을 입력하세요" name="keyword" autocomplete="off"/>
         <button type="submit"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/search.png"></button>
       </form>
     </div>
