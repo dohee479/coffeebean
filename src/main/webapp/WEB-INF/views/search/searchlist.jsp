@@ -1,15 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
   <div class="search-content">
     <div class="result">
-      <div><span>${keyword}</span>의 검색결과</div>
-      <div>
-	      <form action="${pageContext.request.contextPath}/product/search">
-	        <input type="text" placeholder="상품명을 입력하세요" name="keyword"/>
-	        <button type="submit"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/search.png"></button>
+      <div><span class="keyword">"${keyword}"</span>의 검색결과 ${fn:length(searchList)}개</div>
+      <div class="centered">
+	      <form class="input-group" action="${pageContext.request.contextPath}/product/search">
+	        <input id="input-name" type="text" name="keyword" placeholder="Goods Name" autocomplete="off"/>
+	        <button type="submit"><img class="loupe" src="${pageContext.request.contextPath}/resources/images/header/loupe.png"></button>
 	      </form>
       </div>
     </div>

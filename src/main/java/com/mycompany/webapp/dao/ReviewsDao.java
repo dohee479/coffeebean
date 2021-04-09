@@ -10,4 +10,5 @@ public interface ReviewsDao {
 	public int delete(int review_id);
 	public List<Review> selectByProductId(int product_id);
 	public List<Review> selectByUserId(String user_id);
+	public Review selectByReviewId(int review_id);
 }

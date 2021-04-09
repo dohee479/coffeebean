@@ -16,7 +16,7 @@ public class Review {
 	private String review_attachsname;
 	private String review_attachtype;
 	// 리뷰 작성 날짜
-	private Date review_date;
+	private String review_date;
 	
 	private String users_user_id;
 	private int order_product_id;
@@ -86,11 +86,11 @@ public class Review {
 		this.review_attachtype = review_attachtype;
 	}
 
-	public Date getReview_date() {
+	public String getReview_date() {
 		return review_date;
 	}
 
-	public void setReview_date(Date review_date) {
+	public void setReview_date(String review_date) {
 		this.review_date = review_date;
 	}
 

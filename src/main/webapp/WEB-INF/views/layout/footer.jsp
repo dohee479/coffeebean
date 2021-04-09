@@ -2,7 +2,7 @@
 <%@ page session="false" contentType="text/html; charset=UTF-8"%>
 
 <!--Footer Start-->
-<footer style="margin-top:300px;">
+<footer>
 	<div id="footer-top">
 		<span id="footer-img"><img src="${pageContext.request.contextPath}/resources/images/header/logo.png"></span>
 		<div class="text-footer" id="footer-title">

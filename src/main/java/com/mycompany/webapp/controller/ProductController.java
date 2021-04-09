@@ -164,7 +164,11 @@ public class ProductController {
 	@GetMapping("/search")
 	public String search(String keyword, Model model) {
 		List<Product> searchList = productsService.search(keyword);
-		model.addAttribute("keyword", keyword);
+		if (keyword == null) {
+			model.addAttribute("keyword", "");
+		} else {
+			model.addAttribute("keyword", keyword);			
+		}
 		model.addAttribute("searchList", searchList);
 		return "/search/searchlist";
 	}

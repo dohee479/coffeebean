@@ -1,8 +1,11 @@
 package com.mycompany.webapp.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -48,5 +51,10 @@ public class ReviewController {
 		} else {
 			return "redirect:/mypage/my-review";
 		}
+	}
+	
+	@GetMapping("/downloadReviewImg")
+	public void downloadReviewImg(int review_id, HttpServletResponse response) {
+		reviewsService.getReviewImg(review_id, response);
 	}
 }

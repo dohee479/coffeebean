@@ -157,3 +157,9 @@ header nav ul li {
   opacity: 1;
   z-index: 2000;
 }
+
+.search-modal button {
+	border: 0;
+	outline: 0;
+	background-color: transparent;
+}

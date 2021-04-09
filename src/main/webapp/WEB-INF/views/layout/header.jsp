@@ -34,7 +34,7 @@
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
- <header>
+ <header id="nav-header">
     <div class="logo"><a href="/kong"><img src="${pageContext.request.contextPath}/resources/images/header/logo.png"></a></div>
     <nav>
       <ul>
