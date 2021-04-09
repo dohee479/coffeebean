@@ -110,7 +110,7 @@
 							onclick="selectBoxCheck()"
 							formaction="<%=application.getContextPath()%>/mypage/selectBasketItemDelete"
 							value="선택상품삭제">
-						<button>선택 상품 찜</button>
+						
 					</div>
 					<div class="bsk_right_button">
 						<button type="submit" onclick="selectBoxCheck()"
