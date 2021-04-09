@@ -24,6 +24,7 @@
                     		  where z.users_user_id=#{users_user_id})
 	</select>
 	
+	
 	<!--찜테이블에서 update는 사용X-->
 	
 	<!--찜리스트에서 찜 삭제(delete)할때 사용-->

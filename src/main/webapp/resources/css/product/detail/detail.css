@@ -399,25 +399,13 @@ th[scope="row"] {
     background-color: #f8f8f8;
 }
 
-.modal-buttons > span{
-    width:80%;
-}
-
-.modal-buttons > button{
-    width:20%;
-}
-
-.modal-buttons > .button-to-modal{
-    margin-left: auto;
-    margin-bottom: auto;
-}
-
 .radio-inline label{
     color:orange;
     margin-right: 1rem;	
 }
 
 .update-delete-buttons {
+	margin-bottom:10px;
     float: right;
 }
 
@@ -457,6 +445,7 @@ th[scope="row"] {
 	padding: 5px 5px;
 }
 
+
 #review-img {
 	width: 500px;
 	margin: 1rem;
@@ -487,3 +476,9 @@ th[scope="row"] {
 .review-list span:nth-child(2) {
 	flex: 3;
 }
+
+#detail-qna .card{
+	margin: 10px;
+}
+
+

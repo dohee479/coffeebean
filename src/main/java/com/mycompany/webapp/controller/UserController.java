@@ -3,6 +3,7 @@ package com.mycompany.webapp.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.security.Principal;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
@@ -34,13 +35,24 @@ public class UserController {
 	private UsersService usersService;
 
 	@GetMapping("/login")
-	public String loginForm() {
-		return "user/login";
+	public String loginForm(Principal principal) {
+		if((principal+"").equals("null")) {
+			return "user/login";
+			
+		}else {
+			return "redirect:/";
+		}
+		
 	}
 
 	@GetMapping("/join")
-	public String joinForm() {
-		return "user/join";
+	public String joinForm(Principal principal) {
+		if((principal+"").equals("null")) {
+			return "user/join";
+			
+		}else {
+			return "redirect:/";
+		}
 	}
 	
 	@PostMapping(value="/join",produces="application/json; charset=UTF-8")

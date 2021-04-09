@@ -22,10 +22,12 @@ import com.mycompany.webapp.dto.BasketItem;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Question;
 import com.mycompany.webapp.dto.Review;
+import com.mycompany.webapp.dto.Zzim;
 import com.mycompany.webapp.service.BasketsService;
 import com.mycompany.webapp.service.ProductsService;
 import com.mycompany.webapp.service.QuestionsService;
 import com.mycompany.webapp.service.ReviewsService;
+import com.mycompany.webapp.service.ZzimsService;
 
 @Controller
 @RequestMapping("/product")
@@ -45,19 +47,40 @@ public class ProductController {
 	@Autowired
 	private BasketsService basketsService;
 	
+	@Autowired
+	private ZzimsService zzimsService;
 
 	// 나라
 	@GetMapping("/country") 
-	public String Country(String c, String s, Model model) {
+	public String Country(String c, String s, Model model, Principal principal) {
+		String user_id=principal.getName();
 		List<Product> productList = productsService.country(c, s);
+		for(int i=0;i<productList.size();i++) {
+			Product p=productList.get(i);
+			Zzim zzim=new Zzim(user_id,p.getProduct_id());
+			Zzim dbzzim=zzimsService.getzzim(zzim);
+			if(dbzzim!=null) {
+				productList.get(i).setZzimboolean("exist");
+			}
+		}
 		model.addAttribute("productList", productList);
 		return "/product/country";
 	}
 	
 	// 맛&향
 	@GetMapping("/flavor") 
-	public String Flavor(String f, String s, Model model) {
+	public String Flavor(String f, String s, Model model,Principal principal) {
+		String user_id=principal.getName();
 		List<Product> productList = productsService.taste(f, s);
+		for(int i=0;i<productList.size();i++) {
+			Product p=productList.get(i);
+			Zzim zzim=new Zzim(user_id,p.getProduct_id());
+			Zzim dbzzim=zzimsService.getzzim(zzim);
+			if(dbzzim!=null) {
+				productList.get(i).setZzimboolean("exist");
+			}
+		}
+		
 		model.addAttribute("productList", productList);
 		return "/product/flavor";
 	}
