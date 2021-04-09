@@ -10,6 +10,7 @@
  <!--후기 Accordion UI-->
   <div class="accordion" id="myaccordionExample">
   <c:forEach var="review" items="${reviewList}">
+  <div>
       <div class="card">
         <div class="card-header" id="myheading${review.review_id}">
           <h2 class="mb-0">
@@ -96,6 +97,7 @@
 			  </div>
 			</div>
 		</div>
+      </div>
       </div>
       </c:forEach>
   </div>

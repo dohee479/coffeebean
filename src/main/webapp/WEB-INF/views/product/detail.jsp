@@ -228,7 +228,7 @@
           <img src="downloadDetailImg?product_id=${product.product_id}"/>
         </div>
         <div class="tab-pane fade" id="detail-delievery">
-          <img  src="<%=application.getContextPath()%>/resources/images/product/detail/배송안내.png"/>
+          <img  src="<%=application.getContextPath()%>/resources/images/product/detail/info.jpg"/>
         </div>
 		
         <div class="tab-pane fade" id="detail-review" role="tabpanel" aria-labelledby="contact-tab">

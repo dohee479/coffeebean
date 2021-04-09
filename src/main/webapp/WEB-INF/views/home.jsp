@@ -25,7 +25,7 @@
               onmouseover="
                   highlight('${pageContext.request.contextPath}/resources/images/main/Guate.png'); 
                   SetTitle('과테말라');
-                  SetDescription('과테말라 커피 특징. ');"
+                  SetDescription('아로마가 강하고 바디가 중후한 것이 특징');"
   
               onmouseout="
                   reset_map();
@@ -36,7 +36,7 @@
               onmouseover="
                   highlight('${pageContext.request.contextPath}/resources/images/main/Brasil.png'); 
                   SetTitle('브라질');
-                  SetDescription('브라질 커피 특징. ');"
+                  SetDescription('향이 뛰어나고 단맛, 신맛, 쓴맛이 골고루 조화를 이루며 뒷맛이 재스민 향이 나는 특징');"
   
               onmouseout="
                   reset_map();
@@ -58,7 +58,7 @@
               onmouseover="
                   highlight('${pageContext.request.contextPath}/resources/images/main/Ethi.png'); 
                   SetTitle('에티오피아');
-                  SetDescription('에티오피아 커피 특징. ');"
+                  SetDescription('부드러운 신맛, 과일향, 꽃향기 등 아로마가 풍부하고 신맛이 강한게 특징');"
   
               onmouseout="
                   reset_map();
@@ -69,7 +69,7 @@
               onmouseover="
                   highlight('${pageContext.request.contextPath}/resources/images/main/Colom.png'); 
                   SetTitle('콜롬비아');
-                  SetDescription('은은한 허브향과 단맛의 조화. ');"
+                  SetDescription('콜롬비아 커피는 남쪽으로 내려갈수록 신맛이 강해지고, 북쪽으로 갈수록 산미가 적고 바디감이 강해지는 것이 특징');"
               onmouseout="
                   reset_map();
                   ResetInfo();">
