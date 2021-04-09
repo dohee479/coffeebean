@@ -53,16 +53,20 @@ public class ProductController {
 	// 나라
 	@GetMapping("/country") 
 	public String Country(String c, String s, Model model, Principal principal) {
-		String user_id=principal.getName();
 		List<Product> productList = productsService.country(c, s);
-		for(int i=0;i<productList.size();i++) {
-			Product p=productList.get(i);
-			Zzim zzim=new Zzim(user_id,p.getProduct_id());
-			Zzim dbzzim=zzimsService.getzzim(zzim);
-			if(dbzzim!=null) {
-				productList.get(i).setZzimboolean("exist");
+
+		if(principal!=null) {
+			String user_id=principal.getName();
+			for(int i=0;i<productList.size();i++) {
+				Product p=productList.get(i);
+				Zzim zzim=new Zzim(user_id,p.getProduct_id());
+				Zzim dbzzim=zzimsService.getzzim(zzim);
+				if(dbzzim!=null) {
+					productList.get(i).setZzimboolean("exist");
+				}
 			}
-		}
+		}		
+		
 		model.addAttribute("productList", productList);
 		return "/product/country";
 	}
@@ -70,16 +74,21 @@ public class ProductController {
 	// 맛&향
 	@GetMapping("/flavor") 
 	public String Flavor(String f, String s, Model model,Principal principal) {
-		String user_id=principal.getName();
 		List<Product> productList = productsService.taste(f, s);
-		for(int i=0;i<productList.size();i++) {
-			Product p=productList.get(i);
-			Zzim zzim=new Zzim(user_id,p.getProduct_id());
-			Zzim dbzzim=zzimsService.getzzim(zzim);
-			if(dbzzim!=null) {
-				productList.get(i).setZzimboolean("exist");
+
+		if(principal!=null) {
+			String user_id=principal.getName();
+			for(int i=0;i<productList.size();i++) {
+				Product p=productList.get(i);
+				Zzim zzim=new Zzim(user_id,p.getProduct_id());
+				Zzim dbzzim=zzimsService.getzzim(zzim);
+				if(dbzzim!=null) {
+					productList.get(i).setZzimboolean("exist");
+				}
 			}
 		}
+		
+		
 		
 		model.addAttribute("productList", productList);
 		return "/product/flavor";
