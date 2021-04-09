@@ -28,8 +28,8 @@
                     <div class="change-location">
                         <input type="text" name="user_zipcode" id="user_zipcode" id="user_zipcode" value="${user_zipcode}" placeholder="우편번호" readonly>
                         <button type="button" id="change-location-button" onclick="sample6_execDaumPostcode()" class="s_select_font">우편번호 찾기</button>
-                        <div class="location-info mt-2 "><input type="text" name="user_address" id="user_address" value="${user_address }" placeholder="주소" readonly></div>
-                        <div class="location-info mt-2 "><input type="text" name="user_detail_address" id="user_detail_address" value="${user_detail_address}" placeholder="상세주소"></div><br>
+                        <div class="location-info mt-2 "><input style="width:95%;" type="text" name="user_address" id="user_address" value="${user_address }" placeholder="주소" readonly></div>
+                        <div class="location-info mt-2 "><input style="width:95%;" type="text" name="user_detail_address" id="user_detail_address" value="${user_detail_address}" placeholder="상세주소"></div><br>
                         <span id="error_user_address" class="text-danger small"></span>
                         <input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
                     </div>
