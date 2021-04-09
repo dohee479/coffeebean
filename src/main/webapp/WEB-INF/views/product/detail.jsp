@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/layout/header.jsp" %>
 
 <script src="<%=application.getContextPath() %>/resources/js/product/detail/detail.js"></script>
@@ -132,28 +133,23 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel" >상품 비교하기</h5>
+              <h5 class="modal-title" id="exampleModalLabel" >장바구니 상품과 비교하기</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <div class="btn-group">
-                <button type="button" id="compare_all" class="btn" onclick="compareBasket()" checked>전체상품</button>
-                <button type="button" id="compare_cart" class="btn">장바구니</button>
-              </div>
-
               <select id="compare_item" name="item" class="custom-select" >
                 <option selected>비교상품을 선택하세요.</option>
 
             </select>
 
-              <table class="table table-hover">
+              <table class="table table-hover compare-table">
                 <thead>
                   <tr>
                     <th scope="col"></th>
-                    <th scope="col">${product.product_title}</th>
-                    <th scope="col" class="compare_attribute_name">비교상품</th>
+                    <th class="compare-title" scope="col">${product.product_title}</th>
+                    <th scope="col" class="compare_attribute_name compare-title"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -243,87 +239,101 @@
                 <div class="card">
                   <div class="card-header" id="heading${review.review_id}">
                     <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse${review.review_id}" aria-expanded="false" aria-controls="collapse${review.review_id}">
+                      <button class="btn btn-link btn-block text-left collapsed review-list" type="button" data-toggle="collapse" data-target="#collapse${review.review_id}" aria-expanded="false" aria-controls="collapse${review.review_id}">
+                       <c:if test="${review.review_grade == 1}"><img id="star-grade1" src="${pageContext.request.contextPath}/resources/images/product/detail/star1.png" width="24px"></c:if>
+                       <c:if test="${review.review_grade == 2}"><img id="star-grade2" src="${pageContext.request.contextPath}/resources/images/product/detail/star2.png" width="24px"></c:if>
+                       <c:if test="${review.review_grade == 3}"><img id="star-grade3" src="${pageContext.request.contextPath}/resources/images/product/detail/star3.png" width="24px"></c:if>
+                       <c:if test="${review.review_grade == 4}"><img id="star-grade4" src="${pageContext.request.contextPath}/resources/images/product/detail/star4.png" width="24px"></c:if>
+                       <c:if test="${review.review_grade == 5}"><img id="star-grade5" src="${pageContext.request.contextPath}/resources/images/product/detail/star5.png" width="24px"></c:if>         
                        <span>${review.review_title}</span>
+                       <span>${review.review_date.substring(0,10)}</span>
                       </button>
                     </h2>
                   </div>
               
                   <div id="collapse${review.review_id}" class="collapse" aria-labelledby="heading${review.review_id}" data-parent="#accordionExample">
-                    <div class="card-body">
+                    <div class="">
                       <div class="modal-buttons">
-                        <span>${review.review_content}</span>
-                        <div class="update-delete-buttons ml-3">
-                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal${review.review_id}">수정</button>
-                          <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".delete-modal${review.review_id}">삭제</button>
-                        </div>
+                        <div class="detail-review-content">${review.review_content}</div>
+                        <c:if test="${not empty review.review_attachsname}">
+	                        <img id="review-img" src="${pageContext.request.contextPath}/review/downloadReviewImg?review_id=${review.review_id}">
+                        </c:if>
+                        <sec:authorize access="isAuthenticated()">
+	                        <sec:authentication property="principal.username" var="user_id" />
+	                        <c:set var="user_id" value="${user_id }"/>
+	                        <c:if test="${review.users_user_id == user_id}">
+		                       <div class="update-delete-btn ml-3">
+		                         <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal${review.review_id}">수정</button>
+		                         <button type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".delete-modal${review.review_id}">삭제</button>
+		                       </div>
+	                        </c:if>  
+                        </sec:authorize>
                       </div>
                     </div>
                   </div>
                  </div>
-                   <!--    수정, 삭제 모달 묶음    -->
-			  <div class ="update-delete-modal">
-			    <!--    수정 모달    -->
-			
-			    <div class="modal fade update-modal${review.review_id}"  data-backdrop="static">
-			      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-			        <div class="modal-content">
-			          <div class="modal-header">
-			            <h3 class="modal-title">수정하기</h3>
-			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			                <span aria-hidden="true">&times;</span>
-			            </button>
-			          </div>
-			          <form method="post" action="${pageContext.request.contextPath}/review/update?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
-			          <input type="hidden" name="review_id" value="${review.review_id}"/>
-			          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
+                   <!--    수정, 삭제 모달 묶음    -->   
+				  <div class ="update-delete-modal">
+				    <!--    수정 모달    -->
+				    <div class="modal fade update-modal${review.review_id}"  data-backdrop="static">
+				      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				        <div class="modal-content">
+				          <div class="modal-header">
+				            <h3 class="modal-title">수정하기</h3>
+				            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                <span aria-hidden="true">&times;</span>
+				            </button>
+				          </div>
+				          <form method="post" action="${pageContext.request.contextPath}/review/update?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
+				          <input type="hidden" name="review_id" value="${review.review_id}"/>
+				          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
+					          <div class="modal-body">
+					            <input type="text" class="input-title" placeholder="수정할 제목을 입력하세요." name="review_title" value="${review.review_title}"/>
+					            <textarea class="input-content" wrap="physical" name="review_content"></textarea>
+					           	<div class="file-upload mt-4">
+						          <label for="selete-file">사진 첨부: </label>
+						          <input type="file" id="selete-file" name="review_attach">
+						        </div>
+					          </div>
+					          <div class="modal-footer">
+					            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+					            <button type="submit" class="btn btn-danger">등록</button>
+					          </div>
+				          </form>
+				        </div>
+				      </div>
+				    </div>
+				
+				    <!--    삭제 모달    -->
+				    <div class="modal fade delete-modal${review.review_id}" data-backdrop="static">
+				      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+				        <div class="modal-content">
+				          <div class="modal-header">
+				            <h3 class="modal-title">글삭제</h3>
+				            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                <span aria-hidden="true">&times;</span>
+				            </button>
+				          </div>
 				          <div class="modal-body">
-				            <input type="text" class="input-title" placeholder="수정할 제목을 입력하세요." name="review_title" value="${review.review_title}"/>
-				            <textarea class="input-content" wrap="physical" name="review_content"></textarea>
-				           	<div class="file-upload mt-4">
-					          <label for="selete-file">사진 첨부: </label>
-					          <input type="file" id="selete-file" name="review_attach">
-					        </div>
+				              <h2>정말 삭제하시겠습니까?</h2>
 				          </div>
-				          <div class="modal-footer">
-				            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-				            <button type="submit" class="btn btn-danger">등록</button>
-				          </div>
-			          </form>
-			        </div>
-			      </div>
-			    </div>
-			
-			    <!--    삭제 모달    -->
-			    <div class="modal fade delete-modal${review.review_id}" data-backdrop="static">
-			      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-			        <div class="modal-content">
-			          <div class="modal-header">
-			            <h3 class="modal-title">글삭제</h3>
-			            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			                <span aria-hidden="true">&times;</span>
-			            </button>
-			          </div>
-			          <div class="modal-body">
-			              <h2>정말 삭제하시겠습니까?</h2>
-			          </div>
-			          <form method="post" action="${pageContext.request.contextPath}/review/delete">
-			          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-			          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
-				          <div class="modal-footer">
-				            <button type="button" class="btn btn-outline-secondary" id="asdasfas" data-dismiss="modal">취소</button>
-				            <button type="submit" class="btn btn-danger" name="review_id" value="${review.review_id}">예</button>
-				          </div>
-			          </form>
-			        </div>
-			      </div>
-			    </div>
-			  </div>
-			  <!--    수정, 삭제 모달 묶음  종료  -->
-			  </div>
-              </c:forEach>
-            </div>
-           </div>
+				          <form method="post" action="${pageContext.request.contextPath}/review/delete">
+				          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				          <input type="hidden" name="product_id" value="${review.products_product_id}"/>
+					          <div class="modal-footer">
+					            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
+					            <button type="submit" class="btn btn-danger" name="review_id" value="${review.review_id}">예</button>
+					          </div>
+				          </form>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+				  <!--    수정, 삭제 모달 묶음  종료  -->
+				  </div>
+                </c:forEach>
+              </div>
+             </div>
 <%--        		<div>
 				<div class="text-center">
 					<a class="btn btn-outline-primary btn-sm" href="${pageContext.request.contextPath}/product/detail/${product.product_id}?pageNo=1">처음</a>

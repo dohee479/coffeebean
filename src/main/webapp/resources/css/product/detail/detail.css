@@ -183,6 +183,20 @@
     margin-bottom: 2em;
 }
 
+.compare-table td {
+	text-align: center;
+}
+
+.compare-title {
+	word-break: keep-all;
+	text-align: center;
+	font-weight: bold;
+}
+
+th[scope="row"] {
+	font-weight: bold;
+}
+
 /* -- 모달 시작 --*/
 
 #cart .modal-title, #zzim .modal-title{
@@ -242,7 +256,9 @@
     color: white;
 }
 
-
+.btn-group {
+	display: block;
+}
 
 
 /* === 비교하기 끝 ===*/
@@ -383,10 +399,6 @@
     background-color: #f8f8f8;
 }
 
-.modal-buttons{
-    display: flex;
-}
-
 .modal-buttons > span{
     width:80%;
 }
@@ -443,4 +455,35 @@
 	background-color: #ffa94d;
 	border-radius: 2em;
 	padding: 5px 5px;
+}
+
+#review-img {
+	width: 500px;
+	margin: 1rem;
+}
+
+.detail-review-content {
+	margin: 1rem 1rem;;
+}
+
+.update-delete-btn {
+	margin: 1rem;
+}
+
+#star-grade1, #star-grade2, #star-grade3, #star-grade4, #star-grade5 {
+	width: 64px;
+	margin: 0;
+	padding-top: 6px
+}
+
+.review-list {
+	display: flex;
+}
+
+.review-list span:nth-child(1) {
+	flex: 3;
+}
+
+.review-list span:nth-child(2) {
+	flex: 3;
 }
