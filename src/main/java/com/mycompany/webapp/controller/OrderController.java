@@ -51,29 +51,11 @@ public class OrderController {
 		
 	@PostMapping("/order_complete")
 	public String order_complete(int order_id,
-								String order_receiver,
-								int order_zipcode,
-								String order_address,
-								String order_detail_address,
-								String order_tel,
-								String order_msg,
-								String order_account_name,
-								String order_account,
+								Order order,
 								int order_total_price,
 								String method_payment,
 								Model model,
 								HttpServletRequest request) {
-		
-		Order order=new Order();
-		order.setOrder_id(order_id);
-		order.setOrder_receiver(order_receiver);
-		order.setOrder_zipcode(order_zipcode);
-		order.setOrder_address(order_address);
-		order.setOrder_detail_address(order_detail_address);
-		order.setOrder_tel(order_tel);
-		order.setOrder_msg(order_msg);
-		order.setOrder_account_name(order_account_name);
-		order.setOrder_account(order_account);
 
 		if(method_payment.equals("카카오페이 결제")) {
 			order.setOrder_total_price(order_total_price);
