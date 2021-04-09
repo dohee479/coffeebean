@@ -304,28 +304,6 @@
 				      </div>
 				    </div>
 				
-				    <!--    삭제 모달    -->
-				    <div class="modal fade delete-modal${review.review_id}" data-backdrop="static">
-				      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-				        <div class="modal-content">
-				          <div class="modal-header">
-				            <h3 class="modal-title">글삭제</h3>
-				            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				                <span aria-hidden="true">&times;</span>
-				            </button>
-				          </div>
-				          <div class="modal-body">
-				              <h2>정말 삭제하시겠습니까?</h2>
-				          </div>
-				          <div class="modal-footer">
-				            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
-				            <button type="submit" class="btn btn-danger">등록</button>
-				          </div>
-			          </form>
-			        </div>
-			      </div>
-			    </div>
-			
 			    <!--    삭제 모달    -->
 			    <div class="modal fade delete-modal${review.review_id}" data-backdrop="static">
 			      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
