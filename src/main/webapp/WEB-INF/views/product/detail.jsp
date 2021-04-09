@@ -335,8 +335,6 @@
             </div>
 
            </div>
-
-           </div>
 <%--        		<div>
 				<div class="text-center">
 					<a class="btn btn-outline-primary btn-sm" href="${pageContext.request.contextPath}/product/detail/${product.product_id}?pageNo=1">처음</a>
