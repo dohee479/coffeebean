@@ -46,9 +46,15 @@
 	</select>
 	
 	<select id="search" parameterType="string" resultType="product">
-		select *
-		from products
-		where product_title like '%' || #{keyword} || '%'
+		<if test="keyword != '커피' and keyword != '원두'">
+			select *
+			from products
+			where product_title like '%' || #{keyword} || '%'
+		</if>
+		<if test="keyword == '커피' or keyword == '원두'">
+			select *
+			from products
+		</if> 
 	</select>
 
 	<update id="updateSaleCountByProductId" parameterType="int">

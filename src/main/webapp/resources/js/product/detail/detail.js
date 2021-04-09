@@ -124,6 +124,11 @@ $(document).ready(function(){
 
 
 const compareBasket = () => {
+	document.querySelector('.compare_attribute_name').innerHTML = "";
+    document.querySelector('.compare_attribute_price').innerHTML = "";
+    document.querySelector('.compare_attribute_taste').innerHTML = "";
+    document.querySelector('.compare_attribute_origin').innerHTML = "";
+    document.querySelector('.compare_attribute_rate').innerHTML = "";
 	$.ajax({
 		url: "/kong/product/basket",
 		method: "get"
@@ -140,7 +145,6 @@ const compareBasket = () => {
 				location.href = "/kong/user/login";				
 			})
 		} else {
-			$("#compare_all").addClass('btn-primary');
 			$('#compare_item option').remove();
 			$('#compare_item').append('<option selected disabled value="초기값">전체 상품중에서 비교상품을 선택하세요.</option>');
 			for (i = 0; i < data.basketList.length; i++) {

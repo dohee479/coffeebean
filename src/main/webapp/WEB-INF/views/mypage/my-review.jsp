@@ -13,24 +13,29 @@
       <div class="card">
         <div class="card-header" id="myheading${review.review_id}">
           <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#mycollapse${review.review_id}" aria-expanded="true" aria-controls="mycollapse${review.review_id}">
-	         <span id="review-title">${review.review_title}</span>
-	         <span id="review-grade"><p>${review.review_grade}</p></span>
-	         <span id="review-date">${review.review_date}</span>
-            </button>
+           <button class="btn btn-link btn-block text-left collapsed review-list" type="button" data-toggle="collapse" data-target="#collapse${review.review_id}" aria-expanded="false" aria-controls="collapse${review.review_id}">
+            <c:if test="${review.review_grade == 1}"><img id="star-grade1" src="${pageContext.request.contextPath}/resources/images/product/detail/star1.png" width="24px"></c:if>
+            <c:if test="${review.review_grade == 2}"><img id="star-grade2" src="${pageContext.request.contextPath}/resources/images/product/detail/star2.png" width="24px"></c:if>
+            <c:if test="${review.review_grade == 3}"><img id="star-grade3" src="${pageContext.request.contextPath}/resources/images/product/detail/star3.png" width="24px"></c:if>
+            <c:if test="${review.review_grade == 4}"><img id="star-grade4" src="${pageContext.request.contextPath}/resources/images/product/detail/star4.png" width="24px"></c:if>
+            <c:if test="${review.review_grade == 5}"><img id="star-grade5" src="${pageContext.request.contextPath}/resources/images/product/detail/star5.png" width="24px"></c:if>         
+            <span>${review.review_title}</span>
+            <span>${review.review_date.substring(0,10)}</span>
+           </button>
           </h2>
         </div>
     
-        <div id="mycollapse${review.review_id}" class="collapse" aria-labelledby="myheading${review.review_id}" data-parent="#myaccordionExample">
-          <div class="card-body">
+        <div id="collapse${review.review_id}" class="collapse" aria-labelledby="myheading${review.review_id}" data-parent="#myaccordionExample">
+          <div class="">
             <div class="modal-buttons">
-              <form>
-              	<span id="review-content">${review.review_content}</span>
-	            <div class="update-delete-buttons">
-	              <button id="myreview-update-button" type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal${review.review_id}">수정</button>
-	              <button id="myreview-delete-button" type="button" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".delete-modal${review.review_id}">삭제</button>
+              	<div class="detail-review-content">${review.review_content}</div>
+      	        <c:if test="${not empty review.review_attachsname}">
+                 <img id="review-img" src="${pageContext.request.contextPath}/review/downloadReviewImg?review_id=${review.review_id}">
+                </c:if>
+	            <div class="update-delete-btn">
+	              <button id="myreview-update-button" type="submit" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".update-modal${review.review_id}">수정</button>
+	              <button id="myreview-delete-button" type="submit" class="btn btn-outline-secondary button-to-modal" data-toggle="modal" data-target=".delete-modal${review.review_id}">삭제</button>
 	            </div>
-              </form>
             </div>
           </div>
         </div>
