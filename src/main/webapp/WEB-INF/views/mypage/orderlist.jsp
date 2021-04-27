@@ -129,6 +129,18 @@
 		                           	<c:if test="${ orderlist[0].order_state eq 5}">
 		                           		<span>구매확정</span><br/>
 		                           	</c:if>
+		                           	<c:if test="${ orderlist[0].order_state eq 2}">
+		                               <div class="msg">결제완료</div><br/>
+		                             <%--   <button type="button" class="delivery_tracking" data-toggle="modal" data-target="#tracking${ orderlist[0].orders_order_id}">배송조회</button><br> --%>
+		                               <div class="cancel" data-toggle="modal" data-target="#cancel${ orderlist[0].orders_order_id}">취소하기</div><br>
+		                               <div class="cancel" data-toggle="modal" data-target="#confirmation${ orderlist[0].orders_order_id}">구매확정</div>
+		                           	</c:if>
+		                           	<c:if test="${ orderlist[0].order_state eq 3}">
+		                               <div class="msg">베송</div><br/>
+		                             <%--   <button type="button" class="delivery_tracking" data-toggle="modal" data-target="#tracking${ orderlist[0].orders_order_id}">배송조회</button><br> --%>
+		                               <div class="cancel" data-toggle="modal" data-target="#confirmation${ orderlist[0].orders_order_id}">구매확정</div>
+		                           	</c:if>
+		                           	
 		                           </td>
 	                           </tr>
 					  
